@@ -1,0 +1,216 @@
+<section>
+  <header class="text-center">
+    <img src="/assets/logo/logo-nud-info.png">
+    <h5>ระบบเทคโนโลยีสารสนเทศ โรงเรียนมัธยมสาธิตมหาวิทยาลัยนเรศวร</h5>
+    <!-- <div class="text-title-body">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium blanditiis dolorum ducimus placeat possimus
+      provident qui reprehenderit tempore totam voluptatibus. At doloribus possimus praesentium quam ut! Deserunt,
+      excepturi tempore? Magnam.
+    </div> -->
+  </header>
+  <article>
+    <div fxLayout="column" fxLayout.gt-sm="row">
+      <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="40" class="text-center pad-top-xl push-top-xxl">
+        <img [src]="img_user" style="width: 90px; height: 105px;" class="avatar-top">
+        <mat-card-title>
+          <p>{{ user_full_name }}
+            <br />
+            <label style="font-size: 14px;">{{ personal_position }}</label>
+          </p>
+        </mat-card-title>
+        <mat-card-content style="text-align: left;">
+          <mat-list>
+            <mat-list-item>
+              <h3 matLine>บุคลากรฝ่าย</h3>
+              <p matLine>{{ personal_party }}</p>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+        <!-- <mat-card-actions class="text-md">
+          <span class="primary-color">บทบาทในระบบ</span>
+          <span class="secondary-text-color">CTO at Best Solutions</span>
+        </mat-card-actions> -->
+      </mat-card>
+      <!-- <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="60" class="text-center pad-top-xl push-top-xxl">
+        <mat-card-title>ข้อมูลของคุณในระบบ</mat-card-title>
+        <mat-card-content style="text-align: left;">
+          เนื้อหา
+        </mat-card-content>
+      </mat-card> -->
+    </div>
+  </article>
+</section>
+<section>
+  <header class="text-center">
+    <!-- <img src="/assets/logo/logo-nud-info.png"> -->
+    <h5>ระบบประมวลผลรายการ</h5>
+  </header>
+</section>
+<section>
+  <header class="text-center">
+    <div class="mat-subhead">
+      ระบบประมวลผลรายการ (Transaction Processing System: TPS) เป็นระบบสารสนเทศที่เก็บข้อมูลประถมภูมิ (Primary Data) ซึ่งเป็นรายการการดำเนินกิจกรรมต่าง
+      ๆ ของโรงเรียนเข้ามาเก็บรวมรวมไว้ อย่างเป็นระบบเพื่อนำข้อมูลเหล่านั้นไปประมวลผลในระดับที่สูงขึ้นต่อไป โปรดเลือกระบบที่ท่านต้องการใช้งาน
+    </div>
+  </header>
+  <article>
+      <div fxLayout="column" fxLayout.gt-sm="row">
+          <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="33" class="text-center pad-top-xl push-top-xxl">
+              <img src="assets/avatars/TPS02.png" class="avatar-top">
+              <mat-card-title>
+                <p>ระบบฐานข้อมูลอาคาร และสถานที่</p>
+              </mat-card-title>
+              <mat-card-content>
+                <p></p>
+                <div>
+                  <button mat-raised-button color="primary" (click)="gotoLocation()">เข้าใช้งาน</button>
+                </div>
+              </mat-card-content>
+              <mat-card-actions class="text-md">
+                <!-- <span class="primary-color">Ada Allison</span> -->
+                <!-- <span class="secondary-text-color">CTO at Best Solutions</span> -->
+              </mat-card-actions>
+            </mat-card>
+
+            <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="33" class="text-center pad-top-xl push-top-xxl">
+                <img src="assets/avatars/TPS02.png" class="avatar-top">
+                <mat-card-title>
+                  <p>ระบบฐานข้อมูลไฟล์ของฉัน</p>
+                </mat-card-title>
+                <mat-card-content>
+                  <p></p>
+                  <div>
+                    <button mat-raised-button color="primary" (click)="gotoFile()">เข้าใช้งาน</button>
+                  </div>
+                </mat-card-content>
+                <mat-card-actions class="text-md">
+                  <!-- <span class="primary-color">Ada Allison</span> -->
+                  <!-- <span class="secondary-text-color">CTO at Best Solutions</span> -->
+                </mat-card-actions>
+              </mat-card>
+
+      </div>
+    <div fxLayout="column" fxLayout.gt-sm="row">
+      <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="33" class="text-center pad-top-xl push-top-xxl">
+        <img src="assets/avatars/TPS02.png" class="avatar-top">
+        <mat-card-title>
+          <p>ระบบประกันคุณภาพการศึกษา</p>
+        </mat-card-title>
+        <mat-card-content>
+          <p></p>
+          <div>
+            <button mat-raised-button color="primary" (click)="gotoEqaTpsHome()">เข้าใช้งาน</button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-md">
+          <!-- <span class="primary-color">Ada Allison</span> -->
+          <!-- <span class="secondary-text-color">CTO at Best Solutions</span> -->
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="33" class="text-center pad-top-xl push-top-xxl">
+        <img src="assets/avatars/TPS02.png" class="avatar-top">
+        <!-- <mat-icon class="avatar-top">delete</mat-icon> -->
+        <mat-card-title>
+          <p>ระบบวิชาชุมนุม</p>
+        </mat-card-title>
+        <mat-card-content>
+          <p>
+            ระบบสำหรับการจัดการวิชาชมนุมสำหรับอาจารย์ผู้สอน เช่น ตั้งวิชาชุมนุม
+            การจัดการบัญชีรายชื่อนักเรียนชุมนุม การส่งผลประเมินวิชาชุมนุม
+          </p>
+          <div>
+            <button mat-raised-button color="primary" (click)="gotoCongregationHome()">เข้าใช้งาน</button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-md">
+
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="33" class="text-center pad-top-xl push-top-xxl">
+        <img src="assets/avatars/TPS02.png" class="avatar-top">
+        <mat-card-title>
+          <p>ระบบโครงงานนักเรียน</p>
+        </mat-card-title>
+        <mat-card-content>
+          <p></p>
+          <div>
+            <button mat-raised-button color="primary">เข้าใช้งาน</button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-md">
+          <!-- <span class="primary-color">Calvin West</span> -->
+          <!-- <span class="secondary-text-color">Delivery manager at Super Soft</span> -->
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </article>
+</section>
+
+
+<section>
+  <header class="text-center">
+    <!-- <img src="/assets/logo/logo-nud-info.png"> -->
+    <h5>ระบบประมวลผลเพื่อการจัดการ</h5>
+    <div class="mat-subhead">
+      ระบบประมวลผลเพื่อการจัดการ (Management Information System: MIS) เป็นระบบที่นำข้อมูลประถมภูมิ ประมวลเพื่อให้เป็นข้อมูลทุตยภูมิ
+      (Secondary Data)
+    </div>
+  </header>
+  <article class="push-top">
+    <mat-grid-list [cols]="gridColumns" [rowHeight]="rowHeight">
+      <mat-grid-tile [colspan]="1" [rowspan]="1" (click)="eqaEnter()">
+        <div class="grid">
+          <figure class="effect-marley">
+            <div class="picture" style="background-image: url('assets/portfolio/ประกันคุณภาพ.jpg')"></div>
+            <figcaption>
+              <div>
+                <h2>
+                  <span>งานพัฒนาและประกันคุณภาพการศึกษา</span>
+                </h2>
+                <p>สำหรับครู และเจ้าหน้าที่ในฝ่ายงาน<br />
+                {{ eqaAuthorityMessage }}
+                </p>
+              </div>
+              <a>View more</a>
+            </figcaption>
+          </figure>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1" (click)="mobilizeEnter()">
+        <div class="grid">
+          <figure class="effect-oscar">
+            <div class="picture" style="background-image: url('assets/portfolio/ชุมนุม.jpg')"></div>
+            <figcaption>
+              <h2>กิจกรรมพัฒนาผู้เรียน
+                <span>(ชุมนุม)</span>
+              </h2>
+              <p>สำหรับครู และเจ้าหน้าที่ในฝ่ายงาน<br />{{ mobilizeAuthorityMessage }}</p>
+              <a>View more</a>
+            </figcaption>
+          </figure>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1" (click)="studentProjectEnter()">
+        <div class="grid">
+          <figure class="effect-layla">
+            <div class="picture" style="background-image: url('assets/portfolio/student_project.jpg')"></div>
+            <figcaption>
+              <h2>
+                <span>โครงงานนักเรียน</span>
+              </h2>
+              <p>สำหรับครู และเจ้าหน้าที่ในฝ่ายงาน
+                <br />{{ studentProjectAuthorityMessage }}</p>
+              <a>View more</a>
+            </figcaption>
+          </figure>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </article>
+  <!-- </mat-card-content> -->
+  <!-- </mat-card> -->
+  <!-- </div> -->
+  <!-- </article> -->
+</section>

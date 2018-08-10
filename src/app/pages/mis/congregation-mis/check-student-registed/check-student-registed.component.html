@@ -1,0 +1,82 @@
+<div id="back-button-div">
+  <button mat-fab color="accent" (click)="navigateBack()"><mat-icon class="">arrow_back</mat-icon></button>
+</div>
+
+<section>
+  <header class="text-center">
+    <!-- <img src="/assets/logo/logo-nud-info.png"> -->
+    <h5>ระบบกิจกรรมพัฒนาผู้เรียน (ชุมนุม) : ตรวจสอบการลงทะเบียนเรียน</h5>
+    <p>
+
+    </p>
+  </header>
+</section>
+<section>
+  <article>
+    <mat-card>
+      <mat-card-title>
+        <h5>รายชื่อนักเรียน</h5>
+      </mat-card-title>
+      <mat-card-title>
+        
+      </mat-card-title>
+      <mat-card-content>
+        <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
+          <span *ngIf="!searchBox.searchVisible" class="push-left-sm" style="vertical-align: middle;">
+                <mat-icon class="" style="bottom: -5px; display: inline-block; position: relative;">format_list_numbered</mat-icon> 
+                <span class="mat-title"> 
+                  รายการแสดงรายวิชาชุมนุมที่นักเรียนลงเรียน<br />
+                </span>
+          </span>
+          <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
+              </span>
+
+          <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm" placeholder="Search here" (searchDebounce)="search($event)"
+            flex>
+          </td-search-box>
+          <span>
+            <mat-radio-group [(ngModel)]="isRegisted" fxLayout="column" fxLayout.gt-md="row">
+              <mat-radio-button [value]="true">กรองเฉพาะสมัครแล้ว</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-radio-button [value]="false">กรองเฉพาะยังไม่สมัคร</mat-radio-button>
+            </mat-radio-group>
+          </span>
+          <span>
+                <button mat-icon-button [matMenuTriggerFor]="menuBelow"><mat-icon>more_vert</mat-icon></button>
+                <mat-menu #menuBelow="matMenu" xPosition="after" yPosition="below">
+                  <button mat-menu-item (click)="showDontRegist(1)">
+                    <mat-icon>playlist_add</mat-icon> นักเรียนที่ยังไม่มีชุมนุม ม.1
+                  </button>
+                  <button mat-menu-item (click)="showDontRegist(2)">
+                    <mat-icon>playlist_add</mat-icon> นักเรียนที่ยังไม่มีชุมนุม ม.2
+                  </button>
+                  <button mat-menu-item (click)="showDontRegist(3)">
+                    <mat-icon>playlist_add</mat-icon> นักเรียนที่ยังไม่มีชุมนุม ม.3
+                  </button>
+                  <button mat-menu-item (click)="showDontRegist(4)">
+                    <mat-icon>playlist_add</mat-icon> นักเรียนที่ยังไม่มีชุมนุม ม.4
+                  </button>
+                  <button mat-menu-item (click)="showDontRegist(5)">
+                    <mat-icon>playlist_add</mat-icon> นักเรียนที่ยังไม่มีชุมนุม ม.5
+                  </button>
+                  <button mat-menu-item (click)="showDontRegist(6)">
+                    <mat-icon>playlist_add</mat-icon> นักเรียนที่ยังไม่มีชุมนุม ม.6
+                  </button>
+                </mat-menu>
+            </span>
+        </div>
+        <td-data-table #dataTable [clickable]="true" [data]="filteredData" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"
+          [sortable]="true" (rowSelect)="selectedStandardItem($event)" (selectAll)="selectedStandardItem($event)" (rowClick)="rowClick($event)">
+        </td-data-table>
+        <div class="mat-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
+          <h6>-- ไม่พบรายการ --</h6>
+        </div>
+        <td-paging-bar #pagingBar [pageSize]="pageSize" [total]="filteredTotal" (change)="page($event)" class="push-top">
+          <span td-paging-bar-label hide-xs>ลำดับที่แสดง:</span> {{pagingBar.range}} <span hide-xs> จากทั้งหมด {{pagingBar.total}} รายการ</span>
+        </td-paging-bar>
+      </mat-card-content>
+      <mat-card-footer>
+
+      </mat-card-footer>
+    </mat-card>
+  </article>
+</section>

@@ -1,0 +1,86 @@
+<!-- <p>
+  standard-list-management works!
+</p> -->
+<div id="back-button-div">
+  <button mat-fab color="accent" (click)="navigateBack()"><mat-icon class="">arrow_back</mat-icon></button>
+</div>
+<section>
+  <article>
+    <div fxFlex.gt-sm="20%"></div>
+    <mat-card fxFlex.gt-sm="60%">
+      <mat-card-title>
+        <mat-icon class="" style="bottom: -5px; display: inline-block; position: relative;">format_list_numbered</mat-icon>
+        มอบหมายผู้ประสานงานจัดส่งหลักฐาน
+      </mat-card-title>
+      <mat-card-subtitle>
+        ส่วนการจัดการเชื่อมโยงระหว่างผู้ประสานงาน กลับมาตรฐาน/ประเด็นพิจารณา
+      </mat-card-subtitle>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutGap="15px">
+          <div fxFlex.gt-sm="30%">
+            <mat-form-field>
+              <mat-icon matPrefix>today</mat-icon>
+              <mat-select placeholder="ปีการศึกษา" [(ngModel)]="selectedYear">
+                <mat-option *ngFor="let state of yearsList" [value]="state.text" (click)="getStandardListByYear()">
+                  {{ state.text }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-sm="70%">
+            <mat-form-field style="width: 100%;">
+              <mat-icon matPrefix>clear_all</mat-icon>
+              <mat-select placeholder="มาตรฐาน/ประเด็น" [(ngModel)]="selectedStandard">
+                <mat-option *ngFor="let state of standardListForSelect" [value]="state.id" (click)="whenSelectedStandard(state.id)">
+                  {{ state.text }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row">
+          <div fxFlex.gt-sm="100%">
+            <mat-form-field style="width: 100%;">
+              <mat-icon matPrefix>contacts</mat-icon>
+              <input matInput placeholder="ค้นหารายชื่อ" [matAutocomplete]="auto" [formControl]="stateCtrl">
+            </mat-form-field>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option style="height: 60px;" *ngFor="let state of filteredStates | async" (click)="showName(state.personal_id)">
+                <div fxLayout="row" fxLayoutGap="15px">
+                  <div fxFlex.gt-sm="50%">
+                    {{state.personal_title_name_th}}{{state.personal_first_name_th}}
+                  </div>
+                  <div fxFlex.gt-sm="40%">
+                    {{ state.personal_last_name_th }}
+                  </div>
+                </div>
+              </mat-option>
+            </mat-autocomplete>
+          </div>
+        </div>
+        
+        <mat-list dense>
+            <h3 mat-subheader style="font-size: 1.2rem;">ครูผู้สอน</h3>
+            <mat-list-item *ngFor="let message of userList; let i = index;">
+              <mat-icon class="icon-color clear-icon" mat-list-icon (click)="remoceSelectedTeacher(message.personal_id)">clear</mat-icon>
+              <img style="width: 60px; height: 60px;" mat-list-avatar src="http://www.satit.nu.ac.th/2016/img/personal/{{message.personal_id}}.jpg">
+              <h3 matLine style="font-size: 1.25rem;">{{ (i + 1) }} {{message.personal_title_name_th}}{{message.personal_first_name_th}} {{message.personal_last_name_th}}</h3>
+              <p matLine> {{message.personal_position}} </p>
+              <p matLine> {{message.personal_function}} </p>
+            </mat-list-item>
+          </mat-list>
+        <div>
+          <h5>ข้อเสนอแนะปีก่อนหน้า</h5>
+        </div>
+        <div>
+            <quill-editor [(ngModel)]="Suggestion"></quill-editor>
+        </div>
+        <div style="text-align: right; padding-top: 15px;" flex>
+          <br /><br />
+          <button (click)="submit()" mat-raised-button color="primary"><mat-icon>save</mat-icon> บันทึก</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </article>
+</section>

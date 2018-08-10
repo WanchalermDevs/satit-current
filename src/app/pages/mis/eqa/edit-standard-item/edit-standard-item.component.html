@@ -1,0 +1,53 @@
+<div id="back-button-div">
+    <button mat-fab color="accent" (click)="navigateBack()"><mat-icon class="">arrow_back</mat-icon></button>
+  </div>
+  <section>
+    <article>
+      <div fxLayout="row">
+        <div fxFlex.gt-sm="15%">
+  
+        </div>
+        <div fxFlex.gt-sm="70%">
+          <mat-card>
+            <mat-card-content>
+              <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
+                <span class="push-left-sm" style="vertical-align: middle;">
+                        <mat-icon class="" style="bottom: -5px; display: inline-block; position: relative;">{{ iconGreet }}</mat-icon> <span class="mat-title"> {{ greetMessage }}</span>
+                </span>
+              </div>
+              <hr style="margin-bottom: 2rem;" />
+              <div fxLayout="row">
+                <div fxFlex.gt-sm="100%">
+                  <mat-form-field class="max-width">
+                    <input matInput placeholder="ประจำปีการศึกษา" [disabled]="readYear" [value]="year" #eduYear />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div fxFlex.gt-sm="100%">
+                  <mat-form-field class="max-width">
+                    <input matInput placeholder="หัวข้อ/ประเด็น" [disabled]="readTopic" [value]="listText" #eduYear />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div fxFlex.gt-sm="100%">
+                  <mat-form-field class="max-width">
+                    <input matInput placeholder="ชื่อมาตรฐาน" [value]="text" #mytext />
+                  </mat-form-field>
+                  
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <span #errorText *ngIf="formError" style="color: red">{{ formErrorText }}</span>
+                <button (click)="save(mytext.value)" class="push-right-sm" mat-raised-button color="primary"><mat-icon>save</mat-icon> แก้ไข</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex.gt-sm="15%">
+  
+        </div>
+      </div>
+    </article>
+  </section>

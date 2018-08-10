@@ -1,0 +1,69 @@
+<div id="back-button-div">
+  <button mat-fab color="accent" (click)="navigateBack()"><mat-icon class="">arrow_back</mat-icon></button>
+</div>
+<section>
+  <header class="text-center">
+    <h5>ข้อมูลหลักฐาน</h5>
+  </header>
+</section>
+<section>
+  <div fxLayout="row">
+    <div fxFlex.gt-sm="100%">
+      <mat-card>
+        <mat-card-title>
+          <h5>มาตรฐาน/ประเด็นพิจารณา</h5>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <p>
+            {{ this.eqatext }}
+          </p>
+        </mat-card-subtitle>
+        <mat-card-content>
+          <div fxLayout="row">
+            <div fxFlex.gt-sm="40%" class="topic">
+              <span>ชื่อหลักฐาน:</span>
+            </div>
+            <div fxFlex.gt-sm="60%" class="data">
+              <span>{{ evidencesName }}</span>
+            </div>
+          </div>
+          <div fxLayout="row">
+            <div fxFlex.gt-sm="40%" class="topic">
+              <span>คำอธิบายที่มาของหลักฐาน:</span>
+            </div>
+            <div fxFlex.gt-sm="60%" class="data">
+              <span>{{ evidencesDescript }}</span>
+            </div>
+          </div>
+          <div fxLayout="row">
+            <div fxFlex.gt-sm="40%" class="topic">
+              <span>ประเภทหลักฐาน:</span>
+            </div>
+            <div fxFlex.gt-sm="60%" class="data">
+              <span>{{ evidencesType }}</span>
+            </div>
+          </div>
+          <div fxLayout="row">
+            <div fxFlex.gt-sm="40%" class="topic">
+              <span>ชื่อไฟล์:</span>
+            </div>
+            <div fxFlex.gt-sm="60%" class="data">
+              <span>{{ originalname }}</span>
+            </div>
+          </div>
+          <div fxLayout="row">
+            <div fxFlex.gt-sm="40%" class="topic">
+              <span>ตัวอย่าง:</span>
+            </div>
+            <div fxFlex.gt-sm="60%" class="data">
+              <img style="width: 100%;" *ngIf="(fileType == 'image/jpeg') || (fileType == 'image/png') || (fileType == 'image/gif')" src="http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/{{ this.sourceFileName }}" />
+              <img *ngIf="fileType == 'application/pdf'" src="http://www.satit.nu.ac.th/2016/files/15269791470.png" #pdf />
+              <img *ngIf="fileType == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'" src="http://www.satit.nu.ac.th/2016/files/15269791471.png" #word />
+              <img *ngIf="fileType == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'" src="http://www.satit.nu.ac.th/2016/files/15269791472.png" #excel />
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>

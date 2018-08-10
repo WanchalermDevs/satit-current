@@ -1,0 +1,20 @@
+#back-button-div{
+    bottom: 2.452rem;
+    right: 2.452rem;
+    position: fixed;
+    z-index: 100;
+}
+
+.topic{
+    text-align: right;
+    // font-weight: bold;
+    color: tomato;
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    vertical-align: top;
+}
+
+.data{
+    font-size: 1.0rem;
+    padding-left: 1.2rem;
+}

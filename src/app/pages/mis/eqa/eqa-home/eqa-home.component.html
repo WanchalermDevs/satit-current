@@ -1,0 +1,120 @@
+<section>
+  <header class="text-center">
+    <!-- <img src="/assets/logo/logo-nud-info.png"> -->
+    <h5>ระบบประกันคุณภาพการศึกษา โรงเรียนมัธยมสาธิตมหาวิทยาลัยนเรศวร</h5>
+  </header>
+</section>
+<section>
+  <header class="text-center">
+    <div class="mat-subhead" style="text-align: left; text-indent: 1.5em;">
+      ระบบจัดการข้อมูลภายในงานประกันคุณภาพการศึกษา ฝ่ายนโยบายและแผน ทุกคนที่ได้รับสิทธิ์ในการเข้าใช้ระบบนี้ จะมีสิทธิ์ในการใช้งาน
+      การตั้งค่า การสืบค้น การลบ การเพิ่ม ข้อมูลระบบเท่ากันทุกคน โปรดใช้งานอย่างระมัดระวัง เพื่อความปลอดภัยของข้อมูล
+    </div>
+  </header>
+  <article>
+    <div fxLayout="column" fxLayout.gt-sm="row">
+      <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="33" class="text-center pad-top-xl push-top-xxl">
+        <!-- <img src="assets/avatars/7070.png" class="avatar-top"> -->
+        <div class="avatar-top">
+          <button mat-fab color="accent"><mat-icon class="">settings</mat-icon></button>
+        </div>
+        <mat-card-title>
+          <p>ตั้งค่าระบบทั่วไป</p>
+        </mat-card-title>
+        <mat-card-content>
+          <p>-- ยังไม่พร้อมใช้บริการ --</p>
+          <div>
+            <button mat-raised-button style="background-color: #4caf50; color: white;">เข้าใช้งาน</button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-md">
+          <!-- <span class="primary-color">Ada Allison</span>
+          <span class="secondary-text-color">CTO at Best Solutions</span> -->
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="33" class="text-center pad-top-xl push-top-xxl">
+        <!-- <img src="assets/avatars/7070.png" class="avatar-top"> -->
+        <div class="avatar-top">
+          <button mat-fab color="accent"><mat-icon class="">equalizer</mat-icon></button>
+        </div>
+        <mat-card-title>
+          <p>สารสนเทศทั่วไป</p>
+        </mat-card-title>
+        <mat-card-content>
+          <p>-- ยังไม่พร้อมใช้บริการ --</p>
+          <div>
+            <button mat-raised-button style="background-color: #4caf50; color: white;">เข้าใช้งาน</button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-md">
+          <!-- <span class="primary-color">Calvin West</span>
+          <span class="secondary-text-color">Delivery manager at Super Soft</span> -->
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="33" class="text-center pad-top-xl push-top-xxl">
+        <!-- <img src="assets/avatars/7070.png" class="avatar-top"> -->
+        <div class="avatar-top">
+          <button mat-fab color="accent"><mat-icon class="">people</mat-icon></button>
+        </div>
+        <mat-card-title>
+          <p>กำหนดผู้รับผิดชอบ</p>
+        </mat-card-title>
+        <mat-card-content>
+          <p>
+            กำหนดผู้รับผิดชอบ ในการส่งหลักฐานเข้าระบบ
+          </p>
+          <div>
+            <button mat-raised-button style="background-color: #4caf50; color: white;" (click)="roleManagement()">เข้าใช้งาน</button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-md">
+          <!-- <span class="primary-color">Billy Banks</span>
+          <span class="secondary-text-color">Innovation expert</span> -->
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="33" class="text-center pad-top-xl push-top-xxl">
+        <!-- <img src="assets/avatars/7070.png" class="avatar-top"> -->
+        <div class="avatar-top">
+          <button mat-fab color="accent"><mat-icon class="">library_books</mat-icon></button>
+        </div>
+        <mat-card-title>
+          <p>จัดการรายการมาตรฐาน</p>
+        </mat-card-title>
+        <mat-card-content>
+          <p>สร้าง ลบ แก้ไข รายการมาตรฐาน ทั้งรายการมาตรฐานหลัก และมาตรฐานย่อยในระบบ</p>
+          <div>
+            <button mat-raised-button style="background-color: #4caf50; color: white;" (click)="standardManagementEnter()">เข้าใช้งาน</button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-md">
+          <!-- <span class="primary-color">Calvin West</span>
+          <span class="secondary-text-color">Delivery manager at Super Soft</span> -->
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div fxLayout="column" fxLayout.gt-sm="row">
+      <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="25" class="text-center pad-top-xl push-top-xxl">
+        <!-- <img src="assets/avatars/7070.png" class="avatar-top"> -->
+        <div class="avatar-top">
+          <button mat-fab color="accent"><mat-icon class="">library_books</mat-icon></button>
+        </div>
+        <mat-card-title>
+          <p>การจัดส่งหลักฐาน</p>
+        </mat-card-title>
+        <mat-card-content>
+          <p>รายงานการอัพโหลดหลักฐานในแต่ละรายการประเด็นพิจารณา</p>
+          <div>
+            <button mat-raised-button style="background-color: #4caf50; color: white;" (click)="gotoEvidenceList()">เข้าใช้งาน</button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-md">
+          <!-- <span class="primary-color">Calvin West</span>
+          <span class="secondary-text-color">Delivery manager at Super Soft</span> -->
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </article>
+</section>

@@ -1,0 +1,68 @@
+<div id="back-button-div">
+  <button mat-fab color="accent" (click)="navigateBack()"><mat-icon class="">arrow_back</mat-icon></button>
+</div>
+<section>
+  <article>
+    <mat-card>
+
+      <mat-card-content>
+        <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
+          <span *ngIf="!searchBox.searchVisible" class="push-left-sm" style="vertical-align: middle;">
+              <mat-icon class="" style="bottom: -5px; display: inline-block; position: relative;">format_list_numbered</mat-icon> 
+              <span class="mat-title"> 
+                รายการมาตรฐานการศึกษาเพื่อการประกันคุณภาพภายในของสถานศึกษา<br />
+                <label class="sub-standard-text">{{ subStandardText }}</label>
+              </span>
+          </span>
+          <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
+            </span>
+          
+          <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm" placeholder="Search here" (searchDebounce)="search($event)"
+            flex>
+          </td-search-box>
+          <span>
+              <mat-form-field>
+                  <mat-select placeholder="ปีการศึกษา" [(value)]="selectYear" >
+                    <mat-option *ngFor="let state of states" [value]="state.value" (click)="getStandardListByYear()">
+                      {{ state.text }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+          </span>
+          <span>
+              <button mat-icon-button [matMenuTriggerFor]="menuBelow"><mat-icon>more_vert</mat-icon></button>
+              <mat-menu #menuBelow="matMenu" xPosition="after" yPosition="below">
+                <button mat-menu-item (click)="gotoNewEducationYear()">
+                  <mat-icon>playlist_add</mat-icon> ตั้งปีการศึกษาใหม่
+                </button>
+                <button mat-menu-item (click)="gotoAddList()">
+                  <mat-icon>add</mat-icon> เพิ่มรายการมาตรฐาน
+                </button>
+                <button mat-menu-item (click)="selectItemForEdit()">
+                    <mat-icon>edit</mat-icon> แก้ไข
+                  </button>
+                  <button mat-menu-item (click)="selectForRemove()">
+                      <mat-icon>delete</mat-icon> ลบ
+                    </button>
+              </mat-menu>
+          </span>
+        </div>
+        <mat-divider></mat-divider>
+        <td-data-table #dataTable  [clickable]="true" [data]="filteredData" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard" [sortable]="true" [sortBy]="sortBy" [sortOrder]="sortOrder"
+          (sortChange)="sort($event)"
+          (rowSelect)="selectedStandardItem($event)"
+          (selectAll)="selectedStandardItem($event)"
+          (rowClick)="rowClick($event)"
+          >
+        </td-data-table>
+        <div class="mat-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
+          <h6>-- ไม่พบรายการ กรุณาเลือกปีการศึกษาที่ต้องการเรียกดู --</h6>
+        </div>
+        <td-paging-bar #pagingBar [pageSize]="pageSize" [total]="filteredTotal" (change)="page($event)" class="push-top">
+          <button *ngIf="(canSelect && canMultiple)" (click)="selectedTakeRemove()" mat-raised-button color="warn"><mat-icon>delete</mat-icon> ลบที่เลือก</button>
+          <span td-paging-bar-label hide-xs>Row per page:</span> {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
+        </td-paging-bar>
+      </mat-card-content>
+    </mat-card>
+  </article>
+</section>

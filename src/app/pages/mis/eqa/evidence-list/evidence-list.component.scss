@@ -1,0 +1,134 @@
+
+mat-panel-title{
+    // font-size: 30px;
+    // line-height: 32pt;
+}
+.my-drop-zone { 
+    border: dashed 1px green; 
+    height: 170px;
+    // vertical-align: middle;
+    // padding-top: 70px;
+    text-align: center;
+    font-size: 1.5rem;
+    width: 500px;
+    opacity: 0;
+    position: absolute;
+}
+.nv-file-over { border: dotted 1px red; }
+.drop-place{
+    border: solid 1px black;
+    height: 170px;
+    // padding-bottom: 70px;
+    // width: 80px;
+    width: 500px;
+    border: dashed 1px lightgray; 
+    position: absolute;
+    // text-align: center;
+    // vertical-align: middle;
+}
+
+.drop-place :hover{
+    cursor: pointer;
+}
+
+.mat-tab-label-text{
+    color: black;
+    margin-top: -10px;
+    position: absolute;
+    width: 100%;
+    margin-left: -67px;
+}
+
+ng-template{
+    text-align: left;
+}
+
+textarea{
+    width: 150px;
+    width: 100%;
+}
+
+mat-radio-button{
+    margin-right: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.icon-mat-tab{
+    position: absolute;
+    margin-left: -70px;
+    margin-top: -15px;
+}
+
+mat-card-title{
+    color: tomato;
+}
+
+.mat-icon-topic{
+    position: absolute;
+    margin-bottom: -8px;
+    margin-left: -30px;
+}
+
+.topic-text{
+    padding-left: 30px;
+}
+
+mat-card-footer{
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.list-container {
+    max-height: 300px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.head-file-name{
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: tomato;
+}
+
+#list-table{
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    color: 999;
+    vertical-align: top;
+}
+.topic-table{
+    text-align: center;
+    font-weight: bold;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+
+mat-card{
+    margin-bottom: 3.5rem;
+}
+
+.div-btn-download-ediv{
+    text-align: right;
+}
+
+.edivTopic{
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: black;
+}
+.edivTopicname{
+    font-size: 1.3rem;
+    color: #333;
+    padding-left: 2.5rem;
+}

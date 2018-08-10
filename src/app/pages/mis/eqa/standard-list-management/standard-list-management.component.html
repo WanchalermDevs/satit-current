@@ -1,0 +1,107 @@
+<!-- <p>
+  standard-list-management works!
+</p> -->
+<div id="back-button-div">
+  <button mat-fab color="accent" (click)="navigateBack()"><mat-icon class="">arrow_back</mat-icon></button>
+</div>
+<section>
+  <article>
+    <mat-card fxFlex.gt-sm="100%">
+      <mat-card-title>
+        <mat-icon class="" style="bottom: -5px; display: inline-block; position: relative;">format_list_numbered</mat-icon>
+        การจัดการรายการมาตรฐานและประเด็นพิจารณา
+      </mat-card-title>
+      <mat-card-subtitle>
+        <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
+          ส่วนการจัดการสร้าง แก้ไข ลบ รายการมาตรฐานต่างๆที่ใช้ในระบบ
+          <span #searchBox class="push-right-sm" flex></span>
+          <span>
+                  <mat-form-field>
+                      <mat-select placeholder="ปีการศึกษา" [(ngModel)]="selectedYear" >
+                        <mat-option *ngFor="let state of yearsList" [value]="state.value" (click)="getStandardListByYear()">
+                          {{ state.text }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+              </span>
+          <span>
+                  <button mat-icon-button [matMenuTriggerFor]="menuBelow"><mat-icon>more_vert</mat-icon></button>
+                  <mat-menu #menuBelow="matMenu" xPosition="after" yPosition="below">
+                    <button mat-menu-item (click)="gotoNewEducationYear()">
+                      <mat-icon>playlist_add</mat-icon> ตั้งปีการศึกษาใหม่
+                    </button>
+                    <button mat-menu-item (click)="gotoNewMainList()">
+                      <mat-icon>add</mat-icon> เพิ่มรายการมาตรฐานหลัก
+                    </button>
+                  </mat-menu>
+              </span>
+        </div>
+      </mat-card-subtitle>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-list>
+          <div class=" " *ngFor="let item of standardList; let i = index" [attr.data-index]="i">
+            <div fxLayout="row" class="pad-left-sm pad-right-sm">
+              <span class="push-right-sm item-level-1 item" flex>
+                <mat-list-item>
+                    {{item.text}}
+                  </mat-list-item>
+            </span>
+              <button mat-icon-button [matMenuTriggerFor]="menuBelow"><mat-icon>more_vert</mat-icon></button>
+              <mat-menu #menuBelow="matMenu" xPosition="after" yPosition="below">
+                <button mat-menu-item (click)="gotoAddList(item.id)">
+                    <mat-icon>add</mat-icon> เพิ่มรายการมาตรฐานย่อย
+                  </button>
+                <button mat-menu-item  (click)="editAItem(item.id)">
+                      <mat-icon>edit</mat-icon> แก้ไข
+                    </button>
+                <button mat-menu-item (click)="removeAItem(item.id)">
+                        <mat-icon>delete</mat-icon> ลบ
+                      </button>
+              </mat-menu>
+            </div>
+            <div class="item-div " *ngFor="let item2 of standardList[i].children; let j = index" [attr.data-index]="j">
+              <div fxLayout="row" class="pad-left-sm pad-right-sm">
+                <span class="push-right-sm item-level-2 item" flex>
+                    <mat-list-item>
+                        {{item2.text}}
+                      </mat-list-item>
+                </span>
+                <button mat-icon-button [matMenuTriggerFor]="menuBelow"><mat-icon>more_vert</mat-icon></button>
+                <mat-menu #menuBelow="matMenu" xPosition="after" yPosition="below">
+                  <button mat-menu-item (click)="gotoAddList(item2.id)">
+                      <mat-icon>add</mat-icon> เพิ่มรายการมาตรฐานย่อย
+                    </button>
+                  <button mat-menu-item (click)="editAItem(item2.id)">
+                        <mat-icon>edit</mat-icon> แก้ไข
+                      </button>
+                  <button mat-menu-item (click)="removeAItem(item2.id)">
+                          <mat-icon>delete</mat-icon> ลบ
+                        </button>
+                </mat-menu>
+              </div>
+              <div class="item-div " *ngFor="let item3 of standardList[i].children[j].children; let k = index" [attr.data-index]="k">
+                <div fxLayout="row" class="pad-left-sm pad-right-sm">
+                  <span class="push-right-sm item-level-3 item" flex>
+                      <mat-list-item>
+                          {{item3.text}}
+                        </mat-list-item>
+                  </span>
+                  <button mat-icon-button [matMenuTriggerFor]="menuBelow"><mat-icon>more_vert</mat-icon></button>
+                  <mat-menu #menuBelow="matMenu" xPosition="after" yPosition="below">
+                    <button mat-menu-item (click)="editAItem(item3.id)">
+                          <mat-icon>edit</mat-icon> แก้ไข
+                        </button>
+                    <button mat-menu-item (click)="removeAItem(item3.id)">
+                            <mat-icon>delete</mat-icon> ลบ
+                          </button>
+                  </mat-menu>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </article>
+</section>

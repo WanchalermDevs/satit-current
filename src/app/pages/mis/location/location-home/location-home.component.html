@@ -1,0 +1,77 @@
+<section>
+  <header class="text-center">
+    <img src="/assets/avatars/TPS02.png">
+    <h5>ระบบฐานข้อมูลอาคาร และสถานที่โรงเรียนมัธยมสาธิตมหาวิทยาลัยนเรศวร</h5>
+    <div class="mat-subhead">
+      ระบบจัดการฐานข้อมูลอาคาร และสถานที่ภายในโรงเรียน เพื่อนำข้อมูลไว้ใช้ในการดำเนินงานของส่วนงานต่างๆ
+    </div>
+  </header>
+</section>
+<section>
+  <article>
+    <div fxLayout="column" fxFlex.gt-sm="50%">
+      <mat-card>
+        <mat-card-title>
+          <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
+            <span class="pad-left-sm">อาคาร</span>
+            <span flex></span>
+            <span>
+                <button mat-icon-button [matMenuTriggerFor]="buildingMore"><mat-icon>more_vert</mat-icon></button>
+                        <mat-menu #buildingMore="matMenu" xPosition="after" yPosition="below">
+                            <button mat-menu-item (click)="createBuilding()">
+                              <mat-icon>add</mat-icon> เพิ่มอาคาร
+                            </button>
+                            <button mat-menu-item (click)="createRoom()">
+                                <mat-icon>add</mat-icon> เพิ่มห้อง
+                              </button>
+                          </mat-menu>
+                </span>
+          </div>
+        </mat-card-title>
+
+        <ul>
+          <li *ngFor="let building of buildingList">
+              {{ building.Text }}
+              <ul>
+                <li *ngFor="let room of building.roomList">
+                  {{ room.roomName }}
+                </li>
+              </ul>
+          </li>
+        </ul>
+      </mat-card>
+    </div>
+    <div fxLayout="column" fxFlex.gt-sm="50%">
+      <mat-card>
+        <mat-card-title>
+          <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
+            <span class="pad-left-sm">สถานที่</span>
+            <span flex></span>
+            <span class="pad-right-sm">
+                <button mat-icon-button [matMenuTriggerFor]="placeMore"><mat-icon>more_vert</mat-icon></button>
+                
+                        <mat-menu #placeMore="matMenu" xPosition="after" yPosition="below">
+                            <button mat-menu-item (click)="createPlace()">
+                              <mat-icon>add</mat-icon> เพิ่มสถานที่
+                            </button>
+                            <button mat-menu-item (click)="createSubPlace()">
+                                <mat-icon>add</mat-icon> เพิ่มสถานที่ย่อย
+                              </button>
+                          </mat-menu>
+            </span>
+          </div>
+        </mat-card-title>
+        <ul>
+          <li *ngFor="let place of placeList">
+              {{ place.Text }}
+              <ul>
+                <li *ngFor="let room of place.roomList">
+                  {{ room.subPlaceName }}
+                </li>
+              </ul>
+          </li>
+        </ul>
+      </mat-card>
+    </div>
+  </article>
+</section>

@@ -1,0 +1,79 @@
+
+<section>
+  <header class="text-center">
+    <!-- <img src="/assets/logo/logo-nud-info.png"> -->
+    <h5>ระบบฐานข้อมูลฝ่ายงานกิจกรรมพัฒนาผู้เรียน(ชุมนุม) โรงเรียนมัธยมสาธิตมหาวิทยาลัยนเรศวร</h5>
+  </header>
+</section>
+<section>
+  <header class="text-center">
+    <div class="mat-subhead" style="text-align: left; text-indent: 1.5em;">
+      
+    </div>
+  </header>
+  <article>
+    <div fxLayout="column" fxLayout.gt-sm="row">
+      <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="33" class="text-center pad-top-xl push-top-xxl">
+        <!-- <img src="assets/avatars/7070.png" class="avatar-top"> -->
+        <div class="avatar-top">
+          <button mat-fab color="accent"><mat-icon class="">settings</mat-icon></button>
+        </div>
+        <mat-card-title>
+          <p>ตั้งค่าระบบทั่วไป</p>
+        </mat-card-title>
+        <mat-card-content>
+          <p></p>
+          <div>
+            <button mat-raised-button style="background-color: #4caf50; color: white;">เข้าใช้งาน</button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-md">
+          <!-- <span class="primary-color">Ada Allison</span>
+          <span class="secondary-text-color">CTO at Best Solutions</span> -->
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="33" class="text-center pad-top-xl push-top-xxl">
+        <!-- <img src="assets/avatars/7070.png" class="avatar-top"> -->
+        <div class="avatar-top">
+          <button mat-fab color="accent"><mat-icon class="">equalizer</mat-icon></button>
+        </div>
+        <mat-card-title>
+          <p>รายวิชาชุมนุม</p>
+        </mat-card-title>
+        <mat-card-content>
+          <p>
+            รายการวิชาชุมนุมทั้งหมดที่ครูผู้สอนเข้ามาตั้งรายวิชาในระบบ
+          </p>
+          <div>
+            <button (click)="gotoCongregationList()" mat-raised-button style="background-color: #4caf50; color: white;">เข้าใช้งาน</button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-md">
+          <!-- <span class="primary-color">Calvin West</span>
+          <span class="secondary-text-color">Delivery manager at Super Soft</span> -->
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card fxFlex="1 0 auto" fxFlex.gt-sm="33" class="text-center pad-top-xl push-top-xxl">
+        <!-- <img src="assets/avatars/7070.png" class="avatar-top"> -->
+        <div class="avatar-top">
+          <button mat-fab color="accent"><mat-icon class="">library_books</mat-icon></button>
+        </div>
+        <mat-card-title>
+          <p>ตรวจสอบการสมัครเรียนชุมนุม</p>
+        </mat-card-title>
+        <mat-card-content>
+          <p>ตรวจสอบว่านักเรียนได้เข้ามาสมัครครบทุกคนหรือไม่</p>
+          <div>
+            <button (click)="gotoCheckStudentRegisted()" mat-raised-button style="background-color: #4caf50; color: white;">เข้าใช้งาน</button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-md">
+          <!-- <span class="primary-color">Calvin West</span>
+          <span class="secondary-text-color">Delivery manager at Super Soft</span> -->
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </article>
+</section>

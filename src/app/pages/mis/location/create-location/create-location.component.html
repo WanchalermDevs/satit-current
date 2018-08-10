@@ -1,0 +1,102 @@
+<div id="back-button-div">
+  <button mat-fab color="accent" (click)="navigateBack()"><mat-icon class="">arrow_back</mat-icon></button>
+</div>
+<section>
+  <article>
+    <div fxLayout="row">
+      <div fxFlex.gt-sm="10%"></div>
+      <div fxFlex.gt-sm="80%">
+        <mat-card>
+          <mat-card-title>
+            <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
+              <span class="pad-left-sm">เพิ่มข้อมูล{{typeAction}}</span>
+              <span flex></span>
+              <span class="pad-right-sm">
+              </span>
+            </div>
+          </mat-card-title>
+          <mat-card-subtitle>
+            อธิบายเพิ่มเติม
+          </mat-card-subtitle>
+          <div *ngIf="isCreateBuilding">
+            <mat-card-content>
+              <mat-form-field style="width: 50%;">
+                <input matInput placeholder="ชื่ออาคาร" [(ngModel)]="buildingName" />
+              </mat-form-field>
+              <button mat-raised-button color="primary" (click)="saveBuilding()"><mat-icon>save</mat-icon> บันทึก</button>
+            </mat-card-content>
+          </div>
+
+
+          <div *ngIf="isCreateRoom">
+            <div fxLayout="row">
+              <div fxFlex.gt-sm="100%">
+                <mat-form-field style="width: 100%">
+                  <mat-select placeholder="เพิ่มไปที่อาคาร" [(ngModel)]="buildingSelected" (selectionChange)="selectedBuildingEvent()">
+                    <mat-option *ngFor="let building of buildingList" [value]="building.id">
+                      {{ building.text }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="25px">
+              <div fxFlex.gt-sm="50%">
+                <mat-form-field style="width: 100%">
+                  <input matInput placeholder="ชั้น" [(ngModel)]="buildingLevel" />
+                </mat-form-field>
+              </div>
+              <div fxFlex.gt-sm="50%">
+                <mat-form-field style="width: 100%">
+                  <input matInput placeholder="ห้อง" [(ngModel)]="roomName" />
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxLayout="row" style="text-align: right">
+              <button mat-raised-button color="primary" (click)="saveRoom()"><mat-icon>save</mat-icon> บันทึก</button>
+            </div>
+          </div>
+
+
+          <div *ngIf="isCreatePlace">
+            <mat-card-content>
+              <mat-form-field style="width: 50%;">
+                <input matInput placeholder="ชื่อสถานที่" [(ngModel)]="placeName" />
+              </mat-form-field>
+              <button mat-raised-button color="primary" (click)="savePlace()"><mat-icon>save</mat-icon> บันทึก</button>
+            </mat-card-content>
+          </div>
+
+          <div *ngIf="isCreateSubPlace">
+            <div fxLayout="row">
+              <div fxFlex.gt-sm="100%">
+                <mat-form-field style="width: 100%">
+                  <mat-select placeholder="เพิ่มไปที่สถานที่" [(ngModel)]="placeSelected" (selectionChange)="selectedPlaceEvent()">
+                    <mat-option *ngFor="let place of placeList" [value]="place.id">
+                      {{ place.text }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="25px">
+              <div fxFlex.gt-sm="50%">
+                <mat-form-field style="width: 100%">
+                  <input matInput placeholder="ชื่อบริเวณ" [(ngModel)]="subPlaceName" />
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxLayout="row" style="text-align: right">
+              <button mat-raised-button color="primary" (click)="saveSubPlace()"><mat-icon>save</mat-icon> บันทึก</button>
+            </div>
+          </div>
+
+          <mat-card-footer>
+            <div *ngIf="showErrorMessage">{{ errorMessage }}</div>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+      <div fxFlex.gt-sm="10%"></div>
+    </div>
+  </article>
+</section>

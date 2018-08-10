@@ -1,0 +1,21 @@
+<section>
+  <article>
+    <mat-card>
+      <mat-card-content class="text-center">
+        <a href="/login" class="push-bottom-md">
+          <img src="/assets/logo/logo-nud-info.png" id="logo-satit-name">
+        </a>
+        <mat-form-field fxFlexFill>
+          <input matInput #username placeholder="Username">
+        </mat-form-field>
+        <div class="push-top-sm">
+          <mat-form-field fxFlexFill>
+            <input matInput #password placeholder="Password" type="password">
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" class="push-top-sm" (click)="login(username.value, password.value)">LOGIN</button>
+        <p>กรุณาลงชื่อเช้าใช้ด้วยบัญชี NU-Net ของคุณ<br />เฉพาะบุคลากรเท่านั้น และใช้ได้ภายในเครือข่ายมหาวิทยาลัยนเรศวรเท่านั้น</p>
+      </mat-card-content>
+    </mat-card>
+  </article>
+</section>

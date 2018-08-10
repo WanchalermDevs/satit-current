@@ -1,0 +1,145 @@
+<section>
+  <header class="text-center">
+    <h5>ระบบส่งหลักฐานการประกันคุณภาพการศึกษา</h5>
+    <div class="text-title-body">
+      ยินดีต้อนรับผู้ใช้งานทุกท่าน ระบบจะแสดงประเด็นต่าง ๆ ที่ท่านได้รับมอบหมายให้เป็นผู้ประสานงาน <br />โปรดอัพโหลดหลักฐานและรายละเอียดเพิ่มเติมตาม
+      มาตรฐาน/ประเด็นพิจารณาที่ปรากฎ
+    </div>
+  </header>
+</section>
+<section>
+  <article>
+    <div fxLayout="row">
+      <div fxFlex.gt-sm="100%">
+        <mat-card *ngFor="let item of eqaList">
+          <mat-card-title>
+            {{ item.text }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            <label>ผู้ประสานงาน</label>
+            <ul *ngFor="let user of item.owner">
+              <li>{{ user.personal_title_name_th }}{{ user.personal_first_name_th }} {{ user.personal_last_name_th }}</li>
+            </ul>
+          </mat-card-subtitle>
+          <mat-divider></mat-divider>
+          <mat-card-content>
+            <mat-tab-group [(selectedIndex)]="activeTabIndex[item.id]">
+              <mat-tab label="เกี่ยวกับประเด็นนี้">
+                <ng-template mat-tab-label>
+                  <mat-icon class="icon-mat-tab">info</mat-icon><span class="mat-tab-label-text"> เกี่ยวกับประเด็นนี้</span>
+                </ng-template>
+                <div fxLayout="row">
+
+                  <div fxFlex.gt-sm="50%">
+                    <h6 class="topic-text">
+                      <mat-icon class="mat-icon-topic">comment</mat-icon> ข้อเสนอแนะจากปีก่อนหน้า
+                    </h6>
+                    <p [innerHTML]="item.old_comment"></p>
+                  </div>
+                  <div fxFlex.gt-sm="50%">
+                    <h6>
+                      <mat-icon class="mat-icon-topic">folder</mat-icon> ไฟล์หลักฐาน
+                    </h6>
+                    <mat-nav-list>
+                      <perfect-scrollbar class="list-container">
+                        <a mat-list-item *ngFor="let link of item.evidences">
+                            <span class="fill-space"></span>
+                            <button mat-icon-button [matMenuTriggerFor]="menuAbove"><mat-icon>more_vert</mat-icon></button>
+                          <mat-menu #menuAbove="matMenu" xPosition="before" yPosition="below">
+                              <button (click)="gotoEvidencesInfo(item.id, link.name)" mat-menu-item><mat-icon>info</mat-icon> รายละเอียด</button>
+                              <button (click)="gotoDownload(link.file.filename)" mat-menu-item><mat-icon>get_app</mat-icon> ดาวน์โหลด</button>
+                              <button (click)="gotoEvidencesEdit(item.id, link.name)" mat-menu-item><mat-icon>edit</mat-icon> แก้ไข</button>
+                            <button (click)="gotoEvidencesDelete(item.id, link.name)" mat-menu-item><mat-icon>delete</mat-icon> ลบทิ้ง</button>
+                          </mat-menu>
+                          <mat-icon class="icon-color" *ngIf="link.type == 'file'" mat-list-icon>attach_file</mat-icon>
+                          <mat-icon class="icon-color" *ngIf="link.type == 'link'" mat-list-icon>insert_link</mat-icon>
+                          <span matLine class="head-file-name">{{ link.name }}</span>
+                          <span matLine> {{ link.description }} </span>
+                        </a>
+                      </perfect-scrollbar>
+                    </mat-nav-list>
+                  </div>
+                </div>
+              </mat-tab>
+              <mat-tab label="อัพโหลดไฟล์">
+                <ng-template mat-tab-label>
+                  <mat-icon class="icon-mat-tab">file_upload</mat-icon><span class="mat-tab-label-text"> อัพโหลดหลักฐาน</span>
+                </ng-template>
+                <div class="form-upload-file">
+                  <h5>อัพโหลดไฟล์</h5>
+                  
+                  <div fxLayout="row" fxLayoutGab="25px"> 
+                    <div fxFlex.gt-sm="50%">
+                      <mat-form-field style="width: 95%;">
+                        <input matInput placeholder="1. ชื่อหลักฐาน" [id]="'input-name-' + item.id" #EvidenceName />
+                      </mat-form-field>
+                      <mat-form-field style="width: 95%;">
+                        <textarea matInput placeholder="2. ที่มาของหลักฐาน" [id]="'input-description-' + item.id" #EvidenceDecript rows="5"></textarea>
+                      </mat-form-field>
+                      <button mat-raised-button color="primary" (click)="saveEvidence(item.id, EvidenceName.value, EvidenceDecript.value)"><mat-icon>save</mat-icon> 4.บันทึกหลักฐาน</button>
+                    </div>
+                    <div fxFlex.gt-sm="50%">
+                      <!-- <div ng2FileDrop ng2FileSelect [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" *ngIf="(this.currentID != item.id)" (drop)="onDrop(item.id)"
+                          (fileOver)="fileOverBase($event)" [uploader]="uploader" class="well my-drop-zone">
+                          3. ลากไฟล์มาวางบริเวณนี้
+                        </div> -->
+                        <div *ngIf="isShowPrograssBar[item.id]">
+                          <div class="text-center">กำลังอัพโหลด...{{ prograssValue[item.id] }} %</div>
+                            <mat-progress-bar  [color]="primary" [mode]="determinate" [value]="prograssValue[item.id]" [bufferValue]="bufferValue[item.id]"></mat-progress-bar>
+                        </div>
+                        
+                      <div *ngIf="(this.currentID != item.id) || (this.selectTypeEvidences[item.id] == 'link')" (fileOver)="fileOverBase($event)">
+                        <mat-radio-group [(ngModel)]="selectTypeEvidences[item.id]" fxLayout="column" fxLayout.gt-md="row">
+                          <mat-radio-button ng-selected="true" [value]="'file'">File Upload</mat-radio-button>
+                          <mat-radio-button [value]="'link'">Link</mat-radio-button>
+                        </mat-radio-group>
+                        <div class="drop-place"  *ngIf="selectTypeEvidences[item.id] == 'file'">
+                          <input mat-raised-button type="file" ng2FileDrop ng2FileSelect (change)="mouseClickDropPlace(item.id)" (loadstart)="onLoadStart()"
+                          [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" *ngIf="(this.currentID != item.id)"
+                            (drop)="onDrop(item.id)" (fileOver)="fileOverBase($event)" [uploader]="uploader" class="well my-drop-zone"
+                          />
+                          <br /><br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <mat-icon>attach_file</mat-icon> 3.ลากไฟล์มาวางที่นี่ หรือคลิกเพื่อเลือกไฟล์<br />
+                          <div style="text-align: center;">
+                              สามารถเลือกได้ 1 ไฟล์ และไฟล์ควรมีขนาดไม่เกิน 15 MB หากเป็นไฟล์วิดีโอควรอัพโหลดขึ้น Youtube แล้วแนบเป็น Link แทน
+                          </div>
+                          
+                        </div>
+                        <div *ngIf="selectTypeEvidences[item.id] == 'link'">
+                          <mat-form-field style="width: 95%;">
+                            <input matInput placeholder="3. วาง link ของท่านที่นี่" (change)="setCurrentLink(item.id ,inputLink.value)" #inputLink [id]="'input-link-' + item.id"
+                            />
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <mat-card *ngIf="(this.currentID == item.id) && (this.selectTypeEvidences[item.id] == 'file') && this.showFileDescription">
+                        <mat-card-title>
+                          <mat-icon class="mat-icon-topic">filter_none</mat-icon> ไฟล์ของคุณ
+                        </mat-card-title>
+                        <mat-card-content>
+                          ชื่อไฟล์: <label [id]="'filename'+item.id">{{ originalname[item.id] }}</label><br /> ชนิดไฟล์: <label [id]="'filetype'+item.id">{{ mimetype[item.id] }}</label><br
+                          /> ขนาดไฟล์: <label [id]="'filesize'+item.id">{{ filesize[item.id] }}</label>
+                        </mat-card-content>
+                        <hr />
+                        <mat-card-footer>
+                          <button mat-raised-button (click)="cancleSelectFile()" color="warn"><mat-icon>highlight_off</mat-icon> ยกเลิก</button>
+                          <!-- <button mat-raised-button color="primary"><mat-icon>get_app</mat-icon> ดาวน์โหลด</button> -->
+                        </mat-card-footer>
+                      </mat-card>
+                    </div>
+                  </div>
+                </div>
+
+              </mat-tab>
+            </mat-tab-group>
+          </mat-card-content>
+          <mat-card-footer>
+
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+  </article>
+</section>

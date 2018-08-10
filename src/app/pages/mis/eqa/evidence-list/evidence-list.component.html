@@ -1,0 +1,127 @@
+
+
+<section>
+  <mat-card *ngFor="let mainTopic of eqaData;">
+    <mat-card-title class="text-center">{{ mainTopic.text }}</mat-card-title>
+    <mat-card-subtitle class="text-center">ประจำปี: {{ mainTopic.year }}</mat-card-subtitle>
+    <mat-card-content style="margin-left: 4rem;">
+      <div *ngFor="let subTopic1 of eqaList;">
+        <mat-card *ngIf="(subTopic1.parent_id === mainTopic.id) && (subTopic1.parent_id !== -1)">
+          <mat-card-title style="color: black;">{{ subTopic1.text }}</mat-card-title>
+          <mat-card-content style="margin-left: 4rem;">
+
+            <div fxLayout="row" fxLayoutAlign="space-around start">
+              <div fxFlex="100" *ngFor="let owners1 of subTopic1.owner">
+                <div style="width: 100%; font-size: 1.3rem;" class="text-center">
+                  <!-- <img style="width: 40%;" [src]="'http://www.satit.nu.ac.th/2016/img/personal/' + owners1.personal_id + '.jpg'" /> -->
+                  <br />{{ owners1.personal_title_name_th }}{{ owners1.personal_first_name_th }} {{ owners1.personal_last_name_th
+                  }}
+                  <br /> ผู้ประสานงาน
+                </div>
+              </div>
+              <div fxFlex="100">
+                <mat-card *ngIf="subTopic1.description">
+                  <mat-card-title>ข้อคิดเห็นปีก่อนหน้า</mat-card-title>
+                  <mat-card-content>
+
+                  </mat-card-content>
+                </mat-card>
+                <mat-card *ngIf="subTopic1.evidences">
+                  <mat-card-title>หลักฐาน</mat-card-title>
+                  <mat-card-content>
+                    <ol>
+                      <li *ngFor="let ediv1 of subTopic1.evidences">
+                        <div class="edivTopic">
+                          ชื่อหลักฐาน
+                        </div>
+                        <div class="edivTopicname">
+                          {{ ediv1.name }}
+                        </div>
+                        <div class="edivTopic">
+                          ที่มาของหลักฐาน
+                        </div>
+                        <div class="edivTopicname">
+                          {{ ediv1.description }}
+                        </div>
+                        <div class="edivTopic">
+                          ชื่อไฟล์
+                        </div>
+                        <div class="edivTopicname">
+                          {{ ediv1.file.originalname }}
+                        </div>
+                        <div class="div-btn-download-ediv">
+                          <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-raised-button
+                            color="primary">ดาวน์โหลดหลักฐานนี้</a>
+                        </div>
+                        <hr />
+                      </li>
+                    </ol>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+
+            </div>
+
+            <div *ngFor="let subTopic2 of eqaList;">
+              <mat-card *ngIf="(subTopic2.parent_id === subTopic1.id) && (subTopic2.parent_id !== -1)">
+                <mat-card-title style="color: black;">{{ subTopic2.text }}</mat-card-title>
+                <mat-card-content>
+
+                  <div fxLayout="row" fxLayoutAlign="space-around start">
+                    <div fxFlex="35" *ngFor="let owners2 of subTopic2.owner">
+                      <div style="width: 100%; font-size: 1.3rem;" class="text-center">
+                        <!-- <img style="width: 40%;" [src]="'http://www.satit.nu.ac.th/2016/img/personal/' + owners2.personal_id + '.jpg'" /> -->
+                        <br />{{ owners2.personal_title_name_th }}{{ owners2.personal_first_name_th }} {{ owners2.personal_last_name_th }}
+                        <br /> ผู้ประสานงาน
+                      </div>
+                    </div>
+                    <div fxFlex="65">
+                      <mat-card>
+                        <mat-card-title>ข้อคิดเห็นปีก่อนหน้า</mat-card-title>
+                        <mat-card-content>
+
+                        </mat-card-content>
+                      </mat-card>
+                      <mat-card>
+                        <mat-card-title>หลักฐาน</mat-card-title>
+                        <mat-card-content>
+                          <ol>
+                            <li *ngFor="let ediv2 of subTopic2.evidences">
+                              <div class="edivTopic">
+                                ชื่อหลักฐาน
+                              </div>
+                              <div class="edivTopicname">
+                                {{ ediv2.name }}
+                              </div>
+                              <div class="edivTopic">
+                                ที่มาของหลักฐาน
+                              </div>
+                              <div class="edivTopicname">
+                                {{ ediv2.description }}
+                              </div>
+                              <div class="edivTopic">
+                                ชื่อไฟล์
+                              </div>
+                              <div class="edivTopicname">
+                                {{ ediv2.file.originalname }}
+                              </div>
+                              <div class="div-btn-download-ediv">
+                                <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv2.file.filename " mat-raised-button
+                                  color="primary">ดาวน์โหลดหลักฐานนี้</a>
+                              </div>
+                              <hr />
+                            </li>
+                          </ol>
+                        </mat-card-content>
+                      </mat-card>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

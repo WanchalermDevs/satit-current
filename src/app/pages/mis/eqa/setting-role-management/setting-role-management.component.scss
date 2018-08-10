@@ -1,0 +1,108 @@
+@import "~@angular/material/theming";
+.item-div{
+    // padding: 0.7rem;
+    width: 100%;
+    font-size: 1.2rem;
+    font-size: 1.2rem;
+}
+.item-level-1{
+    padding: 0.1rem;
+    font-size: 1.2rem;
+    font-size: 1.2rem;
+    font-size: 1.2rem;
+}
+.item-level-2 {
+    padding-left: 2.5rem;
+    font-size: 1.0rem;
+    font-size: 1.2rem;
+    font-size: 1.2rem;
+}
+
+.item-level-3 {
+    padding-left: 5rem;
+    font-size: 0.85rem;
+    font-size: 1.2rem;
+    font-size: 1.2rem;
+}
+.item :hover{
+    // background-color: #fff3e0;
+    cursor: pointer;
+    color: #01579b;
+}
+
+.clear-icon{
+  color: white;
+}
+
+.clear-icon:hover{
+  cursor: pointer;
+  color: black;
+}
+
+:host {
+  .site-footer{
+    background-color: gray;
+    color: white;
+  }
+  mat-grid-tile-footer{
+    color: white;
+  }
+
+  .user_img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .left-sidenav {
+    padding-bottom: 50px;
+    padding-top: 64px;
+  }
+  .sidenav-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    div {
+      height: 100%;
+      img {
+        height: 100%;
+      }
+    }
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    p {
+      padding-left: 25px;
+    }
+  }
+  .logo {
+    height: 100%;
+    img {
+      height: 100%;
+    }
+  }
+  .header-search {
+    width: 300px;
+  }
+  .wrapper {
+    padding: 20px 70px;
+    @media screen and (max-width: 960px) {
+      padding: 15px;
+    }
+    header {
+      padding: 0 10px;
+    }
+    &.wrapper-box {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
+  /deep/ .mat-drawer-content {
+    margin-left: 300px;
+  }
+}

@@ -1,0 +1,126 @@
+<div id="back-button-div">
+  <button mat-fab color="accent" (click)="navigateBack()"><mat-icon class="">arrow_back</mat-icon></button>
+</div>
+<div fxLayout="row">
+  <div fxFlex.gt-sm="20%">
+
+  </div>
+  <div fxFlex.gt-sm="60%">
+    <mat-card>
+      <mat-card-title>
+        <span>ตั้งรายวิชาชุมนุมใหม่</span>
+      </mat-card-title>
+      <mat-card-subtitle>
+        * บังคับระบุข้อมูล
+      </mat-card-subtitle>
+      <mat-card-content>
+        <!-- <div fxLayout="row" fxLayoutGap="20px"> -->
+        <!-- <div fxFlex.gt-sm="35%">
+            <mat-form-field style="width: 100%">
+              <input required matInput placeholder="ปีการศึกษา" [(ngModel)]="year" />
+              <mat-hint>ปี พ.ศ. 4 หลัก เช่น 2560</mat-hint>
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-sm="35%">
+            <mat-form-field style="width: 100%">
+              <input required matInput placeholder="ภาคเรียน" [(ngModel)]="semester" />
+            </mat-form-field>
+          </div> -->
+        <!-- <div fxFlex.gt-sm="30%">
+            <mat-form-field style="width: 100%">
+              <mat-select required placeholder="ระดับช่วงชั้น" [(ngModel)]="selectedLevel">
+                <mat-option *ngFor="let food of levelData" [value]="food.value">
+                  {{ food.text }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div> -->
+        <!-- </div> -->
+        <div fxLayout="row">
+          <div fxFlex.gt-sm="100%">
+            <mat-form-field style="width: 100%">
+              <input required matInput placeholder="ชื่อชุมนุม" [(ngModel)]="subjectName" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row">
+          <div fxFlex.gt-sm="50%">
+            <mat-form-field style="width: 100%">
+              <mat-select required placeholder="อาคาร/สถานที่" (selectionChange)="selectedLocationChange()" [(ngModel)]="selectedLocation">
+                <mat-option *ngFor="let food of mainLocation; let i = index;" [value]="food.id">
+                  {{ food.info.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-sm="50%">
+            <mat-form-field style="width: 100%">
+              <mat-select required placeholder="ห้อง/ส่วนของสถานที่" (selectionChange)="selectedSubLocationChange()" [(ngModel)]="selectedSubLocation">
+                <mat-option *ngFor="let food of subLocation" [value]="food.id">
+                  {{ food.text }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- <div fxLayout="row" fxLayoutGap="20px"> -->
+        <!-- <div fxFlex.gt-sm="50%">
+            <mat-form-field style="width: 100%;">
+              <input matInput placeholder="ค้นหารายชื่อครูผู้สอน" [matAutocomplete]="auto" [formControl]="stateCtrl">
+            </mat-form-field>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option style="height: 30px;" *ngFor="let state of filteredStates | async; let i = index;" (click)="showName(state.id)">
+                <div fxLayout="row" fxLayoutGap="15px">
+                  <div fxFlex.gt-sm="100%">
+                    {{state.name}}
+                  </div>
+                </div>
+              </mat-option>
+            </mat-autocomplete>
+          </div> -->
+        <!-- <div fxFlex.gt-sm="50%">
+            <mat-form-field style="width: 100%;">
+              <input required matInput placeholder="จำนวนนักเรียนที่เปิดรับ" type="number" [(ngModel)]="studentLimit" />
+              <mat-hint>ไม่เกิน 40 คน</mat-hint>
+            </mat-form-field>
+          </div> -->
+        <!-- </div> -->
+
+        <div fxLayout="row">
+          <div fxFlex.gt-sm="100%">
+            <h5>อธิบายเกี่ยวกับชุมนุมของคุณ</h5>
+            <mat-hint>โปรดระบุเพียงข้อความเท่านั้น</mat-hint><br /><br />
+            <div>
+              <quill-editor [(ngModel)]="model"></quill-editor>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row">
+          <div fxFlex.gt-sm="100%">
+            <mat-list dense>
+              <h3 mat-subheader style="font-size: 1.2rem;">ครูผู้สอน</h3>
+              <mat-list-item *ngFor="let message of teacherList; let i = index;">
+                <!-- <mat-icon class="icon-color clear-icon" mat-list-icon (click)="remoceSelectedTeacher(message.personal_id)">clear</mat-icon> -->
+                <img style="width: 60px; height: 60px;" mat-list-avatar src="http://www.satit.nu.ac.th/2016/img/personal/{{message.personal_id}}.jpg">
+                <h3 matLine style="font-size: 1.25rem;">{{message.personal_title_name_th}}{{message.personal_first_name_th}} {{message.personal_last_name_th}}</h3>
+                <p matLine> {{message.personal_position}} </p>
+                <p matLine> {{message.personal_function}} </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </div>
+      </mat-card-content>
+      <div style="text-align: right;" flex>
+        <button (click)="submit()" mat-raised-button color="primary"><mat-icon>save</mat-icon> บันทึก</button>
+      </div>
+      <div *ngIf="formError" style="color: red;">
+        <span>แบบฟอร์มผิดพลาด</span>
+        <ul *ngFor="let msg of errorMessage">
+          <li>{{ msg }}</li>
+        </ul>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-sm="20%">
+  </div>
+</div>

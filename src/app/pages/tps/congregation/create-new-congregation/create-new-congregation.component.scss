@@ -1,0 +1,20 @@
+#back-button-div{
+    bottom: 2.452rem;
+    right: 2.452rem;
+    position: fixed;
+    z-index: 100;
+}
+
+.clear-icon{
+    color: white;
+}
+
+.clear-icon:hover{
+    cursor: pointer;
+    color: black;
+}
+
+:host /deep/ .ql-container {
+    height: 400px;
+  }
+  
