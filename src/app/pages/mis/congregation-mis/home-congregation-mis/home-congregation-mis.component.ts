@@ -80,7 +80,13 @@ export class HomeCongregationMisComponent implements OnInit {
       let sequnce = 1;
       resReturn['subject'].forEach((item) => {
         // console.log(item);
-        let student = JSON.parse(item['student']);
+        let student = [];
+        try{
+          student = JSON.parse(item['student']);
+        }catch(error){
+
+        }
+        // let student = JSON.parse(item['student']);
         let studentListComplete = this.removeDuplicates(student);
         // console.log(item.text);
         console.log(student);

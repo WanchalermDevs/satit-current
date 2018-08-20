@@ -94,9 +94,9 @@ export class CongregationInfoComponent implements OnInit {
     private _dataTableService: TdDataTableService
   ) {
     this.stateCtrl = new FormControl();
-    this.filteredStates = this.stateCtrl.valueChanges
-      .startWith(null)
-      .map(name => this.filterStates(name));
+    // this.filteredStates = this.stateCtrl.valueChanges
+    //   .startWith(null)
+    //   .map(name => this.filterStates(name));
   }
 
   gotoEdit() {
