@@ -14,18 +14,6 @@
           </div>
           <div *ngIf="tab.contentEvidences">
             <div *ngIf="currentTopic.evidences">
-                <!-- <mat-card *ngFor="let ediv1 of currentTopic.evidences">
-                    <mat-card-title>{{ ediv1.name }}</mat-card-title>
-                    <mat-card-content>
-                      <mat-list>
-                        <mat-list-item>
-                          <h3 matLine>{{ ediv1.description }}</h3>
-                          <p matLine>extra line</p>
-                          <p matLine>{{contact.headline}}</p>
-                        </mat-list-item>
-                      </mat-list>
-                    </mat-card-content>
-                  </mat-card> -->
               <ol>
                 <li *ngFor="let ediv1 of currentTopic.evidences">
                   <div class="edivTopic">

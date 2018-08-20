@@ -44,9 +44,9 @@ export class EvaluationTopicComponent implements OnInit {
   ];
   // Data for creating tabs
   dynamicTabs = [
-   {
+    {
       label: 'ข้อคิดเห็นปีก่อนหน้า',
-      contentDescription:  true,
+      contentDescription: true,
     }, {
       label: 'หลักฐาน',
       contentEvidences: true,
@@ -55,46 +55,49 @@ export class EvaluationTopicComponent implements OnInit {
       contentOwners: true,
     },
   ];
-  constructor(private activeRoute: ActivatedRoute, private router: Router, private eqaSevice: EqaService, private tdDataSevice: TdDataTableService) { }
-
-  ngOnInit() {
+  constructor(private activeRoute: ActivatedRoute, private router: Router, private eqaSevice: EqaService, private tdDataSevice: TdDataTableService) {
     this.activeRoute.params.subscribe((param) => {
       this.topicId = param['id'];
+      this.childTopic = [];
+      this.hasData = false;
       this.dataPrepareForTable();
     });
+  }
+
+  ngOnInit() {
+
   }
   dataPrepareForTable() {
     this.eqaSevice.standardListByYear(window.localStorage.getItem('token'), '2560').then(param => {
       let list = JSON.parse(param['list']);
-      this.childTopic = [];
-      this.hasData = false;
       console.log(list);
       list.forEach(element => {
-
         if (element['id'] == this.topicId) {
           this.currentTopic = element;
-          let owner = JSON.parse(element['owner']);
-          this.currentTopic['owner'] = owner;
-          let evidences = JSON.parse(element['evidences']);
-          this.currentTopic['evidences'] = evidences;
-          let old_comment = JSON.parse(element['old_comment']);
-          this.currentTopic['old_comment'] = old_comment;
-          // console.log(owner);
+          try{
+            let owner = JSON.parse(element['owner']);
+            this.currentTopic['owner'] = owner;
+            let evidences = JSON.parse(element['evidences']);
+            this.currentTopic['evidences'] = evidences;
+          }catch(error){
+            console.log(error);
+          }
+          
         }
         if (this.topicId == element['parent_id']) {
-          let temp = { 
-            'childtopic' : element['text'],
-            'id' : element['id'],
-            'owners' : element['owner'],
+          let temp = {
+            'childtopic': element['text'],
+            'id': element['id'],
+            'owners': element['owner'],
           }
           this.childTopic.push(temp);
         }
-        if(this.childTopic.length > 0){
-          this.hasData = true;
-        }
         this.filter();
       });
-    })
+      if (this.childTopic.length > 0) {
+        this.hasData = true;
+      }
+    });
   }
   rowClick(event: ITdDataTableRowClickEvent) {
     this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา/หัวข้อ/' + event['row']['id']);
