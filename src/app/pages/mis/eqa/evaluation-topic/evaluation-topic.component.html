@@ -1,4 +1,83 @@
-<p>
-  evaluation-topic works!
-  your id is : {{ topicId }}
-</p>
+<section>
+  <mat-card>
+    <mat-card-content>
+      <!-- tab-group -->
+      <mat-tab-group mat-stretch-tabs dynamicHeight>
+        <mat-tab *ngFor="let tab of dynamicTabs" [disabled]="tab.disabled">
+          <ng-template matTabLabel>{{tab.label}}</ng-template>
+          {{tab.content}}
+          <br>
+          <div *ngIf="tab.contentDescription">
+            <div *ngIf="currentTopic.old_comment">
+              {{currentTopic.old_comment}}
+            </div>
+          </div>
+          <div *ngIf="tab.contentEvidences">
+            <div *ngIf="currentTopic.evidences">
+                <!-- <mat-card *ngFor="let ediv1 of currentTopic.evidences">
+                    <mat-card-title>{{ ediv1.name }}</mat-card-title>
+                    <mat-card-content>
+                      <mat-list>
+                        <mat-list-item>
+                          <h3 matLine>{{ ediv1.description }}</h3>
+                          <p matLine>extra line</p>
+                          <p matLine>{{contact.headline}}</p>
+                        </mat-list-item>
+                      </mat-list>
+                    </mat-card-content>
+                  </mat-card> -->
+              <ol>
+                <li *ngFor="let ediv1 of currentTopic.evidences">
+                  <div class="edivTopic">
+                    ชื่อหลักฐาน
+                  </div>
+                  <div class="edivTopicname">
+                    {{ ediv1.name }}
+                  </div>
+                  <div class="edivTopic">
+                    ที่มาของหลักฐาน
+                  </div>
+                  <div class="edivTopicname">
+                    {{ ediv1.description }}
+                  </div>
+                  <div class="edivTopic">
+                    ชื่อไฟล์
+                  </div>
+                  <div class="edivTopicname">
+                    {{ ediv1.file.originalname }}
+                  </div>
+                  <div class="div-btn-download-ediv">
+                    <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-raised-button
+                      color="primary">ดาวน์โหลดหลักฐานนี้</a>
+                  </div>
+                  <hr>
+                </li>
+              </ol>
+            </div>
+          </div>
+          <div *ngIf="tab.contentOwners">
+            <div fxFlex="100" *ngFor="let owner of currentTopic.owner">
+              <div style="width: 100%; font-size: 1.3rem;" class="text-center">
+                <!-- <img style="width: 40%;" [src]="'http://www.satit.nu.ac.th/2016/img/personal/' + owner.personal_id + '.jpg'" /> -->
+                <br />{{ owner.personal_title_name_th }}{{ owner.personal_first_name_th }} {{ owner.personal_last_name_th }}
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+        </mat-tab>
+      </mat-tab-group>
+
+      <mat-divider></mat-divider>
+      <!-- table -->
+      <div *ngIf="hasData">
+        <td-data-table #dataTable [clickable]="true" [data]="childTopic" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"
+          [sortable]="true" (rowSelect)="selectedStandardItem($event)" (selectAll)="selectedStandardItem($event)" (rowClick)="rowClick($event)">
+        </td-data-table>
+        <div class="mat-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
+          <h6>-- ไม่พบรายการ --</h6>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

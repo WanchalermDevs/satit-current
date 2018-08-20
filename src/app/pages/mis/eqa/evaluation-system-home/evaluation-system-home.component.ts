@@ -45,7 +45,7 @@ export class EvaluationSystemHomeComponent implements OnInit {
   ngOnInit() {
     this.eqa.standardListByYear(window.localStorage.getItem('token'), '2560').then(data => {
       let list = JSON.parse(data['list']);
-      // console.log(list);
+      console.log(list);
       list.forEach(element => {
         let temp = {
           'id': element['id'],
@@ -59,9 +59,6 @@ export class EvaluationSystemHomeComponent implements OnInit {
         this.filter();
       });
     })
-
-  }
-  selectedStandardItem(event) {
 
   }
   rowClick(event: ITdDataTableRowClickEvent) {
