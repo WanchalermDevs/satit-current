@@ -1,3 +1,14 @@
-<p>
-  evaluation-system-home works!
-</p>
+<section>
+  <mat-card>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <td-data-table #dataTable [clickable]="true" [data]="standardList" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"
+          [sortable]="true" (rowSelect)="selectedStandardItem($event)" (selectAll)="selectedStandardItem($event)" (rowClick)="rowClick($event)" >
+        </td-data-table>
+      <div class="mat-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
+        <h6>-- ไม่พบรายการ --</h6>
+      </div>
+      
+    </mat-card-content>
+  </mat-card>
+</section>
