@@ -27,6 +27,7 @@ import { Home2CongregationComponent } from '../pages/mis/congregation-mis/home2-
 import { CheckStudentRegistedComponent } from '../pages/mis/congregation-mis/check-student-registed/check-student-registed.component';
 import { EvidenceListComponent } from '../pages/mis/eqa/evidence-list/evidence-list.component';
 import { EvaluationSystemHomeComponent } from '../pages/mis/eqa/evaluation-system-home/evaluation-system-home.component';
+import { EvaluationTopicComponent } from '../pages/mis/eqa/evaluation-topic/evaluation-topic.component';
 /*
 *     Location
 */
@@ -243,9 +244,8 @@ const SATIT_ROUTES: Routes = [
         {
           path: 'ระบบประเมินคุณภาพสถานศึกษา',
           children: [
-            {
-              path: '', component: EvaluationSystemHomeComponent
-            }
+            { path: '', component: EvaluationSystemHomeComponent },
+            { path: 'หัวข้อ/:id', component: EvaluationTopicComponent }
           ]
         }
       ]

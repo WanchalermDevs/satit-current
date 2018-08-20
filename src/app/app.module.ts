@@ -93,6 +93,7 @@ import { Home2CongregationComponent } from './pages/mis/congregation-mis/home2-c
 import { CheckStudentRegistedComponent } from './pages/mis/congregation-mis/check-student-registed/check-student-registed.component';
 import { EvidenceListComponent } from './pages/mis/eqa/evidence-list/evidence-list.component';
 import { EvaluationSystemHomeComponent } from './pages/mis/eqa/evaluation-system-home/evaluation-system-home.component';
+import { EvaluationTopicComponent } from './pages/mis/eqa/evaluation-topic/evaluation-topic.component';
 
 
 
@@ -133,7 +134,8 @@ export function createTranslateLoader(http: HttpClient) {
     Home2CongregationComponent,
     CheckStudentRegistedComponent,
     EvidenceListComponent,
-    EvaluationSystemHomeComponent
+    EvaluationSystemHomeComponent,
+    EvaluationTopicComponent
   ],
   entryComponents: [DialogMisEnter
   ],

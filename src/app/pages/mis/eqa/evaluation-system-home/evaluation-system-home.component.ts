@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { EqaService } from '../../../../service/eqa.service';
 import { ITdDataTableColumn } from '../../../../../../node_modules/@covalent/core/data-table';
+import { Router } from '@angular/router';
 import {
   IPageChangeEvent,
   ITdDataTableSortChangeEvent,
@@ -37,7 +38,7 @@ export class EvaluationSystemHomeComponent implements OnInit {
 
   ];
 
-  constructor(private eqa: EqaService, private tdDataSevice: TdDataTableService) {
+  constructor(private eqa: EqaService, private tdDataSevice: TdDataTableService, private router: Router) {
 
   }
 
@@ -47,6 +48,7 @@ export class EvaluationSystemHomeComponent implements OnInit {
       // console.log(list);
       list.forEach(element => {
         let temp = {
+          'id': element['id'],
           'sequnce': element['text'],
           'evaluation2560': '',
           'evaluation2561': ''
@@ -62,8 +64,8 @@ export class EvaluationSystemHomeComponent implements OnInit {
   selectedStandardItem(event) {
 
   }
-  rowClick(event) {
-
+  rowClick(event: ITdDataTableRowClickEvent) {
+    this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา/หัวข้อ/' + event['row']['id']);
   }
   filter(): void {
     let newData: any[] = this.standardList;
