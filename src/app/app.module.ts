@@ -92,6 +92,7 @@ import { EvidenceDeleteComponent } from './pages/tps/eqa-tps/evidence-delete/evi
 import { Home2CongregationComponent } from './pages/mis/congregation-mis/home2-congregation/home2-congregation.component';
 import { CheckStudentRegistedComponent } from './pages/mis/congregation-mis/check-student-registed/check-student-registed.component';
 import { EvidenceListComponent } from './pages/mis/eqa/evidence-list/evidence-list.component';
+import { EvaluationSystemHomeComponent } from './pages/mis/eqa/evaluation-system-home/evaluation-system-home.component';
 
 
 
@@ -131,7 +132,8 @@ export function createTranslateLoader(http: HttpClient) {
     EvidenceDeleteComponent,
     Home2CongregationComponent,
     CheckStudentRegistedComponent,
-    EvidenceListComponent
+    EvidenceListComponent,
+    EvaluationSystemHomeComponent
   ],
   entryComponents: [DialogMisEnter
   ],

@@ -26,6 +26,7 @@ import { EvidenceDeleteComponent } from '../pages/tps/eqa-tps/evidence-delete/ev
 import { Home2CongregationComponent } from '../pages/mis/congregation-mis/home2-congregation/home2-congregation.component';
 import { CheckStudentRegistedComponent } from '../pages/mis/congregation-mis/check-student-registed/check-student-registed.component';
 import { EvidenceListComponent } from '../pages/mis/eqa/evidence-list/evidence-list.component';
+import { EvaluationSystemHomeComponent } from '../pages/mis/eqa/evaluation-system-home/evaluation-system-home.component';
 /*
 *     Location
 */
@@ -43,12 +44,12 @@ const SATIT_ROUTES: Routes = [
     component: MainPageComponent,
     canActivateChild: [LogedinGuard],
     children:
-    [
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      }
-    ]
+      [
+        {
+          path: 'dashboard',
+          component: DashboardComponent
+        }
+      ]
   },
   {
     path: 'ระบบส่งหลักฐานประกันคุณภาพการศึกษา',
@@ -198,48 +199,56 @@ const SATIT_ROUTES: Routes = [
     component: MainPageComponent,
     canActivateChild: [LogedinGuard],
     children:
-    [
-      {
-        path: 'Home',
-        component: EqaHomeComponent
-      },
-      {
-        path: 'StandardManagement',
-        component: StandardManagementComponent
-      },
-      {
-        path: 'standard-list',
-        component: StandardListManagementComponent
-      },
-      {
-        path: 'StandardManagement/:year',
-        component: StandardManagementComponent
-      },
-      {
-        path: 'StandardManagement/:year/:level2',
-        component: StandardManagementComponent
-      },
-      {
-        path: 'StandardManagement/:year/:level2/:level3',
-        component: StandardManagementComponent
-      },
-      {
-        path: 'AddList/:id/:year',
-        component: AddStandardListComponent
-      },
-      {
-        path: 'EditStandardItem/:id',
-        component: EditStandardItemComponent
-      },
-      {
-        path: 'RoleManagement',
-        component: SettingRoleManagementComponent
-      },
-      {
-        path: 'รายการหลักฐาน',
-        component: EvidenceListComponent
-      }
-    ]
+      [
+        {
+          path: 'Home',
+          component: EqaHomeComponent
+        },
+        {
+          path: 'StandardManagement',
+          component: StandardManagementComponent
+        },
+        {
+          path: 'standard-list',
+          component: StandardListManagementComponent
+        },
+        {
+          path: 'StandardManagement/:year',
+          component: StandardManagementComponent
+        },
+        {
+          path: 'StandardManagement/:year/:level2',
+          component: StandardManagementComponent
+        },
+        {
+          path: 'StandardManagement/:year/:level2/:level3',
+          component: StandardManagementComponent
+        },
+        {
+          path: 'AddList/:id/:year',
+          component: AddStandardListComponent
+        },
+        {
+          path: 'EditStandardItem/:id',
+          component: EditStandardItemComponent
+        },
+        {
+          path: 'RoleManagement',
+          component: SettingRoleManagementComponent
+        },
+        {
+          path: 'รายการหลักฐาน',
+          component: EvidenceListComponent
+        }, 
+        {
+          path: 'ระบบประเมินคุณภาพสถานศึกษา',
+          children: [
+            {
+              path: '', component: EvaluationSystemHomeComponent
+            }
+          ]
+        }
+      ]
   },
   { path: '404', component: LoginPageComponent },
   { path: './login', component: LoginPageComponent },
