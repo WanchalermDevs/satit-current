@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-content>
       <!-- tab-group -->
-      <mat-tab-group mat-stretch-tabs dynamicHeight>
+      <mat-tab-group mat-stretch-tabs dynamicHeight *ngIf="!hasData">
         <mat-tab *ngFor="let tab of dynamicTabs" [disabled]="tab.disabled">
           <ng-template matTabLabel>{{tab.label}}</ng-template>
           {{tab.content}}
@@ -14,33 +14,24 @@
           </div>
           <div *ngIf="tab.contentEvidences">
             <div *ngIf="currentTopic.evidences">
-              <ol>
-                <li *ngFor="let ediv1 of currentTopic.evidences">
-                  <div class="edivTopic">
-                    ชื่อหลักฐาน
-                  </div>
-                  <div class="edivTopicname">
-                    {{ ediv1.name }}
-                  </div>
-                  <div class="edivTopic">
-                    ที่มาของหลักฐาน
-                  </div>
-                  <div class="edivTopicname">
-                    {{ ediv1.description }}
-                  </div>
-                  <div class="edivTopic">
-                    ชื่อไฟล์
-                  </div>
-                  <div class="edivTopicname">
-                    {{ ediv1.file.originalname }}
-                  </div>
-                  <div class="div-btn-download-ediv">
-                    <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-raised-button
-                      color="primary">ดาวน์โหลดหลักฐานนี้</a>
-                  </div>
-                  <hr>
-                </li>
-              </ol>
+              <mat-card *ngFor="let ediv1 of currentTopic.evidences">
+                <mat-card-title>ชื่อหลักฐาน : {{ ediv1.name }}</mat-card-title>
+                <mat-card-content>
+                  <mat-list>
+                    <mat-list-item>
+                      <h3 matLine>ที่มาของหลักฐาน : {{ ediv1.description }}</h3>
+                      <h3 matLine>
+                        ชื่อไฟล์ : {{ ediv1.file.originalname }}</h3>
+                    </mat-list-item>
+                    <div class="div-btn-download-ediv">
+                      <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-raised-button
+                        color="primary">
+                        <mat-icon>file_download</mat-icon>
+                      </a>
+                    </div>
+                  </mat-list>
+                </mat-card-content>
+              </mat-card>
             </div>
           </div>
           <div *ngIf="tab.contentOwners">
