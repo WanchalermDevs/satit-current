@@ -26,4 +26,8 @@ export class EqaHomeComponent implements OnInit {
     this.router.navigateByUrl('/EQA/รายการหลักฐาน');
   }
 
+  gotoEvaluationHome() {
+    this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา');
+  }
+
 }
