@@ -261,7 +261,7 @@ export class CongregationInfoComponent implements OnInit {
     next(sourt);
   }
 
-  setIndex(data, next){
+  setIndex(data, next) {
     data.forEach((item, i) => {
       data[i]['index'] = (i + 1);
     });
