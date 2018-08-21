@@ -12,7 +12,6 @@ import {
   ITdDataTableColumn
 } from '@covalent/core';
 
-
 @Component({
   selector: 'app-evaluation-topic',
   templateUrl: './evaluation-topic.component.html',
@@ -23,6 +22,9 @@ export class EvaluationTopicComponent implements OnInit {
 
   topicId;
   standardList = [];
+  parentText;
+  parentId;
+  linkParent = '';
   currentTopic: any = "";
   childTopic = [];
   searchTerm = '';
@@ -67,6 +69,20 @@ export class EvaluationTopicComponent implements OnInit {
   ngOnInit() {
 
   }
+
+  findParent(list = [], currentId) {
+    list.forEach(parent => {
+      if (parent['id'] == currentId) {
+        this.parentText = parent['text'];
+        this.parentId = parent['id'];
+      }
+    });
+  }
+
+  gotoParent(){
+    this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา/หัวข้อ/' + event['row']['id']);
+  }
+
   dataPrepareForTable() {
     this.eqaSevice.standardListByYear(window.localStorage.getItem('token'), '2560').then(param => {
       let list = JSON.parse(param['list']);
@@ -74,15 +90,15 @@ export class EvaluationTopicComponent implements OnInit {
       list.forEach(element => {
         if (element['id'] == this.topicId) {
           this.currentTopic = element;
-          try{
+          this.findParent(list, this.topicId);
+          try {
             let owner = JSON.parse(element['owner']);
             this.currentTopic['owner'] = owner;
             let evidences = JSON.parse(element['evidences']);
             this.currentTopic['evidences'] = evidences;
-          }catch(error){
+          } catch (error) {
             console.log(error);
           }
-          
         }
         if (this.topicId == element['parent_id']) {
           let temp = {
@@ -99,9 +115,11 @@ export class EvaluationTopicComponent implements OnInit {
       }
     });
   }
+
   rowClick(event: ITdDataTableRowClickEvent) {
     this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา/หัวข้อ/' + event['row']['id']);
   }
+
   filter(): void {
     let newData: any[] = this.childTopic;
     newData = this.tdDataSevice.filterData(newData, this.searchTerm, true);
