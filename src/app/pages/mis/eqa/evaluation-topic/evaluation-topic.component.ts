@@ -37,6 +37,7 @@ export class EvaluationTopicComponent implements OnInit {
   filteredData: any[] = this.standardList;
   filteredTotal: number = this.standardList.length;
   hasData = false;
+  
   /*
   * ตั้งชื่อ coloumn
   */
@@ -44,6 +45,7 @@ export class EvaluationTopicComponent implements OnInit {
     { name: 'childtopic', label: 'ประเด็นพิจารณา' },
 
   ];
+
   // Data for creating tabs
   dynamicTabs = [
     {
@@ -57,6 +59,7 @@ export class EvaluationTopicComponent implements OnInit {
       contentOwners: true,
     },
   ];
+
   constructor(private activeRoute: ActivatedRoute, private router: Router, private eqaSevice: EqaService, private tdDataSevice: TdDataTableService) {
     this.activeRoute.params.subscribe((param) => {
       this.topicId = param['id'];
