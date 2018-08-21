@@ -36,3 +36,22 @@ router-outlet ~ * {
 .mat-toolbar {
   @include mat-elevation(4);
 }
+
+.td-data-table-cell{
+  font-size: 18px;
+}
+
+.td-data-table-column{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.mat-tab-label, .mat-tab-link {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.mat-card-subtitle, .mat-card-content, .mat-card-header .mat-card-title{
+  font-size: 18px;
+}

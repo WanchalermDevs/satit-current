@@ -37,6 +37,7 @@ export class EvaluationTopicComponent implements OnInit {
   filteredData: any[] = this.standardList;
   filteredTotal: number = this.standardList.length;
   hasData = false;
+  
   /*
   * ตั้งชื่อ coloumn
   */
@@ -44,6 +45,7 @@ export class EvaluationTopicComponent implements OnInit {
     { name: 'childtopic', label: 'ประเด็นพิจารณา' },
 
   ];
+
   // Data for creating tabs
   dynamicTabs = [
     {
@@ -57,6 +59,7 @@ export class EvaluationTopicComponent implements OnInit {
       contentOwners: true,
     },
   ];
+
   constructor(private activeRoute: ActivatedRoute, private router: Router, private eqaSevice: EqaService, private tdDataSevice: TdDataTableService) {
     this.activeRoute.params.subscribe((param) => {
       this.topicId = param['id'];
@@ -90,10 +93,7 @@ export class EvaluationTopicComponent implements OnInit {
       list.forEach(element => {
         if (element['id'] == this.topicId) {
           this.currentTopic = element;
-<<<<<<< HEAD
           this.findParent(list, this.topicId);
-=======
->>>>>>> b9edf8488c45ebb36af2b89f32120e7f230c7362
           try {
             let owner = JSON.parse(element['owner']);
             this.currentTopic['owner'] = owner;
@@ -102,10 +102,6 @@ export class EvaluationTopicComponent implements OnInit {
           } catch (error) {
             console.log(error);
           }
-<<<<<<< HEAD
-=======
-
->>>>>>> b9edf8488c45ebb36af2b89f32120e7f230c7362
         }
         if (this.topicId == element['parent_id']) {
           let temp = {
