@@ -14,8 +14,8 @@
           {{tab.content}}
           <br>
           <div *ngIf="tab.contentDescription">
-            <div *ngIf="currentTopic.old_comment">
-              {{currentTopic.old_comment}}
+            <div *ngIf="currentTopic.old_comment" [innerHTML]="currentTopic.old_comment">
+              
             </div>
           </div>
           <div *ngIf="tab.contentEvidences">
