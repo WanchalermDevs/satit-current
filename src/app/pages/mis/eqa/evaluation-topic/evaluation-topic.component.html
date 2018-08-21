@@ -1,7 +1,7 @@
 <section>
   <mat-chip-list>
     <mat-chip color="warn" [disabled]="true">จากประเด็น/มาตรฐาน: </mat-chip>
-    <a class="nav-link" href="">{{ parentText }}</a> => 
+    <a class="nav-link" href="">{{ parentText }}</a> =>
   </mat-chip-list>
 </section>
 <section>
@@ -20,21 +20,28 @@
           </div>
           <div *ngIf="tab.contentEvidences">
             <div *ngIf="currentTopic.evidences">
-              <mat-card *ngFor="let ediv1 of currentTopic.evidences">
-                <mat-card-title>ชื่อหลักฐาน : {{ ediv1.name }}</mat-card-title>
+              <mat-card>
+                <mat-card-title>หลักฐาน</mat-card-title>
                 <mat-card-content>
                   <mat-list>
-                    <mat-list-item>
-                      <h3 matLine>ที่มาของหลักฐาน : {{ ediv1.description }}</h3>
-                      <h3 matLine>
-                        ชื่อไฟล์ : {{ ediv1.file.originalname }}</h3>
+                    <!-- <h3 mat-subheader>Today</h3> -->
+                    <mat-list-item *ngFor="let ediv1 of currentTopic.evidences">
+                      <mat-icon class="icon-color" mat-list-icon>library_books</mat-icon>
+                      <h4 matLine>ชื่อหลักฐาน : {{ ediv1.name }}</h4>
+                      <p matLine>
+                        <span>ที่มาของหลักฐาน : {{ ediv1.description }}</span>
+                      </p>
+                      <p matLine>
+                        <span>ชื่อไฟล์ : {{ ediv1.file.originalname }}</span>
+                      </p>
+                      <div class="div-btn-download-ediv">
+                        <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-fab color="">
+                          <mat-icon>file_download</mat-icon>
+                        </a>
+                      </div>
+                      <br>
+                      <mat-divider></mat-divider>
                     </mat-list-item>
-                    <div class="div-btn-download-ediv">
-                      <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-raised-button
-                        color="primary">
-                        <mat-icon>file_download</mat-icon>
-                      </a>
-                    </div>
                   </mat-list>
                 </mat-card-content>
               </mat-card>
