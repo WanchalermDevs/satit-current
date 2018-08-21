@@ -86,11 +86,14 @@ export class EvaluationTopicComponent implements OnInit {
   dataPrepareForTable() {
     this.eqaSevice.standardListByYear(window.localStorage.getItem('token'), '2560').then(param => {
       let list = JSON.parse(param['list']);
-      console.log(list);
+      // console.log(list);
       list.forEach(element => {
         if (element['id'] == this.topicId) {
           this.currentTopic = element;
+<<<<<<< HEAD
           this.findParent(list, this.topicId);
+=======
+>>>>>>> b9edf8488c45ebb36af2b89f32120e7f230c7362
           try {
             let owner = JSON.parse(element['owner']);
             this.currentTopic['owner'] = owner;
@@ -99,6 +102,10 @@ export class EvaluationTopicComponent implements OnInit {
           } catch (error) {
             console.log(error);
           }
+<<<<<<< HEAD
+=======
+
+>>>>>>> b9edf8488c45ebb36af2b89f32120e7f230c7362
         }
         if (this.topicId == element['parent_id']) {
           let temp = {
@@ -112,6 +119,7 @@ export class EvaluationTopicComponent implements OnInit {
       });
       if (this.childTopic.length > 0) {
         this.hasData = true;
+        // console.log(this.currentTopic.length);
       }
     });
   }
