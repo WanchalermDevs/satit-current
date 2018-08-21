@@ -55,3 +55,12 @@ router-outlet ~ * {
 .mat-card-subtitle, .mat-card-content, .mat-card-header .mat-card-title{
   font-size: 18px;
 }
+
+.mat-line{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.mat-list .mat-list-item .mat-line:nth-child(n+2), .mat-nav-list .mat-list-item .mat-line:nth-child(n+2), .mat-selection-list .mat-list-item .mat-line:nth-child(n+2){
+  font-size: 18px;
+}
