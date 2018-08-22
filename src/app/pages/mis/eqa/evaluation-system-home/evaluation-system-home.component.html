@@ -1,66 +1,14 @@
 <section>
-  <header class="text-center">
-    <!-- <img src="/assets/logo/logo-nud-info.png"> -->
-    <h5>ระบบประกันคุณภาพการศึกษา โรงเรียนมัธยมสาธิตมหาวิทยาลัยนเรศวร ประจำปีการศึกษา 2560</h5>
-    <div class="mat-subhead">
-      ตามที่กระทรวงศึกษาธิการได้กำหนดให้มีการใช้มาตรฐานการศึกษาขั้นพื้นฐาน เพื่อการประกันคุณภาพภายในของสถานศึกษานั้น งานประกันคุณภาพการศึกษาจึงได้พัฒนาระบบสารสนเทศขึ้นเพื่อใช้เป็นเครื่องมือในการรวบรวมเอกสารหลักฐาน
-      และบันทึกผลการประเมินคุณภาพการศึกษา ตลอดจนการจัดทำรายงานอัตโนมัติในประเด็นต่าง ๆ อย่างเป็นระบบและมีความทันสมัย
-    </div>
-  </header>
-</section>
-<section>
-  <div>
-    <div fxLayout="row" fxLayoutAlign="space-between start">
-      <div fxFlex="65">
-        <mat-card>
-          <mat-card-title>
-            การประเมินคุณภาพการศึกษา
-          </mat-card-title>
-          <mat-card-subtitle>
-            สำหรับผู้ประเมินใช้ในการระบุผลประเมินและข้อเสนอแนะในประเด็นต่างๆของแต่ละมาตรฐาน โปรดคลิดเลือกมาตรฐานที่ท่านต้องการเข้าประเมิน
-          </mat-card-subtitle>
-          <mat-divider></mat-divider>
-          <mat-card-content>
-            <td-data-table #dataTable [clickable]="true" [data]="standardList" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"
-              [sortable]="true" (rowSelect)="selectedStandardItem($event)" (selectAll)="selectedStandardItem($event)" (rowClick)="rowClick($event)">
-            </td-data-table>
-            <div class="mat-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
-              <h6>-- ไม่พบรายการ --</h6>
-            </div>
-
-          </mat-card-content>
-        </mat-card>
+  <mat-card>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <td-data-table #dataTable [clickable]="true" [data]="standardList" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"
+          [sortable]="true" (rowSelect)="selectedStandardItem($event)" (selectAll)="selectedStandardItem($event)" (rowClick)="rowClick($event)" >
+        </td-data-table>
+      <div class="mat-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
+        <h6>-- ไม่พบรายการ --</h6>
       </div>
-
-      <div fxFlex="35">
-        <mat-card>
-          <mat-card-title>
-            CAR
-          </mat-card-title>
-          <mat-card-subtitle>
-            ระเบียนรายงานผลการประกันคุณภาพการศึกษา
-          </mat-card-subtitle>
-          <mat-divider></mat-divider>
-          <mat-card-content>
-            <mat-list>
-              <mat-list-item>
-                <a href="http://www.satit.nu.ac.th/2016/files/upload/1512533919.pdf">
-                  <mat-icon class="icon-color" mat-list-icon>picture_as_pdf</mat-icon>
-                </a>
-
-                <h4 matLine>รายงานการประกันคุณภาพการศึกษาภายใน ปีการศึกษา 2559</h4>
-                <p matLine>ขนาด: 4870 KB</p>
-              </mat-list-item>
-            </mat-list>
-          </mat-card-content>
-        </mat-card>
-        <mat-card>
-          <mat-card-title>
-            ผู้บริหารและบุคลากรในงานประกันคุณภาพการศึกษา
-          </mat-card-title>
-        </mat-card>
-      </div>
-    </div>
-  </div>
-
+      
+    </mat-card-content>
+  </mat-card>
 </section>
