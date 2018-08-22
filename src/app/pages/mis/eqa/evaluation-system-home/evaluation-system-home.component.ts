@@ -34,8 +34,9 @@ export class EvaluationSystemHomeComponent implements OnInit {
  * ตั้งชื่อ coloumn
  */
   columnsStandard: ITdDataTableColumn[] = [
-    { name: 'sequnce', label: 'ประเมินคุณภาพการศึกษา' },
-
+    { name: 'sequnce', label: 'รายการมาตรฐาน' },
+    { name: 'evaluation2559',  label: 'ผลการประเมิน 2559', width: 160 },
+    { name: 'evaluation2560',  label: 'ผลการประเมิน 2560', width: 160 }
   ];
 
   constructor(private eqa: EqaService, private tdDataSevice: TdDataTableService, private router: Router) {
@@ -50,8 +51,8 @@ export class EvaluationSystemHomeComponent implements OnInit {
         let temp = {
           'id': element['id'],
           'sequnce': element['text'],
-          'evaluation2560': '',
-          'evaluation2561': ''
+          'evaluation2559': '',
+          'evaluation2560': ''
         }
         if (element['parent_id'] === -1) {
           this.standardList.push(temp);

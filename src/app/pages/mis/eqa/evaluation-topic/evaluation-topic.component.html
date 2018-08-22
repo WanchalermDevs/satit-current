@@ -1,8 +1,6 @@
 <section>
-  <mat-chip-list>
-    <mat-chip color="warn" [disabled]="true">จากประเด็น/มาตรฐาน: </mat-chip>
-    <a class="nav-link" href="">{{ parentText }}</a> =>
-  </mat-chip-list>
+  <span>จากประเด็น/มาตรฐาน: </span>
+  <a class="nav-link" href="">{{ parentText }}</a>
 </section>
 <section>
   <mat-card>
@@ -15,7 +13,7 @@
           <br>
           <div *ngIf="tab.contentDescription">
             <div *ngIf="currentTopic.old_comment" [innerHTML]="currentTopic.old_comment">
-              
+
             </div>
           </div>
           <div *ngIf="tab.contentEvidences">

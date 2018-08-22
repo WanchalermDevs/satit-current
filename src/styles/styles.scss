@@ -71,3 +71,7 @@ router-outlet ~ * {
   font-weight: 400;
   font-size: 20px;
 }
+
+table[td-data-table] .td-data-table-column-row, table[td-data-table] .td-data-table-row:hover{
+  cursor: pointer;
+}
