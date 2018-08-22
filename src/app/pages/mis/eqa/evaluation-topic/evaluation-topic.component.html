@@ -75,7 +75,7 @@
   </div>
   <mat-card *ngIf="hasData">
     <mat-card-content>
-      <!-- table -->
+      <!-- table part-->
       <div>
         <td-data-table #dataTable [clickable]="true" [data]="childTopic" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"
           [sortable]="true" (rowSelect)="selectedStandardItem($event)" (selectAll)="selectedStandardItem($event)" (rowClick)="rowClick($event)">
