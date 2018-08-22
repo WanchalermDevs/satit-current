@@ -45,22 +45,63 @@
               </mat-card>
             </div>
           </div>
-          <div *ngIf="tab.contentOwners">
-            <div fxFlex="100" *ngFor="let owner of currentTopic.owner">
-              <div style="width: 100%; font-size: 1.3rem;" class="text-center">
-                <!-- <img style="width: 40%;" [src]="'http://www.satit.nu.ac.th/2016/img/personal/' + owner.personal_id + '.jpg'" /> -->
-                <br />{{ owner.personal_title_name_th }}{{ owner.personal_first_name_th }} {{ owner.personal_last_name_th }}
+        </mat-card-content>
+        <div class="text-right" color="primary">
+          <button mat-raised-button color="primary"> <i class="fa fa-paper-plane"></i>&nbsp; บันทึก</button>
+        </div>
+      </mat-card>
+      <!-- การ์ดที่ 2 -->
+      <mat-card class="card-type-second">
+        <mat-card-title>ข้อคิดเห็นปีก่อนหน้า</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <div *ngIf="currentTopic.old_comment" [innerHTML]="currentTopic.old_comment"></div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- คอลัมน์ 2 -->
+    <div fxFlex="1 0 auto" fxFlex.gt-md="40">
+      <mat-card class="card-type-fourth">
+        <mat-card-title>รายการหลักฐาน</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item *ngFor="let ediv1 of currentTopic.evidences">
+              <mat-icon class="icon-color" mat-list-icon>library_books</mat-icon>
+              <span matLine>ชื่อหลักฐาน : {{ ediv1.name }}</span>
+              <p matLine>
+                <span>ที่มาของหลักฐาน : {{ ediv1.description }}</span>
+              </p>
+              <p matLine>
+                <span>ชื่อไฟล์ : {{ ediv1.file.originalname }}</span>
+              </p>
+              <div class="div-btn-download-ediv">
+                <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-fab color="">
+                  <mat-icon>file_download</mat-icon>
+                </a>
               </div>
-            </div>
+              <br>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="card-type-fifth">
+        <mat-card-title>ผู้ประสานงาน</mat-card-title>
+        <mat-divider></mat-divider>
+        <div fxFlex="100" *ngFor="let owner of currentTopic.owner">
+          <div style="width: 100%; font-size: 1.3rem;" class="text-center">
+            <img matCardOwner  [src]="'http://www.satit.nu.ac.th/2016/img/personal/' + owner.personal_id + '.jpg'" />
+            <br />{{ owner.personal_title_name_th }}{{ owner.personal_first_name_th }} {{ owner.personal_last_name_th }}
           </div>
-          <br>
-          <br>
-        </mat-tab>
-      </mat-tab-group>
-
-      <mat-divider></mat-divider>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  <mat-card *ngIf="hasData">
+    <mat-card-content>
       <!-- table -->
-      <div *ngIf="hasData">
+      <div>
         <td-data-table #dataTable [clickable]="true" [data]="childTopic" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"
           [sortable]="true" (rowSelect)="selectedStandardItem($event)" (selectAll)="selectedStandardItem($event)" (rowClick)="rowClick($event)">
         </td-data-table>

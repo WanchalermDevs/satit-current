@@ -16,6 +16,9 @@ mat-panel-title{
   // font-size: 30px;
   // line-height: 32pt;
 }
+.full-width {
+  width: 100%;
+}
 .my-drop-zone { 
   border: dashed 1px green; 
   height: 170px;
@@ -144,4 +147,41 @@ mat-card{
   font-size: 1.3rem;
   color: #333;
   padding-left: 2.5rem;
+}
+.blocks {
+  height: 350px;
+
+  &.low {
+    height: 60px;
+  }
+  &>div {
+    padding-top: 10px;
+    text-align: center;
+    min-width: 75px;
+    min-height: 40px;
+    border-radius: 2px;
+    &:nth-child(2) {
+      min-height: 55px;
+    }
+    &:nth-child(4) {
+      min-height: 55px;
+    }
+  }
+}
+.low-blocks {
+  height: 100px;
+  .block {
+    margin: 5px;
+    line-height: 100px;
+    text-align: center;
+  }
+}
+.block {
+
+}
+mat-radio-group {
+  padding-top: 15px;
+}
+.mat-radio-button {
+  margin-top: 10px;
 }
