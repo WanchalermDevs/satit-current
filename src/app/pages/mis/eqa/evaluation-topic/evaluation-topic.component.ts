@@ -74,12 +74,17 @@ export class EvaluationTopicComponent implements OnInit {
   }
 
   findParent(list = [], currentId) {
-    list.forEach(parent => {
-      if (parent['id'] == currentId) {
-        this.parentText = parent['text'];
-        this.parentId = parent['id'];
-      }
-    });
+    if(currentId == -1){
+      this.parentText = 'ระบบประกันคุณภาพการศึกษา';
+      this.parentId = -1;
+    }else{
+      list.forEach(parent => {
+        if (parent['id'] == currentId) {
+          this.parentText = parent['text'];
+          this.parentId = parent['id'];
+        }
+      });
+    }
   }
 
   gotoParent(){
@@ -93,7 +98,7 @@ export class EvaluationTopicComponent implements OnInit {
       list.forEach(element => {
         if (element['id'] == this.topicId) {
           this.currentTopic = element;
-          this.findParent(list, this.topicId);
+          this.findParent(list, element['parent_id']);
           try {
             let owner = JSON.parse(element['owner']);
             this.currentTopic['owner'] = owner;
@@ -130,5 +135,14 @@ export class EvaluationTopicComponent implements OnInit {
     newData = this.tdDataSevice.sortData(newData, this.sortBy, this.sortOrder);
     // newData = this.tdDataSevice.pageData(newData, this.fromRow, this.currentPage * this.pageSize);
     this.childTopic = newData;
+  }
+
+  gotoBack(){
+    console.log(this.parentId);
+    if(this.parentId == -1){
+      this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา');
+    }else{
+      this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา/หัวข้อ/' + this.parentId);
+    }
   }
 }
