@@ -84,3 +84,7 @@ router-outlet ~ * {
 .mat-card[_ngcontent-c19] {
   margin-bottom: 1.8rem;
 }
+
+.td-data-table-row:hover{
+  cursor: pointer;
+}
