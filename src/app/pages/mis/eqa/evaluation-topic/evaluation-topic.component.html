@@ -1,11 +1,17 @@
 <section>
   <mat-chip-list>
     <mat-chip color="warn" [disabled]="true">จากประเด็น/มาตรฐาน: </mat-chip>
-    <a class="nav-link" href="">{{ parentText }}</a> =>
+    <a class="nav-link" class="topicBack" (click)="gotoBack()">{{ parentText }}</a>
   </mat-chip-list>
+  <br />
+  <mat-divider></mat-divider>
 </section>
 <section>
-
+  <article>
+    <header class="text-center">
+      <h5>{{ currentTopic.text }}</h5>
+    </header>
+  </article>
   <div fxLayout="column" fxLayout.gt-md="row" *ngIf="!hasData">
     <!-- คอลัมน์ 1 -->
     <div fxFlex="1 0 auto" fxFlex.gt-md="60">
@@ -22,7 +28,8 @@
           </div>
         </mat-card-content>
         <div class="text-right" color="primary">
-          <button mat-raised-button color="primary"> <i class="fa fa-paper-plane"></i>&nbsp; บันทึก</button>
+          <button mat-raised-button color="primary">
+            <i class="fa fa-paper-plane"></i>&nbsp; บันทึก</button>
         </div>
       </mat-card>
       <!-- การ์ดที่ 2 -->
@@ -41,6 +48,7 @@
         <mat-divider></mat-divider>
         <mat-card-content>
           <mat-list>
+<<<<<<< HEAD
             <div style="height:500px">
               <mat-list-item *ngFor="let ediv1 of currentTopic.evidences">
                 <mat-icon class="icon-color" mat-list-icon>library_books</mat-icon>
@@ -61,6 +69,26 @@
                 <mat-divider></mat-divider>
               </mat-list-item>
             </div>
+=======
+            <mat-list-item *ngFor="let ediv1 of currentTopic.evidences">
+              <mat-icon class="icon-color" mat-list-icon>library_books</mat-icon>
+              <span matLine>ชื่อหลักฐาน : {{ ediv1.name }}</span>
+              <p matLine>
+                <span>ที่มาของหลักฐาน : {{ ediv1.description }}</span>
+              </p>
+              <p matLine>
+                <span>ชื่อไฟล์ : {{ ediv1.file.originalname }}</span>
+              </p>
+              <div class="div-btn-download-ediv">
+                <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-mini-fab
+                  color="">
+                  <mat-icon>file_download</mat-icon>
+                </a>
+              </div>
+              <br>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+>>>>>>> f546a6b2f7271a4a455d24e04b19f050048080d3
           </mat-list>
         </mat-card-content>
       </mat-card>
@@ -78,6 +106,9 @@
   </div>
   <mat-card *ngIf="hasData">
     <mat-card-content>
+      <mat-card-title>
+        {{ currentTopic.text }}
+      </mat-card-title>
       <!-- table part-->
       <div>
         <td-data-table #dataTable [clickable]="true" [data]="childTopic" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"

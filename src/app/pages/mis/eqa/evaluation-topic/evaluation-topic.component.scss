@@ -185,3 +185,13 @@ mat-radio-group {
 .mat-radio-button {
   margin-top: 10px;
 }
+
+.topicBack:hover {
+  cursor: pointer;
+}
+
+.topicBack {
+  text-decoration: underline;
+  padding-right: 2rem;
+  font-size: 15px;
+}
