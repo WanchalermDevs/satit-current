@@ -250,4 +250,31 @@ export class EqaService {
     });
   }
 
+  saveComment(token, id, comments){
+    let cm = JSON.stringify(comments);
+    const param = {
+      token: token,
+      id: id,
+      comment: cm
+    };
+    return new Promise((resolve, reject) => {
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      return this._http.post(this._host + '/eqa/saveComment', this.packParameter(param), { headers: headers }).pipe(map((res: Response) => {
+        let json;
+        try {
+          json = res.json();
+          json.headers = res.headers;
+        } catch (error) {
+
+        }
+        return json;
+      })).subscribe((data) => {
+        resolve(data);
+      }, error => {
+        return reject(error);
+      });
+    });
+  }
+
 }

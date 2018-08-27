@@ -195,3 +195,16 @@ mat-radio-group {
   padding-right: 2rem;
   font-size: 15px;
 }
+
+.comment-item{
+  padding-top: 0.9rem;;
+}
+
+.comment-item:hover{
+  // cursor: pointer;
+  background-color: gainsboro;
+}
+
+.btn-comment-action:hover{
+  cursor: pointer;
+}

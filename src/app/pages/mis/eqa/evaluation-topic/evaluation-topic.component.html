@@ -21,14 +21,23 @@
         <mat-card-title>ผลประเมินปีปัจจุบัน</mat-card-title>
         <mat-divider></mat-divider>
         <mat-card-content>
+          <div *ngFor="let item of listComment; let i of index;" class="comment-item" fxLayout="row" fxLayoutAlign="space-between start">
+            <div fxFlex="80" style="display: block; padding-left: 1.5rem;">
+              {{ item.text }}
+            </div>
+            <div fxFlex="20" class="text-center">
+              <mat-icon class="btn-comment-action" (click)="deleteSomeComment(i, item.text)">delete</mat-icon>
+            </div>
+          </div>
+          <mat-divider *ngIf="listComment.length > 0" style="margin-top: 1.1rem;"></mat-divider>
           <div>
             <mat-form-field class="full-width">
-              <textarea matInput matTextareaAutosize placeholder="กรอกผลประเมินปีปัจจุบัน" [matAutosizeMinRows]="3"></textarea>
+              <textarea [(ngModel)]="comment" matInput matTextareaAutosize placeholder="กรอกผลประเมินปีปัจจุบัน" #textComment [matAutosizeMinRows]="3"></textarea>
             </mat-form-field>
           </div>
         </mat-card-content>
         <div class="text-right" color="primary">
-          <button mat-raised-button color="primary">
+          <button mat-raised-button color="primary" (click)="toSaveComment(textComment.value)">
             <i class="fa fa-paper-plane"></i>&nbsp; บันทึก</button>
         </div>
       </mat-card>

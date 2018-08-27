@@ -37,7 +37,9 @@ export class EvaluationTopicComponent implements OnInit {
   filteredData: any[] = this.standardList;
   filteredTotal: number = this.standardList.length;
   hasData = false;
-  
+  listComment = [];
+  comment = "";
+
   /*
   * ตั้งชื่อ coloumn
   */
@@ -74,10 +76,10 @@ export class EvaluationTopicComponent implements OnInit {
   }
 
   findParent(list = [], currentId) {
-    if(currentId == -1){
+    if (currentId == -1) {
       this.parentText = 'ระบบประกันคุณภาพการศึกษา';
       this.parentId = -1;
-    }else{
+    } else {
       list.forEach(parent => {
         if (parent['id'] == currentId) {
           this.parentText = parent['text'];
@@ -87,7 +89,7 @@ export class EvaluationTopicComponent implements OnInit {
     }
   }
 
-  gotoParent(){
+  gotoParent() {
     this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา/หัวข้อ/' + event['row']['id']);
   }
 
@@ -104,6 +106,8 @@ export class EvaluationTopicComponent implements OnInit {
             this.currentTopic['owner'] = owner;
             let evidences = JSON.parse(element['evidences']);
             this.currentTopic['evidences'] = evidences;
+            let cm = JSON.parse(element['comments']);
+            this.listComment = cm;
           } catch (error) {
             console.log(error);
           }
@@ -137,12 +141,35 @@ export class EvaluationTopicComponent implements OnInit {
     this.childTopic = newData;
   }
 
-  gotoBack(){
+  gotoBack() {
     console.log(this.parentId);
-    if(this.parentId == -1){
+    if (this.parentId == -1) {
       this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา');
-    }else{
+    } else {
       this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา/หัวข้อ/' + this.parentId);
     }
+  }
+
+  toSaveComment(text) {
+    // this.listComment.push(text);
+    let temp = { text: text };
+    let tempList = this.listComment;
+    tempList.push(temp);
+    this.comment = '';
+    this.eqaSevice.saveComment(window.localStorage.getItem('token'), this.currentTopic['id'], tempList).then(response => {
+      try { let tempListComment = JSON.parse(response['comment']); } catch (error) { }
+    });
+  }
+
+  deleteSomeComment(index, text) {
+    if (confirm("คุณต้องการที่จะลบ\n" + text + "\nหรือไม่?")) {
+      let tempList = this.listComment;
+      let temp = tempList.splice(index, 1);
+      console.log(temp);
+      this.eqaSevice.saveComment(window.localStorage.getItem('token'), this.currentTopic['id'], tempList).then(response => {
+        try { let tempListComment = JSON.parse(response['comment']); } catch (error) { }
+      });
+    }
+
   }
 }
