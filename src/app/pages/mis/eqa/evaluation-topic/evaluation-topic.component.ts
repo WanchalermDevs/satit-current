@@ -96,7 +96,7 @@ export class EvaluationTopicComponent implements OnInit {
   dataPrepareForTable() {
     this.eqaSevice.standardListByYear(window.localStorage.getItem('token'), '2560').then(param => {
       let list = JSON.parse(param['list']);
-      // console.log(list);
+      console.log(list);
       list.forEach(element => {
         if (element['id'] == this.topicId) {
           this.currentTopic = element;

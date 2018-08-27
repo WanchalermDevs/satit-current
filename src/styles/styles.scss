@@ -88,3 +88,17 @@ router-outlet ~ * {
 .td-data-table-row:hover{
   cursor: pointer;
 }
+[matIconFile]{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+div.scroll-list {
+  width: auto;
+  height: 430px;
+  overflow: auto;
+}
+div.polaroid {
+  width: 150px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  border-radius: 20px;
+}

@@ -55,28 +55,44 @@
       <mat-card class="card-type-fourth">
         <mat-card-title>รายการหลักฐาน</mat-card-title>
         <mat-divider></mat-divider>
-        <mat-card-content>
-          <mat-list>
-            <mat-list-item *ngFor="let ediv1 of currentTopic.evidences">
-              <mat-icon class="icon-color" mat-list-icon>library_books</mat-icon>
-              <span matLine>ชื่อหลักฐาน : {{ ediv1.name }}</span>
-              <p matLine>
-                <span>ที่มาของหลักฐาน : {{ ediv1.description }}</span>
-              </p>
-              <p matLine>
-                <span>ชื่อไฟล์ : {{ ediv1.file.originalname }}</span>
-              </p>
-              <div class="div-btn-download-ediv">
-                <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-mini-fab
-                  color="">
-                  <mat-icon>file_download</mat-icon>
-                </a>
-              </div>
-              <br>
-              <mat-divider></mat-divider>
-            </mat-list-item>
-          </mat-list>
-        </mat-card-content>
+          <div class="scroll-list">
+            <mat-list>
+              <mat-list-item *ngFor="let ediv1 of currentTopic.evidences">
+                <!-- <img  src="../../../../../assets/icon-files/doc.png"> -->
+                <mat-icon class="icon-color" mat-list-icon>
+                  <img *ngIf="ediv1.file.mimetype==='application/vnd.openxmlformats-officedocument.wordprocessingml.document'||ediv1.file.mimetype==='application/msword'"
+                    src="../../../../../assets/icon-files/doc.png">
+                  <img *ngIf="ediv1.file.mimetype==='application/pdf'" src="../../../../../assets/icon-files/pdf.png">
+                  <img *ngIf="ediv1.file.mimetype==='image/jpeg'" src="../../../../../assets/icon-files/jpg.png">
+                  <img *ngIf="ediv1.file.mimetype==='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'||ediv1.file.mimetype==='application/vnd.ms-excel'"
+                    src="../../../../../assets/icon-files/xls.png">
+                  <img *ngIf="ediv1.file.mimetype==='image/gif'" src="../../../../../assets/icon-files/gif.png">
+                  <img *ngIf="ediv1.file.mimetype==='application/octet-stream'" src="../../../../../assets/icon-files/zip.png">
+                  <img *ngIf="ediv1.file.mimetype==='image/png'" src="../../../../../assets/icon-files/png.png">
+                  <img *ngIf="ediv1.file.mimetype==='application/vnd.ms-powerpoint'||ediv1.file.mimetype==='application/vnd.openxmlformats-officedocument.presentationml.presentation'"
+                    src="../../../../../assets/icon-files/ppt.png">
+                  <img *ngIf="ediv1.file.mimetype===''" src="../../../../../assets/icon-files/file.png">
+                </mat-icon>
+
+                <span matLine>ชื่อหลักฐาน : {{ ediv1.name }}</span>
+                <p matLine>
+                  <span>ที่มาของหลักฐาน : {{ ediv1.description }}</span>
+                </p>
+                <p matLine>
+                  <span>ชื่อไฟล์ : {{ ediv1.file.originalname }}</span>
+                </p>
+                <div class="div-btn-download-ediv">
+                  <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-mini-fab
+                    color="" style="text-align:center">
+                    <mat-icon>file_download</mat-icon>
+                  </a><br><br>
+                  <span style="text-align:center">{{ ediv1.file.size/1000 }} KB</span>
+                </div>
+                <br>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+            </mat-list>
+          </div>
       </mat-card>
       <mat-card class="card-type-fifth">
         <mat-card-title>ผู้ประสานงาน</mat-card-title>
