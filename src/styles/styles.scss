@@ -64,6 +64,7 @@ router-outlet ~ * {
 .mat-list .mat-list-item .mat-line:nth-child(n+2), .mat-nav-list .mat-list-item .mat-line:nth-child(n+2), .mat-selection-list .mat-list-item .mat-line:nth-child(n+2){
   font-size: 18px;
   padding: 2px;
+  color: #3e3e3e;
 }
 .mat-list .mat-list-item .mat-list-text{
   margin: 0;
@@ -72,14 +73,14 @@ router-outlet ~ * {
   font-size: 20px;
 }
 [matCardOwner]{
-  width:170px;
-  height:170px;
-  border-radius:100%;
-  margin: 20px 0 0 20px;
-  border:5px solid #6DD5FA;
+  width:140px;
+  // height:170px;
+  border-radius:8%;
+  margin-top: 30px;
+  // border:5px solid #6DD5FA;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-position: center center;
-  background-size: cover;
+  // background-position: center center;
+  // background-size: cover;
 }
 .mat-card[_ngcontent-c19] {
   margin-bottom: 1.8rem;
@@ -89,15 +90,15 @@ router-outlet ~ * {
   cursor: pointer;
 }
 [matIconFile]{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 15px 6px -6px black;
 }
 div.scroll-list {
   width: auto;
-  height: 430px;
+  height: 440px;
   overflow: auto;
 }
 div.polaroid {
-  width: 150px;
+  width: 140px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
   border-radius: 20px;
