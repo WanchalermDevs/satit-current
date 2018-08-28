@@ -28,8 +28,8 @@
               </div>
               <div fxFlex="20" class="text-center">
                 <div>
-                  <button mat-raised-button color="warn" class="btn-comment-action" (click)="deleteSomeComment(i, item.text)">
-                    <mat-icon style="color:#ffffff;">delete</mat-icon> ลบ</button>
+                  <button mat-raised-button style="color:#f44336;" class="btn-comment-action" (click)="deleteSomeComment(i, item.text)">
+                    <mat-icon style="color:#f44336;">delete</mat-icon> ลบ</button>
                 </div>
               </div>
               <mat-divider class="text-center" style="border-top: 1px dashed #e0e0e0;margin-top: 10px;"></mat-divider>
@@ -37,7 +37,7 @@
           </mat-list>
           <div style="padding-top:8px;">
             <mat-form-field class="full-width">
-              <textarea [(ngModel)]="comment" matInput matTextareaAutosize placeholder="กรอกผลประเมินปีปัจจุบัน" #textComment [matAutosizeMinRows]="3"></textarea>
+              <textarea [(ngModel)]="comment" matInput matTextareaAutosize placeholder="กรอกผลประเมินปีปัจจุบัน" #textComment ></textarea>
             </mat-form-field>
           </div>
         </mat-card-content>
