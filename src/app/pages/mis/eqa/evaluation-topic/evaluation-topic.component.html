@@ -65,15 +65,22 @@
           <mat-card-subtitle>
             โปรดระบุผลประเมิน {{ currentTopic.text }}
           </mat-card-subtitle>
+          <mat-divider></mat-divider>
           <mat-card-content>
             <mat-radio-group [(ngModel)]="topTopicEvaluation" fxLayout="row" fxLayout.gt-md="column">
-              <mat-radio-button value="ระดับ 4 ดีเยี่ยม">ระดับ 4 ดีเยี่ยม</mat-radio-button>
-              <mat-radio-button value="ระดับ 3 ดี">ระดับ 3 ดี</mat-radio-button>
-              <mat-radio-button value="ระดับ 2 พอใช้">ระดับ 2 พอใช้</mat-radio-button>
-              <mat-radio-button value="ระดับ 1 ปรับปรุง">ระดับ 1 ปรับปรุง</mat-radio-button>
+              <mat-radio-button value="ระดับ 4 ดีเยี่ยม" [checked]="topTopicEvaluation === 'ระดับ 4 ดีเยี่ยม'">ระดับ 4 ดีเยี่ยม</mat-radio-button>
+              <mat-radio-button value="ระดับ 3 ดี" [checked]="topTopicEvaluation === 'ระดับ 3 ดี'">ระดับ 3 ดี</mat-radio-button>
+              <mat-radio-button value="ระดับ 2 พอใช้" [checked]="topTopicEvaluation === 'ระดับ 2 พอใช้'">ระดับ 2 พอใช้</mat-radio-button>
+              <mat-radio-button value="ระดับ 1 ปรับปรุง" [checked]="topTopicEvaluation === 'ระดับ 1 ปรับปรุง'">ระดับ 1 ปรับปรุง</mat-radio-button>
             </mat-radio-group>
           </mat-card-content>
           <div class="text-right" color="primary">
+            <div class="text-left" *ngIf="topTopicEvaluation">
+              <span style="color:#0d47a1;font-size:1.3rem;"><i class="fa fa-check"></i>&nbsp; ระบุผลประเมินแล้ว</span>
+            </div>
+            <div class="text-left" *ngIf="!topTopicEvaluation">
+              <span style="color:orangered;font-size:1.3rem;"><i class="fa fa-times"></i>&nbsp;ยังไม่ระบุผลประเมิน</span>
+            </div>
             <button [disabled]="!topTopicEvaluation" (click)="toSaveEvaluation(topTopicEvaluation)" mat-raised-button color="primary">
               <i class="fa fa-check"></i>&nbsp; ประเมิน</button>
           </div>
@@ -161,15 +168,22 @@
         <mat-card-subtitle>
           โปรดระบุผลประเมิน {{ currentTopic.text }}
         </mat-card-subtitle>
+        <mat-divider></mat-divider>
         <mat-card-content>
           <mat-radio-group [(ngModel)]="topTopicEvaluation" fxLayout="row" fxLayout.gt-md="column">
-            <mat-radio-button value="ระดับ 4 ดีเยี่ยม">ระดับ 4 ดีเยี่ยม</mat-radio-button>
-            <mat-radio-button value="ระดับ 3 ดี">ระดับ 3 ดี</mat-radio-button>
-            <mat-radio-button value="ระดับ 2 พอใช้">ระดับ 2 พอใช้</mat-radio-button>
-            <mat-radio-button value="ระดับ 1 ปรับปรุง">ระดับ 1 ปรับปรุง</mat-radio-button>
+            <mat-radio-button value="ระดับ 4 ดีเยี่ยม" [checked]="topTopicEvaluation === 'ระดับ 4 ดีเยี่ยม'">ระดับ 4 ดีเยี่ยม</mat-radio-button>
+            <mat-radio-button value="ระดับ 3 ดี" [checked]="topTopicEvaluation === 'ระดับ 3 ดี'">ระดับ 3 ดี</mat-radio-button>
+            <mat-radio-button value="ระดับ 2 พอใช้" [checked]="topTopicEvaluation === 'ระดับ 2 พอใช้'">ระดับ 2 พอใช้</mat-radio-button>
+            <mat-radio-button value="ระดับ 1 ปรับปรุง" [checked]="topTopicEvaluation === 'ระดับ 1 ปรับปรุง'">ระดับ 1 ปรับปรุง</mat-radio-button>
           </mat-radio-group>
         </mat-card-content>
         <div class="text-right" color="primary">
+          <div class="text-left" *ngIf="topTopicEvaluation">
+            <span style="color:#0d47a1;font-size:1.3rem;"><i class="fa fa-check"></i>&nbsp; ระบุผลประเมินแล้ว</span>
+          </div>
+          <div class="text-left" *ngIf="!topTopicEvaluation">
+            <span style="color:orangered;font-size:1.3rem;"><i class="fa fa-times"></i>&nbsp;ยังไม่ระบุผลประเมิน</span>
+          </div>
           <button [disabled]="!topTopicEvaluation" (click)="toSaveEvaluation(topTopicEvaluation)" mat-raised-button color="primary">
             <i class="fa fa-check"></i>&nbsp; ประเมิน</button>
         </div>

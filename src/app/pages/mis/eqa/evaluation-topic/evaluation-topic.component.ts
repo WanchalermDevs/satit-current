@@ -40,6 +40,7 @@ export class EvaluationTopicComponent implements OnInit {
   hasData = false;
   listComment = [];
   comment = "";
+  istopTopicEvaluation = false;
 
   topTopicEvaluation;
 
@@ -109,7 +110,7 @@ export class EvaluationTopicComponent implements OnInit {
       list.forEach(element => {
         if (element['id'] == this.topicId) {
           this.currentTopic = element;
-
+          this.topTopicEvaluation = this.currentTopic['evaluation'];
           this.findParent(list, element['parent_id']);
           try {
             let owner = JSON.parse(element['owner']);
@@ -189,6 +190,7 @@ export class EvaluationTopicComponent implements OnInit {
     } else {
       this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา/หัวข้อ/' + this.parentId);
     }
+
   }
   toSaveComment(text) {
     // this.listComment.push(text);
@@ -218,6 +220,6 @@ export class EvaluationTopicComponent implements OnInit {
     this.eqaSevice.saveEvaluation(window.localStorage.getItem('token'), this.currentTopic['id'], text).then(response => {
       try { let tempListComment = JSON.parse(response['comment']); } catch (error) { }
     });
-    // console.log(text);
+    this.istopTopicEvaluation = true;
   }
 }
