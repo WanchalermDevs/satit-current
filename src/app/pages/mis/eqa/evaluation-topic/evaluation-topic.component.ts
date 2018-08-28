@@ -41,6 +41,8 @@ export class EvaluationTopicComponent implements OnInit {
   listComment = [];
   comment = "";
 
+  topTopicEvaluation;
+
   /*
   * ตั้งชื่อ coloumn
   */
@@ -125,15 +127,18 @@ export class EvaluationTopicComponent implements OnInit {
             'childtopic': element['text'],
             'id': element['id'],
             'owners': element['owner'],
+            'car': element['evaluation']
           }
           this.checkChildNode(list, element, (check) => {
             if (check) {
-              this.columnsStandard = [{ name: 'childtopic', label: 'ประเด็นพิจารณา' }]
+              this.columnsStandard = [{ name: 'childtopic', label: 'ประเด็นพิจารณา' }];
               console.log(check + '' + element['text']);
               this.filter();
             } else {
-              this.columnsStandard = [{ name: 'childtopic', label: 'ประเด็นพิจารณา' },
-              { name: 'car', label: 'CAR', width: 160 }]
+              this.columnsStandard = [
+                { name: 'childtopic', label: 'ประเด็นพิจารณา' },
+                { name: 'car', label: 'CAR', width: 160 }
+              ];
               console.log(check + '' + element['text']);
               this.filter();
             }
@@ -206,5 +211,13 @@ export class EvaluationTopicComponent implements OnInit {
       });
     }
 
+  }
+
+  toSaveEvaluation(text) {
+    let temp = { text: text };
+    this.eqaSevice.saveEvaluation(window.localStorage.getItem('token'), this.currentTopic['id'], text).then(response => {
+      try { let tempListComment = JSON.parse(response['comment']); } catch (error) { }
+    });
+    // console.log(text);
   }
 }

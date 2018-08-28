@@ -277,4 +277,30 @@ export class EqaService {
     });
   }
 
+  saveEvaluation(token, id, comments){
+    const param = {
+      token: token,
+      id: id,
+      evaluation: comments
+    };
+    return new Promise((resolve, reject) => {
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      return this._http.post(this._host + '/eqa/saveEvaluation', this.packParameter(param), { headers: headers }).pipe(map((res: Response) => {
+        let json;
+        try {
+          json = res.json();
+          json.headers = res.headers;
+        } catch (error) {
+
+        }
+        return json;
+      })).subscribe((data) => {
+        resolve(data);
+      }, error => {
+        return reject(error);
+      });
+    });
+  }
+
 }

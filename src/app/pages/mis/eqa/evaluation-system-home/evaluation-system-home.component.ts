@@ -52,7 +52,7 @@ export class EvaluationSystemHomeComponent implements OnInit {
           'id': element['id'],
           'sequnce': element['text'],
           'sar': element['owner'],
-          'car': element['evidences']
+          'car': element['evaluation']
         }
         if (element['parent_id'] === -1) {
           this.standardList.push(temp);

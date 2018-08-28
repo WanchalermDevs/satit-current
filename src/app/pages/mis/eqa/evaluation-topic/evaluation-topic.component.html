@@ -66,7 +66,7 @@
             โปรดระบุผลประเมิน {{ currentTopic.text }}
           </mat-card-subtitle>
           <mat-card-content>
-            <mat-radio-group [(ngModel)]="evalResult" fxLayout="row" fxLayout.gt-md="column">
+            <mat-radio-group [(ngModel)]="topTopicEvaluation" fxLayout="row" fxLayout.gt-md="column">
               <mat-radio-button value="ระดับ 4 ดีเยี่ยม">ระดับ 4 ดีเยี่ยม</mat-radio-button>
               <mat-radio-button value="ระดับ 3 ดี">ระดับ 3 ดี</mat-radio-button>
               <mat-radio-button value="ระดับ 2 พอใช้">ระดับ 2 พอใช้</mat-radio-button>
@@ -74,7 +74,7 @@
             </mat-radio-group>
           </mat-card-content>
           <div class="text-right" color="primary">
-            <button [disabled]="!evalResult" mat-raised-button color="primary">
+            <button [disabled]="!topTopicEvaluation" (click)="toSaveEvaluation(topTopicEvaluation)" mat-raised-button color="primary">
               <i class="fa fa-check"></i>&nbsp; ประเมิน</button>
           </div>
         </mat-card>
@@ -162,7 +162,7 @@
           โปรดระบุผลประเมิน {{ currentTopic.text }}
         </mat-card-subtitle>
         <mat-card-content>
-          <mat-radio-group [(ngModel)]="toggleColor" fxLayout="row" fxLayout.gt-md="column">
+          <mat-radio-group [(ngModel)]="topTopicEvaluation" fxLayout="row" fxLayout.gt-md="column">
             <mat-radio-button value="ระดับ 4 ดีเยี่ยม">ระดับ 4 ดีเยี่ยม</mat-radio-button>
             <mat-radio-button value="ระดับ 3 ดี">ระดับ 3 ดี</mat-radio-button>
             <mat-radio-button value="ระดับ 2 พอใช้">ระดับ 2 พอใช้</mat-radio-button>
@@ -170,7 +170,7 @@
           </mat-radio-group>
         </mat-card-content>
         <div class="text-right" color="primary">
-          <button [disabled]="!toggleColor" mat-raised-button color="primary">
+          <button [disabled]="!topTopicEvaluation" (click)="toSaveEvaluation(topTopicEvaluation)" mat-raised-button color="primary">
             <i class="fa fa-check"></i>&nbsp; ประเมิน</button>
         </div>
       </mat-card>
