@@ -21,16 +21,24 @@
         <mat-card-title>ผลประเมินปีปัจจุบัน</mat-card-title>
         <mat-divider></mat-divider>
         <mat-card-content>
-          <div *ngFor="let item of listComment; let i of index;" class="comment-item" fxLayout="row" fxLayoutAlign="space-between start">
-            <div fxFlex="80" style="display: block; padding-left: 1.5rem;">
-              {{ item.text }}
-            </div>
-            <div fxFlex="20" class="text-center">
-              <mat-icon class="btn-comment-action" (click)="deleteSomeComment(i, item.text)">delete</mat-icon>
-            </div>
-          </div>
-          <mat-divider *ngIf="listComment.length > 0" style="margin-top: 1.1rem;"></mat-divider>
-          <div>
+          <mat-list>
+            <mat-list-item *ngFor="let item of listComment; let i of index;">
+              <div fxFlex="80" style="display: block; padding-left: 1.5rem;">
+                {{ item.text }}
+              </div>
+              <div fxFlex="20" class="text-center">
+                <div>
+                  <button mat-raised-button color="warn" class="btn-comment-action"  (click)="deleteSomeComment(i, item.text)">
+                  <mat-icon style="color:#ffffff;">delete</mat-icon> ลบ</button>
+                </div>
+                <!-- <button class="btn-comment-action" mat-mini-fab color="" (click)="deleteSomeComment(i, item.text)">
+                  <mat-icon style="color:#f44336;">delete</mat-icon>
+                </button> -->
+              </div>
+              <mat-divider class="text-center"></mat-divider>
+            </mat-list-item>
+          </mat-list>
+          <div style="padding-top:8px;">
             <mat-form-field class="full-width">
               <textarea [(ngModel)]="comment" matInput matTextareaAutosize placeholder="กรอกผลประเมินปีปัจจุบัน" #textComment [matAutosizeMinRows]="3"></textarea>
             </mat-form-field>
@@ -54,7 +62,7 @@
     <div fxFlex="1 0 auto" fxFlex.gt-md="40">
       <mat-card class="card-type-fourth">
         <mat-card-title>รายการหลักฐาน</mat-card-title>
-        <mat-divider></mat-divider>
+        <mat-divider matIconFile></mat-divider>
         <div class="scroll-list">
           <mat-list>
             <mat-list-item *ngFor="let ediv1 of currentTopic.evidences">
@@ -73,7 +81,6 @@
                   src="../../../../../assets/icon-files/ppt.png">
                 <img *ngIf="ediv1.file.mimetype===''" src="../../../../../assets/icon-files/file.png">
               </mat-icon>
-
               <span matLine>ชื่อหลักฐาน : {{ ediv1.name }}</span>
               <p matLine>
                 <span>ที่มาของหลักฐาน : {{ ediv1.description }}</span>
@@ -84,10 +91,8 @@
               <div class="div-btn-download-ediv">
                 <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-mini-fab
                   color="" style="text-align:center">
-                  <mat-icon>file_download</mat-icon>
-                </a>
-                <br>
-                <br>
+                  <mat-icon style="color:#69f0ae;">file_download</mat-icon>
+                </a><br><br>
                 <span style="text-align:center">{{ ediv1.file.size/1000 }} KB</span>
               </div>
               <br>
@@ -99,10 +104,10 @@
       <mat-card class="card-type-fifth">
         <mat-card-title>ผู้ประสานงาน</mat-card-title>
         <mat-divider></mat-divider>
-        <div fxFlex="100" *ngFor="let owner of currentTopic.owner">
-          <div style="width: 100%; font-size: 1.3rem;" class="text-center">
-            <img matCardOwner [src]="'http://www.satit.nu.ac.th/2016/img/personal/' + owner.personal_id + '.jpg'" />
-            <br />{{ owner.personal_title_name_th }}{{ owner.personal_first_name_th }} {{ owner.personal_last_name_th }}
+        <div fxLayout="row" class="text-center">
+          <div fxFlex="33" style="font-size: 1.2rem;" *ngFor="let owner of currentTopic.owner">
+            <img matCardOwner [src]="'http://www.satit.nu.ac.th/2016/img/personal/' + owner.personal_id + '.jpg'" width="140px" />
+            <br>{{ owner.personal_title_name_th }}{{ owner.personal_first_name_th }} {{ owner.personal_last_name_th }}
           </div>
         </div>
       </mat-card>
