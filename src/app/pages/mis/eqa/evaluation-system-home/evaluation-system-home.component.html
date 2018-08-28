@@ -21,7 +21,23 @@
       <div fxFlex="65">
         <mat-card>
           <mat-card-title>
-            การประเมินคุณภาพการศึกษา ประจำปีการศึกษา 2560
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+              <div>
+                การประเมินคุณภาพการศึกษา ประจำปีการศึกษา 2560
+              </div>
+              <div>
+                <button mat-icon-button [matMenuTriggerFor]="anchorMenu" aria-label="Open anchor menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #anchorMenu="matMenu">
+                  <a mat-menu-item  href="/">
+                    test
+                  </a>
+                </mat-menu>
+              </div>
+            </div>
+
+
           </mat-card-title>
           <mat-card-subtitle>
             สำหรับผู้ประเมินใช้ในการระบุผลประเมินและข้อเสนอแนะในประเด็นต่างๆของแต่ละมาตรฐาน โปรดคลิดเลือกมาตรฐานที่ท่านต้องการเข้าประเมิน
@@ -44,7 +60,8 @@
               <div fxLayout="row" fxLayoutAlign="space-around center">
                 <div fxFlex class="text-left">+ Colors</div>
                 <div fxFlex class="text-right mat-headline">
-                  <button mat-raised-button color=""><mat-icon>visibility</mat-icon> เปิดดู</button>
+                  <button mat-raised-button color="">
+                    <mat-icon>visibility</mat-icon> เปิดดู</button>
                 </div>
               </div>
             </mat-card-footer>

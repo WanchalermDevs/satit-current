@@ -119,10 +119,10 @@
   <div fxLayout="row" fxLayoutAlign="space-around start">
     <div fxFlex="70">
       <mat-card *ngIf="hasData">
+        <mat-card-title>
+          {{ currentTopic.text }}
+        </mat-card-title>
         <mat-card-content>
-          <mat-card-title>
-            {{ currentTopic.text }}
-          </mat-card-title>
           <!-- table part-->
 
           <td-data-table #dataTable [clickable]="true" [data]="childTopic" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"
