@@ -28,8 +28,8 @@
               </div>
               <div fxFlex="20" class="text-center">
                 <div>
-                  <button mat-raised-button style="color:#f44336" class="btn-comment-action" (click)="deleteSomeComment(i, item.text)">
-                    <mat-icon style="color:#f44336;">delete</mat-icon> ลบ</button>
+                  <button mat-raised-button color="warn" class="btn-comment-action" (click)="deleteSomeComment(i, item.text)">
+                    <mat-icon style="color:#ffffff;">delete</mat-icon> ลบ</button>
                 </div>
               </div>
               <mat-divider class="text-center" style="border-top: 1px dashed #e0e0e0;margin-top: 10px;"></mat-divider>
@@ -88,8 +88,10 @@
               <div class="div-btn-download-ediv">
                 <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-mini-fab
                   color="" style="text-align:center">
-                  <mat-icon style="color:#00e676;">file_download</mat-icon>
-                </a><br><br>
+                  <mat-icon style="color:#69f0ae;">file_download</mat-icon>
+                </a>
+                <br>
+                <br>
                 <span style="text-align:center">{{ ediv1.file.size/1000 }} KB</span>
               </div>
               <br>
@@ -111,13 +113,13 @@
     </div>
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="space-around center">
-    <div fxFlex="80">
+  <div fxLayout="row" fxLayoutAlign="space-around start">
+    <div fxFlex="70">
       <mat-card *ngIf="hasData">
+        <mat-card-title>
+          {{ currentTopic.text }}
+        </mat-card-title>
         <mat-card-content>
-          <mat-card-title>
-            {{ currentTopic.text }}
-          </mat-card-title>
           <!-- table part-->
 
           <td-data-table #dataTable [clickable]="true" [data]="childTopic" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"
@@ -126,14 +128,25 @@
           <div class="mat-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
             <h6>-- ไม่พบรายการ --</h6>
           </div>
-
         </mat-card-content>
       </mat-card>
     </div>
-
-    <div fxFlex="20" *ngIf="hasData">
-      <mat-card>
-
+    <div fxFlex="30" *ngIf="currentTopic.parent_id === -1">
+      <mat-card *ngIf="hasData">
+        <mat-card-title>
+          ประเมินมาตรฐาน/ประเด็นพิจารณา
+        </mat-card-title>
+        <mat-card-subtitle>
+          โปรดระบุผลประเมิน {{ currentTopic.text }}
+        </mat-card-subtitle>
+        <mat-card-content>
+          <mat-radio-group [(ngModel)]="toggleColor" fxLayout="row" fxLayout.gt-md="column">
+            <mat-radio-button value="ระดับ 4 ดีเยี่ยม">ระดับ 4 ดีเยี่ยม</mat-radio-button>
+            <mat-radio-button value="ระดับ 3 ดี">ระดับ 3 ดี</mat-radio-button>
+            <mat-radio-button value="ระดับ 2 พอใช้">ระดับ 2 พอใช้</mat-radio-button>
+            <mat-radio-button value="ระดับ 1 ปรับปรุง">ระดับ 1 ปรับปรุง</mat-radio-button>
+          </mat-radio-group>
+        </mat-card-content>
       </mat-card>
     </div>
   </div>
