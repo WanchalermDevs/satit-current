@@ -22,20 +22,17 @@
         <mat-divider></mat-divider>
         <mat-card-content>
           <mat-list>
-            <mat-list-item *ngFor="let item of listComment; let i of index;">
-              <div fxFlex="80" style="display: block; padding-left: 1.5rem;">
-                {{ item.text }}
+            <mat-list-item *ngFor="let item of listComment; index as i;" style="height:auto;">
+              <div fxFlex="80" style="display: block; padding-left: 1.5rem;padding-bottom: 13px;margin-top: 13px;">
+                <b style="color:#0d47a1;">{{ i+1}}. {{ item.text }}</b>
               </div>
               <div fxFlex="20" class="text-center">
                 <div>
-                  <button mat-raised-button color="warn" class="btn-comment-action"  (click)="deleteSomeComment(i, item.text)">
-                  <mat-icon style="color:#ffffff;">delete</mat-icon> ลบ</button>
+                  <button mat-raised-button style="color:#f44336" class="btn-comment-action" (click)="deleteSomeComment(i, item.text)">
+                    <mat-icon style="color:#f44336;">delete</mat-icon> ลบ</button>
                 </div>
-                <!-- <button class="btn-comment-action" mat-mini-fab color="" (click)="deleteSomeComment(i, item.text)">
-                  <mat-icon style="color:#f44336;">delete</mat-icon>
-                </button> -->
               </div>
-              <mat-divider class="text-center"></mat-divider>
+              <mat-divider class="text-center" style="border-top: 1px dashed #e0e0e0;margin-top: 10px;"></mat-divider>
             </mat-list-item>
           </mat-list>
           <div style="padding-top:8px;">
@@ -45,7 +42,7 @@
           </div>
         </mat-card-content>
         <div class="text-right" color="primary">
-          <button mat-raised-button color="primary" (click)="toSaveComment(textComment.value)">
+          <button [disabled]="comment.length < 1" mat-raised-button color="primary" (click)="toSaveComment(textComment.value)">
             <i class="fa fa-paper-plane"></i>&nbsp; บันทึก</button>
         </div>
       </mat-card>
@@ -62,7 +59,7 @@
     <div fxFlex="1 0 auto" fxFlex.gt-md="40">
       <mat-card class="card-type-fourth">
         <mat-card-title>รายการหลักฐาน</mat-card-title>
-        <mat-divider matIconFile></mat-divider>
+        <mat-divider></mat-divider>
         <div class="scroll-list">
           <mat-list>
             <mat-list-item *ngFor="let ediv1 of currentTopic.evidences">
@@ -91,7 +88,7 @@
               <div class="div-btn-download-ediv">
                 <a target="_bank" [href]="'http://www.satit.nu.ac.th/2016/nodeUploadFiles/uploads/' + ediv1.file.filename " mat-mini-fab
                   color="" style="text-align:center">
-                  <mat-icon style="color:#69f0ae;">file_download</mat-icon>
+                  <mat-icon style="color:#00e676;">file_download</mat-icon>
                 </a><br><br>
                 <span style="text-align:center">{{ ediv1.file.size/1000 }} KB</span>
               </div>
@@ -134,7 +131,7 @@
       </mat-card>
     </div>
 
-    <div fxFlex="20">
+    <div fxFlex="20" *ngIf="hasData">
       <mat-card>
 
       </mat-card>
