@@ -37,7 +37,7 @@
           </mat-list>
           <div style="padding-top:8px;">
             <mat-form-field class="full-width">
-              <textarea [(ngModel)]="comment" matInput matTextareaAutosize placeholder="กรอกผลประเมินปีปัจจุบัน" #textComment ></textarea>
+              <textarea [(ngModel)]="comment" matInput matTextareaAutosize placeholder="กรอกผลประเมินปีปัจจุบัน" #textComment></textarea>
             </mat-form-field>
           </div>
         </mat-card-content>
@@ -57,12 +57,34 @@
     </div>
     <!-- คอลัมน์ 2 -->
     <div fxFlex="1 0 auto" fxFlex.gt-md="40">
+      <div *ngIf="currentTopic.parent_id === 56 || currentTopic.parent_id === 65 || currentTopic.parent_id === 74 || currentTopic.parent_id === 76 || currentTopic.parent_id === 83 || currentTopic.parent_id === 87">
+        <mat-card>
+          <mat-card-title>
+            ประเมินมาตรฐาน/ประเด็นพิจารณา
+          </mat-card-title>
+          <mat-card-subtitle>
+            โปรดระบุผลประเมิน {{ currentTopic.text }}
+          </mat-card-subtitle>
+          <mat-card-content>
+            <mat-radio-group [(ngModel)]="evalResult" fxLayout="row" fxLayout.gt-md="column">
+              <mat-radio-button value="ระดับ 4 ดีเยี่ยม">ระดับ 4 ดีเยี่ยม</mat-radio-button>
+              <mat-radio-button value="ระดับ 3 ดี">ระดับ 3 ดี</mat-radio-button>
+              <mat-radio-button value="ระดับ 2 พอใช้">ระดับ 2 พอใช้</mat-radio-button>
+              <mat-radio-button value="ระดับ 1 ปรับปรุง">ระดับ 1 ปรับปรุง</mat-radio-button>
+            </mat-radio-group>
+          </mat-card-content>
+          <div class="text-right" color="primary">
+            <button [disabled]="!evalResult" mat-raised-button color="primary">
+              <i class="fa fa-check"></i>&nbsp; ประเมิน</button>
+          </div>
+        </mat-card>
+      </div>
       <mat-card class="card-type-fourth">
         <mat-card-title>รายการหลักฐาน</mat-card-title>
         <mat-divider></mat-divider>
         <div class="scroll-list">
           <mat-list>
-            <mat-list-item *ngFor="let ediv1 of currentTopic.evidences">
+            <mat-list-item *ngFor="let ediv1 of currentTopic.evidences" style="height:auto">
               <!-- <img  src="../../../../../assets/icon-files/doc.png"> -->
               <mat-icon class="icon-color" mat-list-icon>
                 <img *ngIf="ediv1.file.mimetype==='application/vnd.openxmlformats-officedocument.wordprocessingml.document'||ediv1.file.mimetype==='application/msword'"
@@ -123,7 +145,7 @@
           <!-- table part-->
 
           <td-data-table #dataTable [clickable]="true" [data]="childTopic" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"
-            [sortable]="true" (rowSelect)="selectedStandardItem($event)" (selectAll)="selectedStandardItem($event)" (rowClick)="rowClick($event)">
+            [sortable]="false" (rowSelect)="selectedStandardItem($event)" (selectAll)="selectedStandardItem($event)" (rowClick)="rowClick($event)">
           </td-data-table>
           <div class="mat-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
             <h6>-- ไม่พบรายการ --</h6>
@@ -147,6 +169,10 @@
             <mat-radio-button value="ระดับ 1 ปรับปรุง">ระดับ 1 ปรับปรุง</mat-radio-button>
           </mat-radio-group>
         </mat-card-content>
+        <div class="text-right" color="primary">
+          <button [disabled]="!toggleColor" mat-raised-button color="primary">
+            <i class="fa fa-check"></i>&nbsp; ประเมิน</button>
+        </div>
       </mat-card>
     </div>
   </div>

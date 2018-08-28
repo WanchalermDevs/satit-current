@@ -11,6 +11,7 @@ import {
   ITdDataTableSelectEvent,
   ITdDataTableColumn
 } from '@covalent/core';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-evaluation-topic',
@@ -43,10 +44,13 @@ export class EvaluationTopicComponent implements OnInit {
   /*
   * ตั้งชื่อ coloumn
   */
-  columnsStandard: ITdDataTableColumn[] = [
-    { name: 'childtopic', label: 'ประเด็นพิจารณา' },
+  // columnsStandard: ITdDataTableColumn[] = [
 
-  ];
+  //   // { name: 'childtopic', label: 'ประเด็นพิจารณา' },
+  //   // { name: 'car', label: 'CAR', width: 160, hidden: false },
+  // ];
+  columnsStandard: ITdDataTableColumn[];
+
 
   // Data for creating tabs
   dynamicTabs = [
@@ -81,14 +85,16 @@ export class EvaluationTopicComponent implements OnInit {
       this.parentId = -1;
     } else {
       list.forEach(parent => {
+        // console.log(parent);
         if (parent['id'] == currentId) {
+          // console.log(parent);
+
           this.parentText = parent['text'];
           this.parentId = parent['id'];
         }
       });
     }
   }
-
   gotoParent() {
     this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา/หัวข้อ/' + event['row']['id']);
   }
@@ -96,10 +102,12 @@ export class EvaluationTopicComponent implements OnInit {
   dataPrepareForTable() {
     this.eqaSevice.standardListByYear(window.localStorage.getItem('token'), '2560').then(param => {
       let list = JSON.parse(param['list']);
+
       console.log(list);
       list.forEach(element => {
         if (element['id'] == this.topicId) {
           this.currentTopic = element;
+
           this.findParent(list, element['parent_id']);
           try {
             let owner = JSON.parse(element['owner']);
@@ -118,14 +126,29 @@ export class EvaluationTopicComponent implements OnInit {
             'id': element['id'],
             'owners': element['owner'],
           }
+          this.checkChildNode(list, element, (check) => {
+            if (check) {
+              this.columnsStandard = [{ name: 'childtopic', label: 'ประเด็นพิจารณา' }]
+              console.log(check + '' + element['text']);
+              this.filter();
+            } else {
+              this.columnsStandard = [{ name: 'childtopic', label: 'ประเด็นพิจารณา' },
+              { name: 'car', label: 'CAR', width: 160 }]
+              console.log(check + '' + element['text']);
+              this.filter();
+            }
+          });
           this.childTopic.push(temp);
         }
+
         this.filter();
       });
       if (this.childTopic.length > 0) {
         this.hasData = true;
         // console.log(this.currentTopic.length);
       }
+
+
     });
   }
 
@@ -140,6 +163,19 @@ export class EvaluationTopicComponent implements OnInit {
     // newData = this.tdDataSevice.pageData(newData, this.fromRow, this.currentPage * this.pageSize);
     this.childTopic = newData;
   }
+  checkChildNode(list, topic, cb: Function) {
+    let check: boolean;
+    setTimeout(function () {
+      for (let i = 0; i < list.length; i++) {
+        if (list[i]['parent_id'] == topic['id']) {
+          cb(true);
+          break;
+        } else {
+          cb(false);
+        }
+      }
+    }, 100);
+  }
 
   gotoBack() {
     console.log(this.parentId);
@@ -149,7 +185,6 @@ export class EvaluationTopicComponent implements OnInit {
       this.router.navigateByUrl('/EQA/ระบบประเมินคุณภาพสถานศึกษา/หัวข้อ/' + this.parentId);
     }
   }
-
   toSaveComment(text) {
     // this.listComment.push(text);
     let temp = { text: text };
