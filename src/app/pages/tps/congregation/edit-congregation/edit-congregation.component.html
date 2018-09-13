@@ -46,8 +46,8 @@
           <div fxLayout="row">
             <div fxFlex.gt-sm="50%">
               <mat-form-field style="width: 100%">
-                <mat-select required placeholder="อาคาร/สถานที่" (selectionChange)="selectedLocationChange()" [(ngModel)]="selectedLocation">
-                  <mat-option *ngFor="let food of mainLocation; let i = index;" [value]="food.id">
+                <mat-select required placeholder="อาคาร/สถานที่" (selectionChange)="selectedLocationChange()" [(value)]="selectedLocation">
+                  <mat-option *ngFor="let food of mainLocation; let i = index;" value="{{ food.id }}">
                     {{ food.info.name }}
                   </mat-option>
                 </mat-select>
@@ -56,7 +56,7 @@
             <div fxFlex.gt-sm="50%">
               <mat-form-field style="width: 100%">
                 <mat-select required placeholder="ห้อง/ส่วนของสถานที่" (selectionChange)="selectedSubLocationChange()" [(ngModel)]="selectedSubLocation">
-                  <mat-option *ngFor="let food of subLocation" [value]="food.id">
+                  <mat-option *ngFor="let food of subLocation" value="{{ food.id }}">
                     {{ food.text }}
                   </mat-option>
                 </mat-select>

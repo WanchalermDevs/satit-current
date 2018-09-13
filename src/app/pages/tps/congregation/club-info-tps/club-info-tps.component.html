@@ -1,0 +1,232 @@
+<section>
+  <header>
+    <h3>ข้อมูลวิชาชุมนุม</h3>
+  </header>
+  <mat-divider></mat-divider>
+  <article>
+    <div fxLayout="row" fxLayoutAlign="space-around start">
+      <div fxFlex="70">
+        <mat-card>
+          <mat-card-content>
+            <h4>
+              <mat-icon>info_outline</mat-icon> ข้อมูลทั่วไป</h4>
+            <div fxLayout="row" fxLayoutAlign="space-around start">
+              <div fxFlex="50">
+                <div fxLayout="row" fxLayoutAlign="space-around start">
+                  <div fxFlex="20">
+                    <span style="font-size: 24px; padding-top: 10px; padding-bottom: 10px; text-align: right;">ชื่อชุมนุม:</span>
+                  </div>
+                  <div fxFlex="80">
+                    <span style="font-size: 28px; padding-top: 10px; padding-bottom: 10px;">{{ currentClub.subjectName }}</span>
+                  </div>
+                </div>
+                <hr />
+                <div fxLayout="row" fxLayoutAlign="space-around start">
+                  <div fxFlex="50">
+                    <span style="font-size: 22px; padding-top: 10px; padding-bottom: 10px; text-align: right;">ปีการศึกษา: {{ eduSemesterText }}</span>
+                  </div>
+                  <div fxFlex="50">
+                    <span style="font-size: 22px; padding-top: 10px; padding-bottom: 10px;">ภาคเรียน: {{ eduYearText }}</span>
+                  </div>
+                </div>
+                <br />
+                <div fxLayout="row" fxLayoutAlign="space-around start">
+                  <div fxFlex="90">
+                    <span style="font-size: 22px; padding-top: 10px; padding-bottom: 10px; text-align: right;">สถานที่เรียน: {{ building }}</span>
+                  </div>
+                  <div fxFlex="10">
+                    <!-- <span style="font-size: 20px; padding-top: 10px; padding-bottom: 10px;">ห้องเรียน/บริเวร: </span> -->
+                  </div>
+                </div>
+              </div>
+
+              <div fxFlex="50">
+                <mat-list>
+                  <mat-list-item *ngFor="let teacher of currentClub.teacher" style="height: auto; vertical-align: top;">
+                    <img style="border-radius: 0px; width: 80px; height: auto;" mat-list-icon src="http://www.satit.nu.ac.th/2016/img/personal/{{ teacher.personal_id }}.jpg">
+                    <span style="font-size: 25px; padding-top: 10px; padding-bottom: 10px;" matLine>ผู้สอน: {{ teacher.personal_title_name_th }}{{ teacher.personal_first_name_th }} {{ teacher.personal_last_name_th
+                      }}
+                    </span>
+                    <span matLine>ตำแหน่ง: {{ teacher.personal_position }} ({{ teacher.personal_position_level }}) </span>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+            </div>
+            <br />
+            <mat-divider></mat-divider>
+            <br />
+            <div fxLayout="row" fxLayoutAlign="space-around start">
+              <div fxFlex="60">
+                <h4>
+                  <mat-icon>format_list_bulleted</mat-icon> ตัวบ่งชี้ตามมาตรฐานการศึกษา</h4>
+                <p>ให้ผู้สอนเลือกตัวบ่งชี้ที่ตรงกับกิจกรรมการจัดการเรียนการสอน (เมื่อคลิกเลือกแล้วระบบจะบันทึกข้อมูลอัตโนมัติ)</p>
+                <div *ngFor="let standard of standardList">
+                  <mat-checkbox [(ngModel)]="standard.check" (click)="standardClick()" matLine>{{ standard.value }} {{ standard.text }}</mat-checkbox>
+                </div>
+                <!-- <hr /> -->
+                <!-- <div class="text-right">
+                  
+                    <a mat-raised-button color="primary" style="font-size: 20px;" target="_bank" ><mat-icon style="position: relative; bottom: 1px;">save</mat-icon> บันทึกตัวบ่งชี้มาตรฐาน</a>
+                </div> -->
+              </div>
+              <div fxFlex="40" class="text-center">
+                <a mat-raised-button color="primary" style="font-size: 20px;" target="_bank" (click)="getStudentListExcel()">
+                  <mat-icon style="position: relative; bottom: 0px;">file_download</mat-icon> ดาวน์โหลดรายชื่อสมาชิกชุมนุม</a>
+              </div>
+              <!-- <a mat-raised-button color="primary" style="font-size: 20px;" target="_bank" href="http://www.satit.nu.ac.th/node/congregation/fileClubMemberExcel/?token={{ token }}&#38;subject_id={{ currentClub.id }}"><mat-icon>file_download</mat-icon> ดาวน์โหลดรายชื่อสมาชิกชุมนุม</a> -->
+
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card>
+          <mat-card-content>
+            <h4>
+              <mat-icon>grid_on</mat-icon> ตารางรายชื่อสมาชิกชุมนุม</h4>
+            <p>
+              โปรดบันทึกการเข้าเรียนชุมนุมโดยคลิกเลือกที่ตัวเลขครั้งที่เข้าร่วมกิจกรรม นักเรียนจะผ่านกิจกรรมชุมนุมก็ต่อเมื่อเข้าร่วมกิจกรรมตั้งแต่
+              {{ minWeek }} ครั้งขึ้นไป จาก {{ maxWeek }} ครั้ง (ไม่รวมสัปดาห์สอบกลางภาค และปลายภาค)
+              <br /> คลิกเลือกที่หมายเลขครั้งที่เข้าร่วมกิจกรรมเพื่อบันทึกการเข้าเรียนของสมาชิก
+            </p>
+            <div fxLayout="row" fxLayoutAlign="space-around start">
+              <div fxFlex="100">
+                <table class="table-student-list">
+                  <thead>
+                    <tr>
+                      <td class="text-center" rowspan="2">#</td>
+                      <td class="text-center" rowspan="2">รหัสนักเรียน</td>
+                      <td class="text-center" rowspan="2" colspan="2">ชื่อ - นามสกุล</td>
+                      <td class="text-center" rowspan="2">ชั้น</td>
+                      <td class="text-center" rowspan="2">ห้อง</td>
+                      <td style="padding-top: 10px; padding-bottom: 5px;" [attr.colspan]="maxWeek" class="text-center">ครั้งที่เข้าร่วมกิจกรรม</td>
+                      <td class="text-center" rowspan="2">ผลการเรียน</td>
+                    </tr>
+                    <tr>
+                      <td *ngFor="let week of weeks" class="rotate">
+                        <a routerLink="../../บันทึกการเข้าเรียน/{{ currentClub.id }}/{{week}}/">{{week}}</a>
+                      </td>
+                    </tr>
+                  </thead>
+                  <tr *ngFor="let student of studentList; let i = index;">
+                    <td class="text-center">{{ (i + 1) }}</td>
+                    <td class="text-center">{{ student.studentCode }}</td>
+                    <td style="border-right: none; padding-left: 6px;">{{ student.studentPreName }}{{ student.studentFirstName }}</td>
+                    <td style="border-left: none;">{{ student.studentLastName }}</td>
+                    <td class="text-center">{{ student.studentLevel }}</td>
+                    <td class="text-center">{{ student.studentRoom }}</td>
+                    <!-- <td class="td-check-study">
+                      <mat-icon style="color: green;">check</mat-icon>
+                    </td>
+                    <td class="td-check-study">
+                      <mat-icon>remove</mat-icon>
+                    </td> -->
+                    <td *ngFor="let att of student.attendance " class="td-check-study">
+                      <!-- {{att | json}} -->
+                      <mat-icon *ngIf="att == true" style="color: green;">check</mat-icon>
+                      <!-- <mat-icon *ngIf="att == false" style="color: red;">clear</mat-icon> -->
+                      <!-- <mat-icon *ngIf="att == -1" style="color: lightgray;">remove</mat-icon> -->
+                    </td>
+                    <td class="text-center">
+                      <mat-icon *ngIf="!student.stdResult" style="color: red;">highlight_off</mat-icon>
+                      <mat-icon *ngIf="student.stdResult" style="color: green;">assignment_turned_in</mat-icon>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div fxFlex="30">
+        <mat-card>
+          <mat-card-content>
+            <h4>
+              <mat-icon>grid_on</mat-icon> ตารางจำนวนนักเรียนแต่ละระดับชั้น</h4>
+            <table class="table-number-student">
+              <tr>
+                <td class="td-level-name">มัธยมศึกษาปีที่ 1</td>
+                <td class="td-number-student text-center">{{ numberStudentM1 }} คน</td>
+              </tr>
+
+              <tr>
+                <td class="td-level-name">มัธยมศึกษาปีที่ 2</td>
+                <td class="td-number-student text-center">{{ numberStudentM2 }} คน</td>
+              </tr>
+
+              <tr>
+                <td class="td-level-name">มัธยมศึกษาปีที่ 3</td>
+                <td class="td-number-student text-center">{{ numberStudentM3 }} คน</td>
+              </tr>
+
+              <tr>
+                <td class="td-level-name">มัธยมศึกษาปีที่ 4</td>
+                <td class="td-number-student text-center">{{ numberStudentM4 }} คน</td>
+              </tr>
+
+              <tr>
+                <td class="td-level-name">มัธยมศึกษาปีที่ 5</td>
+                <td class="td-number-student text-center">{{ numberStudentM5 }} คน</td>
+              </tr>
+
+              <tr style="border-bottom: solid 1px slategrey">
+                <td class="td-level-name">มัธยมศึกษาปีที่ 6</td>
+                <td class="td-number-student text-center">{{ numberStudentM6 }} คน</td>
+              </tr>
+
+              <tr>
+                <td class="td-level-name text-center">รวมนักเรียนทั้งหมด</td>
+                <td class="td-number-student text-center">{{ numberStudentTotal }} คน</td>
+              </tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card>
+          <mat-card-content style="height: 250px;">
+            <h4>
+              <mat-icon>photo_library</mat-icon> อัพโหลดรูปกิจกรรม
+            </h4>
+            <div class="drop-place">
+              <div *ngIf="isShowPrograssBar">
+                <div class="text-center">กำลังอัพโหลด...{{ prograssValue }} %</div>
+                <mat-progress-bar [color]="primary" [mode]="determinate" [value]="prograssValue" [bufferValue]="bufferValue"></mat-progress-bar>
+              </div>
+              <input mat-raised-button type="file" ng2FileDrop ng2FileSelect (change)="mouseClickDropPlace()" (loadstart)="onLoadStart()"
+                [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (drop)="onDrop()" (fileOver)="fileOverBase($event)" [uploader]="uploader"
+                class="well my-drop-zone" />
+              <br />
+              <br />
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+
+              <mat-icon>photo_size_select_actual</mat-icon>
+              ลากไฟล์มาวางที่นี่ หรือคลิกเพื่อเลือกไฟล์
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (ไฟล์นามสกุล .jpg .jpeg .png)
+              <!--  <div style="text-align: center;">
+                  สามารถเลือกได้ 1 ไฟล์ และไฟล์ควรมีขนาดไม่เกิน 15 MB หากเป็นไฟล์วิดีโอควรอัพโหลดขึ้น Youtube แล้วแนบเป็น Link แทน
+                </div> -->
+            </div>
+            <hr />
+
+          </mat-card-content>
+          <mat-card-footer>
+            <div *ngFor="let photo of photoList">
+              <img style="width: 80%; padding-left: 10%; padding-right: 10%;" [src]="'http://satit.nu.ac.th/ClubUploadFiles-4002/uploads/' + photo.filename" />
+            </div>
+          </mat-card-footer>
+        </mat-card>
+
+        <!-- <mat-card>
+          <mat-card-content>
+            <h4>
+              <mat-icon>file_upload</mat-icon> แผนกิจกรรมชุมนุม</h4>
+            <p>
+              เขียนโปรแกรมให้ Download Template แผน
+            </p>
+            <p>เขียนโปรแกรมอัพโหลดแผน</p>
+          </mat-card-content>
+        </mat-card> -->
+      </div>
+    </div>
+
+  </article>
+</section>

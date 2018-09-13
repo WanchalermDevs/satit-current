@@ -18,7 +18,7 @@
       <!-- การ์ดที่ 1 -->
       <mat-card class="card-type-first">
         <div class="img-wrap"></div>
-        <mat-card-title>ผลประเมินปีปัจจุบัน</mat-card-title>
+        <mat-card-title>ข้อเสนอแนะปีปัจจุบัน</mat-card-title>
         <mat-divider></mat-divider>
         <mat-card-content>
           <mat-list>
@@ -95,17 +95,17 @@
               <!-- <img  src="../../../../../assets/icon-files/doc.png"> -->
               <mat-icon class="icon-color" mat-list-icon>
                 <img *ngIf="ediv1.file.mimetype==='application/vnd.openxmlformats-officedocument.wordprocessingml.document'||ediv1.file.mimetype==='application/msword'"
-                  src="../../../../../assets/icon-files/doc.png">
-                <img *ngIf="ediv1.file.mimetype==='application/pdf'" src="../../../../../assets/icon-files/pdf.png">
-                <img *ngIf="ediv1.file.mimetype==='image/jpeg'" src="../../../../../assets/icon-files/jpg.png">
+                  src="./assets/icon-files/doc.png">
+                <img *ngIf="ediv1.file.mimetype==='application/pdf'" src="./assets/icon-files/pdf.png">
+                <img *ngIf="ediv1.file.mimetype==='image/jpeg'" src="./assets/icon-files/jpg.png">
                 <img *ngIf="ediv1.file.mimetype==='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'||ediv1.file.mimetype==='application/vnd.ms-excel'"
-                  src="../../../../../assets/icon-files/xls.png">
-                <img *ngIf="ediv1.file.mimetype==='image/gif'" src="../../../../../assets/icon-files/gif.png">
-                <img *ngIf="ediv1.file.mimetype==='application/octet-stream'" src="../../../../../assets/icon-files/zip.png">
-                <img *ngIf="ediv1.file.mimetype==='image/png'" src="../../../../../assets/icon-files/png.png">
+                  src="./assets/icon-files/xls.png">
+                <img *ngIf="ediv1.file.mimetype==='image/gif'" src="./assets/icon-files/gif.png">
+                <img *ngIf="ediv1.file.mimetype==='application/octet-stream'" src="./assets/icon-files/zip.png">
+                <img *ngIf="ediv1.file.mimetype==='image/png'" src="./assets/icon-files/png.png">
                 <img *ngIf="ediv1.file.mimetype==='application/vnd.ms-powerpoint'||ediv1.file.mimetype==='application/vnd.openxmlformats-officedocument.presentationml.presentation'"
-                  src="../../../../../assets/icon-files/ppt.png">
-                <img *ngIf="ediv1.file.mimetype===''" src="../../../../../assets/icon-files/file.png">
+                  src="./assets/icon-files/ppt.png">
+                <img *ngIf="ediv1.file.mimetype===''" src="./assets/icon-files/file.png">
               </mat-icon>
               <span matLine>ชื่อหลักฐาน : {{ ediv1.name }}</span>
               <p matLine>
@@ -151,7 +151,7 @@
         <mat-card-content>
           <!-- table part-->
 
-          <td-data-table #dataTable [clickable]="true" [data]="childTopic" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"
+          <td-data-table style="width: 97%; height: auto;;" #dataTable [clickable]="true" [data]="childTopic" [multiple]="canMultiple" [selectable]="canSelect" [columns]="columnsStandard"
             [sortable]="false" (rowSelect)="selectedStandardItem($event)" (selectAll)="selectedStandardItem($event)" (rowClick)="rowClick($event)">
           </td-data-table>
           <div class="mat-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
@@ -160,7 +160,7 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <div fxFlex="30" *ngIf="currentTopic.parent_id === -1">
+    <div fxFlex="30">
       <mat-card *ngIf="hasData">
         <mat-card-title>
           ประเมินมาตรฐาน/ประเด็นพิจารณา

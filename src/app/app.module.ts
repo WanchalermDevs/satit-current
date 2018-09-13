@@ -94,6 +94,12 @@ import { CheckStudentRegistedComponent } from './pages/mis/congregation-mis/chec
 import { EvidenceListComponent } from './pages/mis/eqa/evidence-list/evidence-list.component';
 import { EvaluationSystemHomeComponent } from './pages/mis/eqa/evaluation-system-home/evaluation-system-home.component';
 import { EvaluationTopicComponent } from './pages/mis/eqa/evaluation-topic/evaluation-topic.component';
+import { ClubInfoMISComponent } from './pages/mis/congregation-mis/club-info-mis/club-info-mis.component';
+import { ClubListMISComponent } from './pages/mis/congregation-mis/club-list-mis/club-list-mis.component';
+import { ClubInfoTpsComponent } from './pages/tps/congregation/club-info-tps/club-info-tps.component';
+import { ClubCheckStudentTpsComponent } from './pages/tps/congregation/club-check-student-tps/club-check-student-tps.component';
+import { CreateNewClubTpsComponent } from './pages/tps/congregation/create-new-club-tps/create-new-club-tps.component';
+import { EditClubInfoTpsComponent } from './pages/tps/congregation/edit-club-info-tps/edit-club-info-tps.component';
 
 
 
@@ -135,7 +141,13 @@ export function createTranslateLoader(http: HttpClient) {
     CheckStudentRegistedComponent,
     EvidenceListComponent,
     EvaluationSystemHomeComponent,
-    EvaluationTopicComponent
+    EvaluationTopicComponent,
+    ClubInfoMISComponent,
+    ClubListMISComponent,
+    ClubInfoTpsComponent,
+    ClubCheckStudentTpsComponent,
+    CreateNewClubTpsComponent,
+    EditClubInfoTpsComponent
   ],
   entryComponents: [DialogMisEnter
   ],

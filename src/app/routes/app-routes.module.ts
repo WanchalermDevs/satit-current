@@ -36,6 +36,10 @@ import { LocationHomeComponent } from '../pages/mis/location/location-home/locat
 import { CreateLocationComponent } from '../pages/mis/location/create-location/create-location.component';
 import { EditLocationComponent } from '../pages/mis/location/edit-location/edit-location.component';
 import { RemoveLocationComponent } from '../pages/mis/location/remove-location/remove-location.component';
+import { ClubInfoMISComponent } from '../pages/mis/congregation-mis/club-info-mis/club-info-mis.component';
+import { ClubListMISComponent } from '../pages/mis/congregation-mis/club-list-mis/club-list-mis.component';
+import { ClubInfoTpsComponent } from '../pages/tps/congregation/club-info-tps/club-info-tps.component';
+import { ClubCheckStudentTpsComponent } from '../pages/tps/congregation/club-check-student-tps/club-check-student-tps.component';
 
 import { AuthService } from '../service/users/auth.service';
 
@@ -74,13 +78,13 @@ const SATIT_ROUTES: Routes = [
         component: EvidenceEditComponent
       },
       {
-        path: 'ลบหลักฐาน/:id/:name',
+        path: 'ลบหลักฐาน/:id/:name', 
         component: EvidenceDeleteComponent
       }
     ]
   },
   {
-    path: 'กิจกรรมพัฒนาผู้เรียน-ชุมนุม',
+    path: 'ClubManageManagementSystem',
     component: MainPageComponent,
     canActivateChild: [LogedinGuard],
     children: [
@@ -89,23 +93,54 @@ const SATIT_ROUTES: Routes = [
         component: Home2CongregationComponent
       },
       {
-        path: 'หน้าแรก',
+        path: 'Home',
         component: Home2CongregationComponent
       },
       {
-        path: 'ตรวจสอบนักเรียนลงทะเบียน',
+        path: 'CheckStudentRegisted',
         component: CheckStudentRegistedComponent
       },
       {
-        path: 'รายการชุมนุม',
-        component: HomeCongregationMisComponent
+        path: 'ClubList',
+        component: ClubListMISComponent
       },
       {
-        path: 'ข้อมูลชุมนุม/:id',
-        component: CongregationInfoComponent
+        path: 'ClubInfo/:id',
+        component: ClubInfoMISComponent
       },
       {
-        path: 'แก้ไขข้อมูลชุมนุม/:id',
+        path: 'EditClubInfo/:id',
+        component: EditCongregationComponent
+      }
+    ]
+  },
+  {
+    path: 'ระบบจัดการวิชาชุมนุมของครู',
+    component: MainPageComponent,
+    canActivateChild: [LogedinGuard],
+    children: [
+      {
+        path: '',
+        component: HomeCongregationComponent
+      },
+      {
+        path: 'หน้าหลัก',
+        component: HomeCongregationComponent
+      },
+      {
+        path: 'ข้อมูลวิชาชุมนุม/:id',
+        component: ClubInfoTpsComponent
+      },
+      {
+        path: 'บันทึกการเข้าเรียน/:id/:week',
+        component: ClubCheckStudentTpsComponent
+      },
+      {
+        path: 'ตั้งรายวิชาชุมนุมใหม่',
+        component: CreateNewCongregationComponent
+      },
+      {
+        path: 'แก้ไขข้อมูล/:id',
         component: EditCongregationComponent
       }
     ]
@@ -168,33 +203,7 @@ const SATIT_ROUTES: Routes = [
       }
     ]
   },
-  {
-    path: 'ระบบจัดการวิชาชุมนุมของครู',
-    component: MainPageComponent,
-    canActivateChild: [LogedinGuard],
-    children: [
-      {
-        path: '',
-        component: HomeCongregationComponent
-      },
-      {
-        path: 'Info/:id',
-        component: CongregationInfoComponent
-      },
-      {
-        path: 'Home',
-        component: HomeCongregationComponent
-      },
-      {
-        path: 'ตั้งรายวิชาชุมนุมใหม่',
-        component: CreateNewCongregationComponent
-      },
-      {
-        path: 'แก้ไขชุมนุม/:id',
-        component: EditCongregationComponent
-      }
-    ]
-  },
+  
   {
     path: 'EQA',
     component: MainPageComponent,

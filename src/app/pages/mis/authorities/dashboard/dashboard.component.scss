@@ -18,9 +18,3 @@ header .mat-subhead {
   max-width: 600px;
   margin: 0 auto;
 }
-
-/deep/ {
-  .dialog-example-buttons {
-    justify-content: flex-end;
-  }
-}

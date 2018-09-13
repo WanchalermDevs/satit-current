@@ -45,11 +45,11 @@ export class Home2CongregationComponent implements OnInit {
   }
 
   gotoCongregationList() {
-    this.router.navigateByUrl('/กิจกรรมพัฒนาผู้เรียน-ชุมนุม/รายการชุมนุม');
+    this.router.navigateByUrl('/ClubManageManagementSystem/ClubList');
   }
 
   gotoCheckStudentRegisted() {
-    this.router.navigateByUrl('/กิจกรรมพัฒนาผู้เรียน-ชุมนุม/ตรวจสอบนักเรียนลงทะเบียน');
+    this.router.navigateByUrl('/ClubManageManagementSystem/CheckStudentRegisted');
   }
 
 }

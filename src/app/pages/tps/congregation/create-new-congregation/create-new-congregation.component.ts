@@ -37,7 +37,7 @@ export class CreateNewCongregationComponent implements OnInit {
   model;
   auto;
   year = "2561";
-  semester = "1";
+  semester = "2";
   subjectName: any;
   studentLimit = "25";
   stateCtrl: FormControl;
@@ -175,24 +175,24 @@ export class CreateNewCongregationComponent implements OnInit {
   }
 
   navigateBack() {
-    this.router.navigateByUrl('/ระบบจัดการวิชาชุมนุมของครู/Home');
+    this.router.navigateByUrl('/ระบบจัดการวิชาชุมนุมของครู/หน้าหลัก');
   }
 
   submit() {
     let check = true;
     this.errorMessage = [];
-    // if ((this.year === "") || (this.year === undefined)) {
-    //   // console.log("โปรดระบุปีการศึกษา");
-    //   this.errorMessage.push("โปรดระบุปีการศึกษา");
-    //   check = false;
-    // } else {
-    //   check = true;
-    // }
+    if ((this.year === "") || (this.year === undefined)) {
+      // console.log("โปรดระบุปีการศึกษา");
+      this.errorMessage.push("โปรดระบุปีการศึกษา");
+      check = false;
+    } else {
+      check = true;
+    }
 
-    // if ((this.semester === "") || (this.semester === undefined)) {
-    //   this.errorMessage.push("โปรดระบุภาคเรียน");
-    //   check = false;
-    // }
+    if ((this.semester === "") || (this.semester === undefined)) {
+      this.errorMessage.push("โปรดระบุภาคเรียน");
+      check = false;
+    }
 
     // if ((this.selectedLevel === "") || (this.selectedLevel === undefined)) {
     //   this.errorMessage.push("โปรดระบุปีช่วงชั้น");
@@ -231,7 +231,7 @@ export class CreateNewCongregationComponent implements OnInit {
           this.errorMessage.push(resReturn['message']);
           this.formError = true;
         } else {
-          this.router.navigateByUrl('/ระบบจัดการวิชาชุมนุมของครู/Home');
+          // this.router.navigateByUrl('/ระบบจัดการวิชาชุมนุมของครู/Home');
         }
       });
     } else {

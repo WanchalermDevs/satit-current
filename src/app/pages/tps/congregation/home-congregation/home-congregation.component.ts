@@ -110,6 +110,7 @@ export class HomeCongregationComponent implements OnInit {
 
   ngOnInit() {
     this.cgt.myCongregationAll(window.localStorage.getItem('token')).then((resReturn) => {
+      console.log(resReturn);
       if (resReturn['operation'] === "fail") {
 
       } else {
@@ -135,19 +136,40 @@ export class HomeCongregationComponent implements OnInit {
               getLocationText = (info['subPlaceName']);
             }
             info = JSON.parse(item['info']);
-            let temp = {
-              'sequnce': count++,
-              'id': item.id,
-              'subjectName': item.name,
-              'teacher': teacherText,
-              'edu_semester': info.edu_semester,
-              'edu_year': info.edu_year,
-              'studentLimit': info.studentLimit,
-              'studentSubmit': getLocationText,
-              'location': getLocationText
-            };
-            console.log(temp);
-            this.subjectList.push(temp);
+            if (item['student'] != '') {
+              let temp = {
+                'sequnce': count++,
+                'id': item.id,
+                'subjectName': item.name,
+                'teacher': teacherText,
+                'edu_semester': info.edu_semester,
+                'edu_year': info.edu_year,
+                'studentLimit': info.studentLimit,
+                'studentSubmit': getLocationText,
+                'location': getLocationText,
+                'teaching_status': item['teaching_status'],
+                'numberStudent': JSON.parse(item['student']).length
+              };
+              console.log(temp);
+              this.subjectList.push(temp);
+            } else {
+              let temp = {
+                'sequnce': count++,
+                'id': item.id,
+                'subjectName': item.name,
+                'teacher': teacherText,
+                'edu_semester': info.edu_semester,
+                'edu_year': info.edu_year,
+                'studentLimit': info.studentLimit,
+                'studentSubmit': getLocationText,
+                'location': getLocationText,
+                'teaching_status': item['teaching_status'],
+                'numberStudent': 0
+              };
+              console.log(temp);
+              this.subjectList.push(temp);
+            }
+
             this.filter();
           });
         });
@@ -172,11 +194,11 @@ export class HomeCongregationComponent implements OnInit {
     this.router.navigateByUrl('/ระบบจัดการวิชาชุมนุมของครู/ตั้งรายวิชาชุมนุมใหม่');
   }
 
-  rowClick(event: ITdDataTableRowClickEvent): void {
-    this.router.navigateByUrl('/ระบบจัดการวิชาชุมนุมของครู/Info/' + event.row.id);
+  rowClick(id): void {
+    this.router.navigateByUrl('/ระบบจัดการวิชาชุมนุมของครู/ข้อมูลวิชาชุมนุม/' + id);
     console.log(event);
   }
-  
+
   filter(): void {
     let newData: any[] = this.subjectList;
     newData = this._dataTableService.filterData(newData, this.searchTerm, true);
@@ -184,6 +206,11 @@ export class HomeCongregationComponent implements OnInit {
     newData = this._dataTableService.sortData(newData, this.sortBy, this.sortOrder);
     newData = this._dataTableService.pageData(newData, this.fromRow, this.currentPage * this.pageSize);
     this.filteredData = newData;
+  }
+
+  gotoEdit(id){
+    console.log(id);
+    this.router.navigateByUrl("/ระบบจัดการวิชาชุมนุมของครู/แก้ไขข้อมูล/" + id);
   }
 
 }

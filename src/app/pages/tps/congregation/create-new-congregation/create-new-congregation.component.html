@@ -14,18 +14,18 @@
         * บังคับระบุข้อมูล
       </mat-card-subtitle>
       <mat-card-content>
-        <!-- <div fxLayout="row" fxLayoutGap="20px"> -->
-        <!-- <div fxFlex.gt-sm="35%">
+        <div fxLayout="row" fxLayoutGap="20px">
+        <div fxFlex.gt-sm="50%">
             <mat-form-field style="width: 100%">
               <input required matInput placeholder="ปีการศึกษา" [(ngModel)]="year" />
               <mat-hint>ปี พ.ศ. 4 หลัก เช่น 2560</mat-hint>
             </mat-form-field>
           </div>
-          <div fxFlex.gt-sm="35%">
+          <div fxFlex.gt-sm="50%">
             <mat-form-field style="width: 100%">
               <input required matInput placeholder="ภาคเรียน" [(ngModel)]="semester" />
             </mat-form-field>
-          </div> -->
+          </div>
         <!-- <div fxFlex.gt-sm="30%">
             <mat-form-field style="width: 100%">
               <mat-select required placeholder="ระดับช่วงชั้น" [(ngModel)]="selectedLevel">
@@ -35,7 +35,7 @@
               </mat-select>
             </mat-form-field>
           </div> -->
-        <!-- </div> -->
+        </div>
         <div fxLayout="row">
           <div fxFlex.gt-sm="100%">
             <mat-form-field style="width: 100%">
@@ -45,8 +45,8 @@
         </div>
         <div fxLayout="row">
           <div fxFlex.gt-sm="50%">
-            <mat-form-field style="width: 100%">
-              <mat-select required placeholder="อาคาร/สถานที่" (selectionChange)="selectedLocationChange()" [(ngModel)]="selectedLocation">
+            <mat-form-field style="width: 95%">
+              <mat-select required placeholder="อาคาร/บริเวณ" (selectionChange)="selectedLocationChange()" [(ngModel)]="selectedLocation">
                 <mat-option *ngFor="let food of mainLocation; let i = index;" [value]="food.id">
                   {{ food.info.name }}
                 </mat-option>

@@ -1,7 +1,45 @@
-.playTutorialBtn{
-
-}
 
 .playTutorialBtn :hover{
     cursor: pointer;
 }
+
+.table-my-club-list{
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #e0e0e0;
+}
+
+thead td{
+    font-weight: bold;
+    font-size: 22px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+thead{
+    background-color: #ff9800;
+    color: white;
+}
+
+.tr-subject-list td{
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.a-name-subject{
+    text-decoration: underline;
+}
+.a-name-subject:hover{
+    cursor: pointer;
+}
+// .tr-subject-list:hover{
+//     cursor: pointer;
+//     font-weight: bold;
+//     background-color: #ffcc80;
+// }

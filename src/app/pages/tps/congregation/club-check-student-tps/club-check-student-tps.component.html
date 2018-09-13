@@ -1,0 +1,52 @@
+<section>
+  <header>
+    <h3>บันทึกการเข้าเรียนชุมนุม</h3>
+  </header>
+  <mat-divider></mat-divider>
+  <article>
+    <div fxLayout="row" fxLayoutAlign="space-around start">
+      <div fxFlex="60">
+        <mat-card>
+          <mat-card-content>            
+            
+            <h4>ตารางบันทึกการเข้าเรียนวิชาชุมนุม{{ currentClub.subjectName }}</h4>
+            <p style="font-size: 22px;">ประจำปีการศึกษา {{ eduYearText }} ภาคเรียนที่ {{ eduSemesterText }} การเรียนครั้งที่ {{ timeStudy }}</p>
+            <mat-divider></mat-divider>
+            <br />
+            <table class="table-check-student-study">
+              <thead>
+                <tr>
+                  <td class="text-center td-level-name">ลำดับ</td>
+                  <td class="text-center td-level-name">รหัสนักเรียน</td>
+                  <td class="text-center td-level-name" colspan="2">ชื่อ - นามกสุล</td>
+                  <td class="text-center td-level-name">ชั้น</td>
+                  <td class="text-center td-level-name">ห้อง</td>
+                  <td class="text-center td-level-name">การเข้าเรียน</td>
+                </tr>
+              </thead>
+              <tr *ngFor="let student of studentList; let i = index">
+                <td class="text-center"> {{ (i + 1) }}</td>
+                <td class="text-center">{{ student.studentCode }}</td>
+                <td style="padding-left: 6px; border-right: none;">{{ student.studentPreName }}{{ student.studentFirstName }}</td>
+                <td style="border-left: none;">{{ student.studentLastName }}</td>
+                <td class="text-center">{{ student.studentLevel }}</td>
+                <td class="text-center">{{ student.studentRoom }}</td>
+                <td class="text-center" >
+                  <mat-checkbox type="checkbox" (click)="showData()" [(ngModel)]="student.attendance" ></mat-checkbox>
+                </td>
+              </tr>
+            </table>
+          </mat-card-content>
+          <mat-divider></mat-divider>
+          <br />
+          <mat-card-footer class="text-right">
+              <div fxLayout="row" fxLayoutAlign="end start" >
+                  <button mat-raised-button color="primary" (click)="saveAttendance()" style="margin-right: 30px; font-size: 20px;">บันทึกการเข้าเรียนชุมนุม</button>
+              </div>
+              <br />
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+  </article>
+</section>

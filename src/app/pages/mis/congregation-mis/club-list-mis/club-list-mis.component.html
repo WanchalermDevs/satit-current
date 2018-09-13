@@ -1,0 +1,76 @@
+<section>
+  <header>
+    <h3>รายการวิชาชุมนุม</h3>
+  </header>
+  <mat-divider></mat-divider>
+  <div fxLayout="row" fxLayoutAlign="space-around start">
+    <div fxFlex="75">
+      <mat-card>
+        <mat-card-content>
+          <div fxLayout="row" fxLayoutAlign="space-around start">
+            <div fxFlex="60">
+              <span style="font-size: 30px">ตารางแสดงรายวิชาชุมนุมประจำปีการศึกษา {{ eduYearText }} ภาคเรียนที่ {{ eduSemesterText }}</span>
+            </div>
+            <div fxFlex="40" class="text-right">
+              <mat-form-field fxFlex style="padding-right: 8px;">
+                <input matInput placeholder="ปีการศึกษา" value="2561" #eduYear>
+              </mat-form-field>
+              <mat-form-field fxFlex style="padding-left: 8px;">
+                <input matInput placeholder="ภาคเรียนที่" value="1" #eduSem>
+              </mat-form-field>
+              <button mat-fab color="primary" style="margin-left: 10px;" (click)="requestClubList(eduYear.value, eduSem.value)">
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <br />
+          <table class="table-club-list">
+            <thead>
+              <td class="text-center">#</td>
+              <td class="text-center">ชื่อชุมนุม</td>
+              <td class="text-center">จำนวนนักเรียน</td>
+              <td class="text-center">ครูผู้สอน</td>
+              <td class="text-center">สถานะ</td>
+            </thead>
+            <tr (click)="gotoClubInfo(club.id)" class="tr-club-list" *ngFor="let club of clubList; let i of index;">
+              <td class="text-center"> {{ club.sequence }}</td>
+              <td style="padding-left: 6px;">{{ club.subjectName }}</td>
+              <td style="padding-left: 6px;">
+                <div *ngFor="let teacher of club.teacher">
+                  {{ teacher.personal_title_name_th }}{{ teacher.personal_first_name_th }} {{ teacher.personal_last_name_th }}
+                </div>
+              </td>
+              <td class="text-center"> {{ club.studentLength }} </td>
+              <td class="text-center"> {{ club.teachingStatus }}</td>
+            </tr>
+            <tr *ngIf="clubList.length == 0">
+              <td class="text-center" colspan="5" style="padding-top: 10px; padding-bottom: 10px;">
+                -- ไม่มีข้อมูลกรุณาระบุปีการศึกษา และภาคการศึกษาที่ต้องการข้อมูล --
+              </td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="25">
+      <mat-card>
+        <mat-card-title>
+          <h5>การประมวลผล</h5>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <mat-nav-list>
+            <a mat-list-item>
+              <mat-icon class="icon-color" mat-list-icon>
+                <img src="./assets/icon-files/xls.png">
+              </mat-icon>
+              <p matLine> ประเภทไฟล์: Microsoft Excel </p>
+              <p matLine style="font-size: 220xp;">สร้างไฟล์ตารางรายการวิชาชุมนุม</p>
+            </a>
+          </mat-nav-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>

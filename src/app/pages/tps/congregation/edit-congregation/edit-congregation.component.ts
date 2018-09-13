@@ -1,5 +1,5 @@
 
-import {map, startWith} from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -97,7 +97,7 @@ export class EditCongregationComponent implements OnInit {
         });
         this.filteredStates = this.stateCtrl.valueChanges.pipe(
           startWith(null),
-          map(name => this.filterStates(name)),);
+          map(name => this.filterStates(name)), );
 
       });
     });
@@ -154,7 +154,9 @@ export class EditCongregationComponent implements OnInit {
         this.buildingList.push(item);
       });
     });
-    this.setData();
+    setTimeout(() => {
+      this.setData();
+    }, 500);
   }
 
   setData() {
@@ -165,21 +167,23 @@ export class EditCongregationComponent implements OnInit {
         this.subjectName = subject['name'];
         let subjectInfo = JSON.parse(subject['info']);
         this.model = subjectInfo['description'];
-        // this.selectedLocation = subject['location'];
-        console.log(subjectInfo);
-        this.selectedSubLocation = subject['location'];
+        
+        // console.log(subjectInfo);
+        
         this.locationService.getLocationInfo(window.localStorage.getItem('token'), subject['location']).then((resReturn: Array<{}>) => {
-          console.log(resReturn);
+          // console.log(resReturn);
           let building = JSON.parse(resReturn['building'])[0];
           let buildingInfo = JSON.parse(building['info']);
-
+          // console.log(buildingInfo);
           if (building['type'] == "room") {
             this.selectedLocation = buildingInfo['buildingID'];
-
+            // console.log("set ID อาคารแล้ว");
           } else if (building['type'] == "subPlace") {
             this.selectedLocation = buildingInfo['placeID'];
           }
-          console.log(this.selectedLocation);
+          this.selectedLocationChange();
+          this.selectedSubLocation = subject['location'];
+          // console.log(this.selectedLocation);
         });
       });
     });
@@ -200,7 +204,7 @@ export class EditCongregationComponent implements OnInit {
   }
 
   navigateBack() {
-    this.router.navigateByUrl('/ระบบจัดการวิชาชุมนุมของครู/Home');
+    this.router.navigateByUrl('/ระบบจัดการวิชาชุมนุมของครู/หน้าหลัก');
   }
 
   submit() {

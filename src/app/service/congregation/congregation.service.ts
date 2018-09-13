@@ -1,5 +1,5 @@
 
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 
@@ -17,7 +17,7 @@ export class CongregationService {
     return _parameter;
   }
 
-  createListOfMemberExcel(token, data, subject){
+  createListOfMemberExcel(token, data, subject) {
     const param = {
       token: token,
       data: data,
@@ -111,9 +111,19 @@ export class CongregationService {
     return this._post(param, 'getACongregation');
   }
 
-  getCongregationAll(token) {
+  checkStudentRegisted(token, stdCode) {
     const param = {
-      token: token
+      token: token,
+      stdCode: stdCode
+    };
+    return this._post(param, 'checkStudentRegisted');
+  }
+
+  getCongregationAll(token, year, semester) {
+    const param = {
+      token: token,
+      year: year,
+      semester: semester
     };
     return this._post(param, 'getCongregationAll');
   }
@@ -135,12 +145,100 @@ export class CongregationService {
     return this._post(param, 'removeCongregation');
   }
 
-  checkStudentRegisted(token, studentCode) {
+  setSubjectStandard(token, subject_id, standard) {
     const param = {
       token: token,
-      stdCode: studentCode
+      subject_id: subject_id,
+      standard: JSON.stringify(standard)
     };
-    return this._post(param, 'checkStudentRegisted');
+    return this._post(param, 'insertSubjectStandard');
+  }
+
+  insertFile(token, subject_id, target, file) {
+    const param = {
+      token: token,
+      subject_id: subject_id,
+      target: target,
+      file: JSON.stringify(file)
+    };
+    return this._post(param, 'insertFile');
+  }
+
+  getClubPhoto(token, subject_id) {
+    const param = {
+      token: token,
+      subject_id: subject_id
+    };
+    return this._post(param, 'getClubPhoto');
+  }
+
+  getSubjectStandard(token, subject_id) {
+    const param = {
+      token: token,
+      subject_id: subject_id
+    };
+    return this._post(param, 'getSubjectStandard');
+  }
+
+
+
+  getClubInfoById(token, id) {
+    const param = {
+      token: token,
+      id: id
+    };
+    return this._post(param, 'getCongregationById');
+  }
+
+  getAttendence(token, student_code, subject_id) {
+    const param = {
+      token: token,
+      student_code: student_code,
+      subject_id: subject_id
+    };
+    return this._post(param, 'getAttendence');
+  }
+
+  getAttendenceByTime(token, subject_id, time) {
+    const param = {
+      token: token,
+      subject_id: subject_id,
+      time: time
+    };
+    return this._post(param, 'getAttendenceByTime');
+  }
+
+  initStudentListExcel(token, subject_id, student, info) {
+    const param = {
+      token: token,
+      subject_id: subject_id,
+      info: JSON.stringify(info),
+      student: JSON.stringify(student)
+    };
+    return this._post(param, 'initStudentListExcel');
+  }
+
+  saveAttendance(token, year, subject_id, time, att, action) {
+    if (action) {
+      const param = {
+        token: token,
+        subject_id: subject_id,
+        time: time,
+        year: year,
+        att: JSON.stringify(att)
+      };
+      return this._post(param, 'updateAttendance');
+    } else {
+      const param = {
+        token: token,
+        subject_id: subject_id,
+        time: time,
+        year: year,
+        att: JSON.stringify(att)
+      };
+      return this._post(param, 'insertAttendance');
+    }
+
   }
 
   private _post(param, action) {

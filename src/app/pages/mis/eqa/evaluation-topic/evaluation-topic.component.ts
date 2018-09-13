@@ -130,20 +130,24 @@ export class EvaluationTopicComponent implements OnInit {
             'owners': element['owner'],
             'car': element['evaluation']
           }
-          this.checkChildNode(list, element, (check) => {
-            if (check) {
-              this.columnsStandard = [{ name: 'childtopic', label: 'ประเด็นพิจารณา' }];
-              console.log(check + '' + element['text']);
-              this.filter();
-            } else {
-              this.columnsStandard = [
-                { name: 'childtopic', label: 'ประเด็นพิจารณา' },
-                { name: 'car', label: 'CAR', width: 160 }
-              ];
-              console.log(check + '' + element['text']);
-              this.filter();
-            }
-          });
+          // this.checkChildNode(list, element, (check) => {
+          //   if (check) {
+          //     this.columnsStandard = [{ name: 'childtopic', label: 'ประเด็นพิจารณา' }];
+          //     console.log(check + '' + element['text']);
+          //     this.filter();
+          //   } else {
+          //     this.columnsStandard = [
+          //       { name: 'childtopic', label: 'ประเด็นพิจารณา' },
+          //       { name: 'car', label: 'CAR', width: 160 }
+          //     ];
+          //     console.log(check + '' + element['text']);
+          //     this.filter();
+          //   }
+          // });
+          this.columnsStandard = [
+            { name: 'childtopic', label: 'ประเด็นพิจารณา' },
+            { name: 'car', label: 'CAR', width: 200 }
+          ];
           this.childTopic.push(temp);
         }
 

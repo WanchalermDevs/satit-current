@@ -73,7 +73,7 @@ export class HomeCongregationMisComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cgt.getCongregationAll(window.localStorage.getItem('token')).then((resReturn: Array<{}>) => {
+    this.cgt.getCongregationAll(window.localStorage.getItem('token'), 2561, 1).then((resReturn: Array<{}>) => {
       // this.subjectList = resReturn['subject'];
       // this.subjectList = [];
       // console.log(resReturn);

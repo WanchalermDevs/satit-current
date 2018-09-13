@@ -76,17 +76,17 @@ export class CheckStudentRegistedComponent implements OnInit {
   ) {
     this.isRegisted = true;
     this.stateCtrl = new FormControl();
-    this.filteredStates = this.stateCtrl.valueChanges
-      .startWith(null)
-      .map(name => this.filterStates(name));
+    // this.filteredStates = this.stateCtrl.valueChanges
+    //   .startWith('')
+    //   .map(name => this.filterStates(name));
   }
 
   checkRegisted(stdCode, next) {
     // console.log(stdCode);
     this.cgt.checkStudentRegisted(window.localStorage.getItem('token'), stdCode).then(subject => {
       if(subject['subject'].length > 1){
-        console.log(stdCode);
-        console.log(subject['subject']);
+        // console.log(stdCode);
+        // console.log(subject['subject']);
       }
       // console.log(subject['subject'].length);
       next(subject);
@@ -113,6 +113,7 @@ export class CheckStudentRegistedComponent implements OnInit {
               const subject = subjects['subject'][0];
               subjectName = subject['name'];
               const tempList = {
+                '_sort': ''+info['room'][0]['level'] + info['room'][0]['room'] + info['student_code'],
                 'code': info['student_code'],
                 'firstname': JSON.parse(std['name'])[0]['name_th']['prename'] + JSON.parse(std['name'])[0]['name_th']['firstname'],
                 'lastname': JSON.parse(std['name'])[0]['name_th']['lastname'],
@@ -123,10 +124,14 @@ export class CheckStudentRegistedComponent implements OnInit {
               // console.log(tempList);
               if (this.isRegisted) {
                 this.studentListShow.push(tempList);
+                this.studentListShow.sort((a, b) => {
+                  return a['_sort'] - b['_sort'];
+                });
               }
               // this.studentListShow.push(tempList);
             } else {
               const tempList = {
+                '_sort': ''+info['room'][0]['level'] + info['room'][0]['room'] + info['student_code'],
                 'code': info['student_code'],
                 'firstname': JSON.parse(std['name'])[0]['name_th']['prename'] + JSON.parse(std['name'])[0]['name_th']['firstname'],
                 'lastname': JSON.parse(std['name'])[0]['name_th']['lastname'],
@@ -137,12 +142,17 @@ export class CheckStudentRegistedComponent implements OnInit {
               // console.log(tempList);
               if (!this.isRegisted) {
                 this.studentListShow.push(tempList);
+                this.studentListShow.sort((a, b) => {
+                  return a['_sort'] - b['_sort'];
+                });
               }
             }
             // console.log(subject);
             // console.log(info['room']);
-
+            
             if ((student.length - 1) <= i) {
+              
+              console.log(this.studentListShow);
               console.log('--- filter ---');
               this.filter();
             }
@@ -178,13 +188,14 @@ export class CheckStudentRegistedComponent implements OnInit {
 
   filter(): void {
     // console.log(this.studentListShow);
+    this.bindDataTable(this.studentListShow);
 
-    this.sortByKey(this.studentListShow, 'sr', (data) => {
-      // console.log(data);
-      this.setIndex(data, (data2) => {
-        this.bindDataTable(data2);
-      });
-    });
+    // this.sortByKey(this.studentListShow, 'sr', (data) => {
+    //   // console.log(data);
+    //   this.setIndex(data, (data2) => {
+    //     this.bindDataTable(data2);
+    //   });
+    // });
   }
 
   sortByKey(array, key, next) {

@@ -1,0 +1,34 @@
+.table-club-list{
+    width: 100%;
+}
+.tr-club-list td{
+    font-size: 18px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.tr-club-list:hover{
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #ffcc80;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #e0e0e0;
+}
+
+thead td{
+    font-weight: bold;
+    font-size: 22px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+thead{
+    background-color: #ff9800;
+    color: white;
+}

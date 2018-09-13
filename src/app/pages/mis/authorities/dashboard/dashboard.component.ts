@@ -64,7 +64,7 @@ export class DashboardComponent implements OnInit {
   }
 
   gotoCongregationHome() {
-    this.router.navigateByUrl('/ระบบจัดการวิชาชุมนุมของครู/Home');
+    this.router.navigateByUrl('/ระบบจัดการวิชาชุมนุมของครู/หน้าหลัก');
   }
 
   gotoLocation() {
@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit {
 
   mobilizeEnter() {
     if (this.mobilizeAuthority()) {
-      this.router.navigateByUrl('/กิจกรรมพัฒนาผู้เรียน-ชุมนุม/หน้าแรก');
+      this.router.navigateByUrl('/ClubManageManagementSystem/Home');
     } else {
       this.openDialog();
       // this.router.navigateByUrl('/กิจกรรมพัฒนาผู้เรียน-ชุมนุม/หน้าแรก');
